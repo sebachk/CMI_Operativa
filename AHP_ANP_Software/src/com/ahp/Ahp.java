@@ -1,7 +1,7 @@
 package com.ahp;
 
 public class Ahp {
-	public static float[] RI = { 0.00f, 0.00f, 0.58f, 0.90f, 1.12f, 1.24f, 1.32f, 1.41f, 1.45f, 1.49f, 1.51f, 1.48f,
-			1.56f, 1.57f, 1.59f };
+	public static Double[] RI = { 0.00, 0.00, 0.58, 0.90, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49, 1.51, 1.48, 1.56, 1.57,
+			1.59 };
 
 }
