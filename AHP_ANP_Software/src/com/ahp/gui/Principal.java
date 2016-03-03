@@ -4,10 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTree;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -27,6 +31,11 @@ public class Principal {
 	private JPanel desicionTree;
 	private JPanel panel_2;
 	private JTree tree;
+	private JTabbedPane pestanias;
+	private JPanel definicion;
+	private JSplitPane splitPane;
+	private JPanel panel_3;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -118,6 +127,32 @@ public class Principal {
 
 		panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.CENTER);
+		panel_2.setLayout(new BorderLayout(0, 0));
+
+		pestanias = new JTabbedPane(JTabbedPane.TOP);
+		panel_2.add(pestanias);
+
+		definicion = new JPanel();
+		pestanias.addTab("Defin", null, definicion, null);
+		definicion.setLayout(new BorderLayout(0, 0));
+
+		splitPane = new JSplitPane();
+		splitPane.setResizeWeight(0.5);
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		definicion.add(splitPane);
+
+		panel_3 = new JPanel();
+		splitPane.setLeftComponent(panel_3);
+		panel_3.setLayout(null);
+
+		JButton btnAgregarAlter = new JButton("agregar alter");
+		btnAgregarAlter.setBounds(10, 0, 89, 23);
+		panel_3.add(btnAgregarAlter);
+
+		table = new JTable();
+		table.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.RED, null));
+		table.setBounds(10, 34, 305, 43);
+		panel_3.add(table);
 
 		panel_1 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_1, null);
