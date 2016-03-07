@@ -4,19 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.JTree;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import com.ahp.gui.components.AHPCellTreeRenderer;
+import com.ahp.gui.components.TabDefiniciones;
 
 public class Principal {
 
@@ -32,10 +29,7 @@ public class Principal {
 	private JPanel panel_2;
 	private JTree tree;
 	private JTabbedPane pestanias;
-	private JPanel definicion;
-	private JSplitPane splitPane;
-	private JPanel panel_3;
-	private JTable table;
+	private TabDefiniciones tabDefiniciones;
 
 	/**
 	 * Launch the application.
@@ -72,7 +66,7 @@ public class Principal {
 		panelANP = new JPanel();
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 710, 476);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -132,27 +126,48 @@ public class Principal {
 		pestanias = new JTabbedPane(JTabbedPane.TOP);
 		panel_2.add(pestanias);
 
-		definicion = new JPanel();
-		pestanias.addTab("Defin", null, definicion, null);
-		definicion.setLayout(new BorderLayout(0, 0));
+		// Tab de Definiciones
+		// JSplitPane splitPane = new JSplitPane();
+		TabDefiniciones defis = new TabDefiniciones();
+		pestanias.addTab("Definiciones", null, defis, null);
 
-		splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.5);
-		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		definicion.add(splitPane);
+		tabDefiniciones = new TabDefiniciones();
+		pestanias.addTab("New tab", null, tabDefiniciones, null);
 
-		panel_3 = new JPanel();
-		splitPane.setLeftComponent(panel_3);
-		panel_3.setLayout(null);
-
-		JButton btnAgregarAlter = new JButton("agregar alter");
-		btnAgregarAlter.setBounds(10, 0, 89, 23);
-		panel_3.add(btnAgregarAlter);
-
-		table = new JTable();
-		table.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.RED, null));
-		table.setBounds(10, 34, 305, 43);
-		panel_3.add(table);
+		// JPanel panel_3 = new JPanel();
+		// splitPane.setLeftComponent(panel_3);
+		// panel_3.setLayout(new BorderLayout(0, 0));
+		//
+		// JPanel panel_4 = new JPanel();
+		// panel_3.add(panel_4, BorderLayout.NORTH);
+		// panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
+		//
+		// JButton btnAgregarAlter = new JButton("agregar alter");
+		// panel_4.add(btnAgregarAlter);
+		//
+		// JTable alternativasTable = new JTable();
+		// alternativasTable.setBorder(new EtchedBorder(EtchedBorder.LOWERED,
+		// Color.RED, null));
+		// panel_3.add(alternativasTable);
+		//
+		// JPanel panel_5 = new JPanel();
+		// splitPane.setRightComponent(panel_5);
+		// panel_5.setLayout(new BorderLayout(0, 0));
+		//
+		// JPanel panel_6 = new JPanel();
+		// panel_5.add(panel_6, BorderLayout.WEST);
+		// panel_6.setLayout(new BoxLayout(panel_6, BoxLayout.X_AXIS));
+		//
+		// JButton btnAddSubcriterio = new JButton("Add SubCriterio");
+		// panel_6.add(btnAddSubcriterio);
+		//
+		// JLabel lblCriterion = new JLabel("CriterioN");
+		// lblCriterion.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		// lblCriterion.setHorizontalAlignment(SwingConstants.CENTER);
+		// panel_5.add(lblCriterion, BorderLayout.NORTH);
+		//
+		// JTable subCriterios = new JTable();
+		// panel_5.add(subCriterios, BorderLayout.CENTER);
 
 		panel_1 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_1, null);
