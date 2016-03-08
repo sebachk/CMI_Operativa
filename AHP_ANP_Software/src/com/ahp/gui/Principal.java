@@ -9,10 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTree;
 import javax.swing.border.LineBorder;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import com.ahp.gui.components.AHPCellTreeRenderer;
+import com.ahp.gui.components.NodoArbolAHP;
 import com.ahp.gui.components.TabDefiniciones;
 
 public class Principal {
@@ -93,30 +93,7 @@ public class Principal {
 		tree = new JTree();
 		tree.setCellRenderer(new AHPCellTreeRenderer());
 		tree.setShowsRootHandles(true);
-		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("JTree") {
-			{
-				DefaultMutableTreeNode node_1;
-				DefaultMutableTreeNode node_2;
-				node_1 = new DefaultMutableTreeNode("asdasd");
-				node_2 = new DefaultMutableTreeNode("HOLA");
-				node_2.add(new DefaultMutableTreeNode("violet"));
-				node_1.add(node_2);
-				add(node_1);
-				add(new DefaultMutableTreeNode("red"));
-				node_1 = new DefaultMutableTreeNode("sports");
-				node_1.add(new DefaultMutableTreeNode("basketball"));
-				node_1.add(new DefaultMutableTreeNode("HOLA"));
-				node_1.add(new DefaultMutableTreeNode("football"));
-				node_1.add(new DefaultMutableTreeNode("hockey"));
-				add(node_1);
-				node_1 = new DefaultMutableTreeNode("food");
-				node_1.add(new DefaultMutableTreeNode("hot dogs"));
-				node_1.add(new DefaultMutableTreeNode("pizza"));
-				node_1.add(new DefaultMutableTreeNode("ravioli"));
-				node_1.add(new DefaultMutableTreeNode("bananas"));
-				add(node_1);
-			}
-		}));
+		tree.setModel(new DefaultTreeModel(new NodoArbolAHP("Goal")));
 		desicionTree.add(tree);
 
 		panel_2 = new JPanel();
@@ -127,64 +104,14 @@ public class Principal {
 		panel_2.add(pestanias);
 
 		// Tab de Definiciones
-		// JSplitPane splitPane = new JSplitPane();
-		TabDefiniciones defis = new TabDefiniciones();
+
+		TabDefiniciones defis = TabDefiniciones.getInstance();
+		defis.setNodoActual((NodoArbolAHP) tree.getModel().getRoot());
 		pestanias.addTab("Definiciones", null, defis, null);
-
-		tabDefiniciones = new TabDefiniciones();
-		pestanias.addTab("New tab", null, tabDefiniciones, null);
-
-		// JPanel panel_3 = new JPanel();
-		// splitPane.setLeftComponent(panel_3);
-		// panel_3.setLayout(new BorderLayout(0, 0));
-		//
-		// JPanel panel_4 = new JPanel();
-		// panel_3.add(panel_4, BorderLayout.NORTH);
-		// panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
-		//
-		// JButton btnAgregarAlter = new JButton("agregar alter");
-		// panel_4.add(btnAgregarAlter);
-		//
-		// JTable alternativasTable = new JTable();
-		// alternativasTable.setBorder(new EtchedBorder(EtchedBorder.LOWERED,
-		// Color.RED, null));
-		// panel_3.add(alternativasTable);
-		//
-		// JPanel panel_5 = new JPanel();
-		// splitPane.setRightComponent(panel_5);
-		// panel_5.setLayout(new BorderLayout(0, 0));
-		//
-		// JPanel panel_6 = new JPanel();
-		// panel_5.add(panel_6, BorderLayout.WEST);
-		// panel_6.setLayout(new BoxLayout(panel_6, BoxLayout.X_AXIS));
-		//
-		// JButton btnAddSubcriterio = new JButton("Add SubCriterio");
-		// panel_6.add(btnAddSubcriterio);
-		//
-		// JLabel lblCriterion = new JLabel("CriterioN");
-		// lblCriterion.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		// lblCriterion.setHorizontalAlignment(SwingConstants.CENTER);
-		// panel_5.add(lblCriterion, BorderLayout.NORTH);
-		//
-		// JTable subCriterios = new JTable();
-		// panel_5.add(subCriterios, BorderLayout.CENTER);
+		defis.tree = tree;
 
 		panel_1 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_1, null);
 		panelPrincipal.setLayout(null);
-
-		// JButton btnNewButton = new JButton("AHP");
-		// btnNewButton.setBounds(113, 105, 97, 23);
-		// panelPrincipal.add(btnNewButton);
-		//
-		// JButton btnNewButton_1 = new JButton("ANP");
-		// btnNewButton_1.setBounds(215, 105, 97, 23);
-		// panelPrincipal.add(btnNewButton_1);
-		// btnNewButton.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent arg0) {
-		// frame.remove(panelPrincipal);
-		// frame.repaint();
-		// }
-		// });
 	}
 }

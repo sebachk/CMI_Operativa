@@ -11,8 +11,13 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 	private NodoArbolDecision referencia;
 
 	public NodoArbolAHP() {
-		super("Criterio_" + NodoArbolAHP.INSTANCIAS++);
+		this("Criterio_" + NodoArbolAHP.INSTANCIAS++);
+	}
+
+	public NodoArbolAHP(String nombre) {
+		super(nombre);
 		referencia = new NodoArbolDecision();
+		referencia.setNombre(nombre);
 	}
 
 	public void setNombre(String nombre) {
@@ -25,6 +30,13 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 	}
 
 	public void clicked() {
+
+	}
+
+	public void addSubCriterio(String nombre) {
+		NodoArbolAHP nuevo = new NodoArbolAHP(nombre);
+		referencia.addHijo(nuevo.referencia);
+		this.add(nuevo);
 
 	}
 
