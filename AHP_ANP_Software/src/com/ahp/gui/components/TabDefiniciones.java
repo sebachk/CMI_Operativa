@@ -21,6 +21,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
+import javax.swing.tree.DefaultTreeModel;
 
 public class TabDefiniciones extends JSplitPane implements ActionListener {
 
@@ -133,8 +134,8 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 
 				nodoActual = (NodoArbolAHP) tree.getLastSelectedPathComponent();
 				nodoActual.addSubCriterio(criterio);
-				tree.update(getGraphics());
-				tree.repaint();
+				DefaultTreeModel model = (DefaultTreeModel)tree.getModel();
+				model.reload();
 			}
 			this.getRootPane().repaint();
 
