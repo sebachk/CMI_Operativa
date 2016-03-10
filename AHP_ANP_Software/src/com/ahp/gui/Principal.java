@@ -13,6 +13,7 @@ import javax.swing.tree.DefaultTreeModel;
 
 import com.ahp.gui.components.AHPCellTreeRenderer;
 import com.ahp.gui.components.NodoArbolAHP;
+import com.ahp.gui.components.PanelAHP;
 import com.ahp.gui.components.TabDefiniciones;
 
 public class Principal {
@@ -20,10 +21,10 @@ public class Principal {
 	private JFrame frame;
 	private JPanel panelPrincipal;
 
-	private JPanel panelAHP;
+	private PanelAHP panelAHP;
 	private JPanel panelANP;
 	private JTabbedPane tabbedPane;
-	private JPanel panel;
+	
 	private JPanel panel_1;
 	private JPanel desicionTree;
 	private JPanel panel_2;
@@ -62,7 +63,7 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		panelAHP = new JPanel();
+		panelAHP = new PanelAHP();
 		panelANP = new JPanel();
 
 		frame = new JFrame();
@@ -72,18 +73,20 @@ public class Principal {
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		panelPrincipal = new JPanel();
-		frame.getContentPane().add(panelPrincipal);
-		frame.getContentPane().add(panelAHP);
-		panelAHP.setLayout(new BorderLayout(0, 0));
+		//frame.getContentPane().add(panelPrincipal);
+		//frame.getContentPane().add(panelAHP);
+		//frame.setContentPane(panelAHP);
+		//panelAHP.setLayout(new BorderLayout(0, 0));
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setToolTipText("HOLA");
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		panelAHP.add(tabbedPane);
+		//panelAHP.add(tabbedPane);
+		frame.setContentPane(tabbedPane);
 
-		panel = new JPanel();
-		tabbedPane.addTab("New tab", null, panel, null);
-		panel.setLayout(new BorderLayout(0, 0));
+		//panel = new JPanel();
+		tabbedPane.addTab("AHP", null, panelAHP, null);
+		/**panel.setLayout(new BorderLayout(0, 0));
 
 		desicionTree = new JPanel();
 		desicionTree.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -111,7 +114,7 @@ public class Principal {
 		defis.tree = tree;
 
 		panel_1 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_1, null);
-		panelPrincipal.setLayout(null);
+		tabbedPane.addTab("ANP", null, panel_1, null);
+		panelPrincipal.setLayout(null);**/
 	}
 }

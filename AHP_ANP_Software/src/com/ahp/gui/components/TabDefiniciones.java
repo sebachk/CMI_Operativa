@@ -131,7 +131,9 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 				panelListaCriterios.add(nuevo);
 				textField.setText("");
 
+				nodoActual = (NodoArbolAHP) tree.getLastSelectedPathComponent();
 				nodoActual.addSubCriterio(criterio);
+				tree.update(getGraphics());
 				tree.repaint();
 			}
 			this.getRootPane().repaint();

@@ -30,14 +30,13 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 	}
 
 	public void clicked() {
-
+		
 	}
 
 	public void addSubCriterio(String nombre) {
 		NodoArbolAHP nuevo = new NodoArbolAHP(nombre);
 		referencia.addHijo(nuevo.referencia);
 		this.add(nuevo);
-
 	}
 
 }
