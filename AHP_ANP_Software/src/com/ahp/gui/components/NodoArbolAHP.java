@@ -30,7 +30,7 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 	}
 
 	public void clicked() {
-		
+
 	}
 
 	public void addSubCriterio(String nombre) {
@@ -39,4 +39,7 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 		this.add(nuevo);
 	}
 
+	public NodoArbolDecision getReferencia() {
+		return referencia;
+	}
 }

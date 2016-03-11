@@ -23,6 +23,8 @@ import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.tree.DefaultTreeModel;
 
+import com.ahp.NodoArbolDecision;
+
 public class TabDefiniciones extends JSplitPane implements ActionListener {
 
 	public JPanel panelCriterios;
@@ -47,8 +49,9 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	}
 
 	private TabDefiniciones() {
+		setResizeWeight(0.5);
 		// JSplitPane splitPane = new JSplitPane();
-		this.setResizeWeight(0.5);
+		// this.setResizeWeight(0.5);
 		this.setOrientation(JSplitPane.VERTICAL_SPLIT);
 
 		// La parte de arriba
@@ -91,7 +94,7 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		panel_6.add(textField);
 		textField.setColumns(20);
 
-		JLabel lblCriterion = new JLabel("CriterioN");
+		lblCriterion = new JLabel("CriterioN");
 		lblCriterion.setForeground(Color.BLACK);
 		lblCriterion.setBackground(SystemColor.activeCaption);
 		lblCriterion.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -125,16 +128,15 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 			if (criterio == null || criterio.equals("")) {
 				JOptionPane.showMessageDialog(this, "Debe ingresar un criterio");
 			} else {
-				JLabel nuevo = new JLabel(criterio);
 
-				nuevo.setFont(FUENTE);
-
-				panelListaCriterios.add(nuevo);
+				addCrit(criterio);
 				textField.setText("");
-
-				nodoActual = (NodoArbolAHP) tree.getLastSelectedPathComponent();
+				// NodoArbolAHP seleccionado = (NodoArbolAHP)
+				// tree.getLastSelectedPathComponent();
+				// nodoActual = seleccionado != null ? seleccionado :
+				// nodoActual;
 				nodoActual.addSubCriterio(criterio);
-				DefaultTreeModel model = (DefaultTreeModel)tree.getModel();
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 				model.reload();
 			}
 			this.getRootPane().repaint();
@@ -145,8 +147,26 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 
 	public void setNodoActual(NodoArbolAHP nodo) {
 		nodoActual = nodo;
+		lblCriterion.setText(nodoActual.getNombre());
+		panelListaCriterios.removeAll();
+		for (NodoArbolDecision nad : nodoActual.getReferencia().getHijos()) {
+			addCrit(nad.getNombre());
+		}
+		if (this.getRootPane() != null)
+			this.getRootPane().repaint();
+
+	}
+
+	private void addCrit(String criterio) {
+		JLabel nuevo = new JLabel(criterio);
+
+		nuevo.setFont(FUENTE);
+
+		panelListaCriterios.add(nuevo);
+
 	}
 
 	public JTree tree;
+	private JLabel lblCriterion;
 
 }
