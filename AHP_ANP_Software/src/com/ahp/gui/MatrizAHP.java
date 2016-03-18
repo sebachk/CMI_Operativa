@@ -23,6 +23,33 @@ public class MatrizAHP {
 		eigenVector = null;
 	}
 
+	public void addElemento(NodoArbolDecision nodo) {
+		elementos.add(nodo.getNombre());
+		parwise.put(nodo.getNombre() + SEPARATOR + nodo.getNombre(), 1.0);
+
+	}
+
+	public boolean estaCompleta() {
+		for (String a : elementos) {
+			for (String b : elementos) {
+				if (getValor(a, b).equals(0.0)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	public void removeElemento(NodoArbolDecision nodo) {
+		if (elementos.remove(nodo.getNombre())) {
+			for (String key : parwise.keySet()) {
+				if (key.startsWith(nodo.getNombre() + SEPARATOR) || key.endsWith(SEPARATOR + nodo.getNombre())) {
+					parwise.remove(key);
+				}
+			}
+		}
+	}
+
 	public void armarMatriz(List<NodoArbolDecision> hermanos) {
 		List<String> aux = new ArrayList<>();
 		for (NodoArbolDecision hermano : hermanos) {
@@ -57,9 +84,22 @@ public class MatrizAHP {
 	public Double getValor(String a, String b) {
 		Double v = parwise.get(a + SEPARATOR + b);
 
-		if (v != null)
+		if (v == null)
+			v = parwise.get(b + SEPARATOR + a);
+		else {
 			return v;
-		return 1 / parwise.get(b + SEPARATOR + a);
+		}
+
+		if (v != null) {
+			if (v > 0)
+				return 1 / v;
+			else {
+				return 0.0;
+			}
+		} else {
+			ponderar(a, b, 0.0);
+			return getValor(a, b);
+		}
 	}
 
 	public void llenarRandom() {
@@ -158,6 +198,22 @@ public class MatrizAHP {
 		Double ri = Ahp.RI[elementos.size() - 1];
 
 		return getCI() / ri;
+	}
+
+	public int size() {
+		return elementos.size();
+	}
+
+	public Double getValor(int a, int b) {
+		if (elementos.isEmpty())
+			return 0.0;
+		return getValor(elementos.get(a), elementos.get(b));
+	}
+
+	public String getElement(int i) {
+		if (elementos.isEmpty())
+			return null;
+		return elementos.get(i);
 	}
 
 }

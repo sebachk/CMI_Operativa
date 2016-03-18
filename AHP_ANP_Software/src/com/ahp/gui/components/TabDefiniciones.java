@@ -157,6 +157,10 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 
 	}
 
+	public NodoArbolDecision getNodoArbolDecisionActual() {
+		return nodoActual.getReferencia();
+	}
+
 	private void addCrit(String criterio) {
 		JLabel nuevo = new JLabel(criterio);
 

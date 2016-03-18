@@ -3,15 +3,24 @@ package com.ahp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ahp.gui.MatrizAHP;
+
 public class NodoArbolDecision {
 	private List<NodoArbolDecision> padres;
 	private List<NodoArbolDecision> hijos;
 
 	private String nombre;
 
+	private MatrizAHP matriz;
+
+	public MatrizAHP getMatriz() {
+		return matriz;
+	}
+
 	public NodoArbolDecision() {
 		padres = new ArrayList<NodoArbolDecision>();
 		hijos = new ArrayList<NodoArbolDecision>();
+		matriz = new MatrizAHP();
 		nombre = "";
 	}
 
@@ -50,6 +59,9 @@ public class NodoArbolDecision {
 	public void addHijo(NodoArbolDecision hijo) {
 		hijos.add(hijo);
 		hijo.addPadre(this);
+
+		matriz.addElemento(hijo);
+
 	}
 
 	public void addPadre(NodoArbolDecision padre) {
@@ -63,5 +75,5 @@ public class NodoArbolDecision {
 		List<NodoArbolDecision> hijosRef = ref.getHijos();
 
 	}
-	
+
 }
