@@ -9,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,6 +92,15 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		panel_6.add(btnAddSubcriterio);
 
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+					arg0.setSource(btnAddSubcriterio);
+					actionPerformed(new ActionEvent(btnAddSubcriterio, 1, null));
+				}
+			}
+		});
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_6.add(textField);
 		textField.setColumns(20);
@@ -131,10 +142,6 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 
 				addCrit(criterio);
 				textField.setText("");
-				// NodoArbolAHP seleccionado = (NodoArbolAHP)
-				// tree.getLastSelectedPathComponent();
-				// nodoActual = seleccionado != null ? seleccionado :
-				// nodoActual;
 				nodoActual.addSubCriterio(criterio);
 				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 				model.reload();

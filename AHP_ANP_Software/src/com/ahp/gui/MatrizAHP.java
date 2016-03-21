@@ -74,7 +74,7 @@ public class MatrizAHP {
 	public void ponderar(String a, String b, Double valor) {
 
 		if (elementos.indexOf(a) > elementos.indexOf(b))
-			parwise.put(b + SEPARATOR + a, 1 / valor);
+			parwise.put(b + SEPARATOR + a, valor > 0 ? 1 / valor : 0.0);
 		else
 			parwise.put(a + SEPARATOR + b, valor);
 
