@@ -39,6 +39,8 @@ public class PanelPrincipal extends JPanel {
 				if (arg0.isAddedPath()) {
 					TabDefiniciones.getInstance().setNodoActual((NodoArbolAHP) tree.getLastSelectedPathComponent());
 					TabMatrices.getInstance().actualizar(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
+					TabResults.getinstance()
+							.armarEstadistica(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
 				}
 			}
 		});

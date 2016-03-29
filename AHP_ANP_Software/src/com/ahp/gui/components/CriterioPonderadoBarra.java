@@ -16,9 +16,14 @@ public class CriterioPonderadoBarra extends JPanel {
 	public void setCriterioNombre(String nombre) {
 		if (criteriolbl == null) {
 			criteriolbl = new JLabel(nombre);
+
+		}
+		this.setToolTipText(nombre);
+		criteriolbl.setText(nombre);
+		if (nombre.length() > 12) {
+			criteriolbl.setText(nombre.substring(0, 8) + "...");
 		}
 
-		criteriolbl.setText(nombre);
 	}
 
 	public String getCriterioNombre() {
@@ -45,7 +50,7 @@ public class CriterioPonderadoBarra extends JPanel {
 
 	public CriterioPonderadoBarra() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 100, 46, 0 };
+		gridBagLayout.columnWidths = new int[] { 140, 46, 0 };
 		gridBagLayout.rowHeights = new int[] { 14, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
@@ -53,7 +58,10 @@ public class CriterioPonderadoBarra extends JPanel {
 
 		criteriolbl = new JLabel("New label");
 		criteriolbl.setHorizontalAlignment(SwingConstants.CENTER);
-		add(criteriolbl);
+		GridBagConstraints gbc_criteriolbl = new GridBagConstraints();
+		gbc_criteriolbl.gridx = 0;
+		gbc_criteriolbl.fill = GridBagConstraints.HORIZONTAL;
+		add(criteriolbl, gbc_criteriolbl);
 
 		this.barra = new JPanel();
 		barra.setBackground(Color.GRAY);

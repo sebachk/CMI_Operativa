@@ -1,11 +1,17 @@
 package com.ahp.gui.components;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+
+import com.ahp.NodoArbolDecision;
 
 public class TabResults extends JPanel {
 
@@ -15,6 +21,14 @@ public class TabResults extends JPanel {
 	private List<CriterioPonderadoBarra> criterios;
 	private JPanel panelBarritas;
 	private JPanel panelDatos;
+	private JPanel panelInfo;
+	private JPanel panelErrores;
+	private JLabel lblNewLabel;
+	private JLabel errorLabelConsistencia;
+	private JLabel errorLblMatriz;
+	private JLabel crLbl;
+	private JLabel ciLbl;
+	private JLabel landaLbl;
 
 	public static TabResults getinstance() {
 		if (instance == null)
@@ -32,6 +46,39 @@ public class TabResults extends JPanel {
 		panelDatos = new JPanel();
 		panelDatos.setBorder(new TitledBorder(null, "Detalles", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		this.add(panelDatos);
+		panelDatos.setLayout(new BorderLayout(0, 0));
+
+		panelInfo = new JPanel();
+		panelDatos.add(panelInfo, BorderLayout.CENTER);
+		panelInfo.setLayout(new GridLayout(0, 1, 0, 0));
+
+		landaLbl = new JLabel("New label");
+		landaLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		panelInfo.add(landaLbl);
+
+		crLbl = new JLabel("New label");
+		crLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		panelInfo.add(crLbl);
+
+		ciLbl = new JLabel("New label");
+		ciLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		panelInfo.add(ciLbl);
+
+		panelErrores = new JPanel();
+		panelDatos.add(panelErrores, BorderLayout.SOUTH);
+		panelErrores.setLayout(new GridLayout(0, 1, 0, 0));
+
+		lblNewLabel = new JLabel("Sin errores");
+		lblNewLabel.setForeground(Color.BLUE);
+		panelErrores.add(lblNewLabel);
+
+		errorLabelConsistencia = new JLabel("New label");
+		errorLabelConsistencia.setForeground(Color.RED);
+		panelErrores.add(errorLabelConsistencia);
+
+		errorLblMatriz = new JLabel("New label");
+		errorLblMatriz.setForeground(Color.RED);
+		panelErrores.add(errorLblMatriz);
 		this.addCriterio("test1", 0.7);
 		this.addCriterio("test2", 0.2);
 		this.addCriterio("test3", 0.9);
@@ -53,4 +100,60 @@ public class TabResults extends JPanel {
 		criterios.add(nuevo);
 
 	}
+
+	public void armarEstadistica(NodoArbolDecision nodo) {
+		List<NodoArbolDecision> hijos = nodo.getHijos();
+		int i = 0;
+
+		errorLblMatriz.setVisible(false);
+		lblNewLabel.setVisible(true);
+		errorLabelConsistencia.setVisible(false);
+
+		for (NodoArbolDecision n : hijos) {
+			double ptje = nodo.getMatriz().getEigenVector().get(nodo.getMatriz().indexOf(n));
+
+			if (ptje == 0 || Double.isNaN(ptje)) {
+				// Mensaje de error
+				errorLblMatriz.setText("Revisar Matriz de ponderacion (No se debe dejar en 0 ninguna celda)");
+				errorLblMatriz.setVisible(true);
+				lblNewLabel.setVisible(false);
+			}
+
+			if (i < criterios.size()) {
+				CriterioPonderadoBarra barra = criterios.get(i);
+				barra.setCriterioNombre(n.getNombre());
+				barra.setPtje(ptje);
+				i++;
+			} else {
+				this.addCriterio(n.getNombre(), ptje);
+				i++;
+			}
+
+		}
+
+		if (i < criterios.size()) {
+			List<CriterioPonderadoBarra> afuera = criterios.subList(i, criterios.size());
+
+			for (CriterioPonderadoBarra b : afuera) {
+				this.panelBarritas.remove(b);
+			}
+
+			criterios.removeAll(afuera);
+		}
+		panelBarritas.repaint();
+
+		/** Detalles **/
+
+		if (nodo.getMatriz().getCR() > 0.1) {
+			errorLabelConsistencia.setText(
+					"Revisar la comparacion de criterios, existe un problema de consistencias. Pondere con mejor Juicio");
+			errorLabelConsistencia.setVisible(true);
+			lblNewLabel.setVisible(false);
+		}
+		landaLbl.setText("Lambda Máximo: " + nodo.getMatriz().calcularLambda());
+		ciLbl.setText("CI:" + nodo.getMatriz().getCI());
+		crLbl.setText("CR:" + nodo.getMatriz().getCR());
+
+	}
+
 }

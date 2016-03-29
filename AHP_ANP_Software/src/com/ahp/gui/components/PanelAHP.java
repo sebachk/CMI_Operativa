@@ -17,8 +17,9 @@ public class PanelAHP extends PanelPrincipal {
 				if (tabbedPane.getSelectedIndex() == tabbedPane.indexOfComponent(TabMatrices.getInstance()))
 					TabMatrices.getInstance().actualizar(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
 				if (tabbedPane.getSelectedIndex() == tabbedPane.indexOfComponent(TabResults.getinstance())) {
+					TabResults.getinstance()
+							.armarEstadistica(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
 
-					tabbedPane.getRootPane().repaint();
 				}
 
 			}

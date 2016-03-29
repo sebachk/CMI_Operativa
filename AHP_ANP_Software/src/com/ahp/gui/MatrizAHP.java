@@ -216,4 +216,13 @@ public class MatrizAHP {
 		return elementos.get(i);
 	}
 
+	public int indexOf(NodoArbolDecision nodo) {
+		for (int i = 0; i < this.elementos.size(); i++) {
+			if (elementos.get(i).equals(nodo.getNombre())) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
 }
