@@ -25,6 +25,7 @@ import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.tree.DefaultTreeModel;
 
+import com.ahp.ArbolDecisionAHP;
 import com.ahp.NodoArbolDecision;
 
 public class TabDefiniciones extends JSplitPane implements ActionListener {
@@ -128,6 +129,9 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 
 			listAlternativas.add(nuevo);
 			alternativas.add(alter);
+			NodoArbolDecision alt = new NodoArbolDecision();
+			alt.setNombre(alter);
+			ArbolDecisionAHP.getInstance().addAlternativa(alt);
 
 			if (alternativas.size() > 9)
 				((GridLayout) listAlternativas.getLayout()).setRows(alternativas.size());
@@ -157,7 +161,10 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		lblCriterion.setText(nodoActual.getNombre());
 		panelListaCriterios.removeAll();
 		for (NodoArbolDecision nad : nodoActual.getReferencia().getHijos()) {
-			addCrit(nad.getNombre());
+			if (!ArbolDecisionAHP.getInstance().esAlternativa(nad)) {
+				addCrit(nad.getNombre());
+			}
+
 		}
 		if (this.getRootPane() != null)
 			this.getRootPane().repaint();

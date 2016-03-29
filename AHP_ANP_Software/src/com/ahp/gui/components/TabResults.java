@@ -102,7 +102,9 @@ public class TabResults extends JPanel {
 	}
 
 	public void armarEstadistica(NodoArbolDecision nodo) {
+
 		List<NodoArbolDecision> hijos = nodo.getHijos();
+
 		int i = 0;
 
 		errorLblMatriz.setVisible(false);
@@ -142,8 +144,11 @@ public class TabResults extends JPanel {
 		}
 		panelBarritas.repaint();
 
-		/** Detalles **/
+		if (hijos.isEmpty()) {
+			return;
+		}
 
+		/** Detalles **/
 		if (nodo.getMatriz().getCR() > 0.1) {
 			errorLabelConsistencia.setText(
 					"Revisar la comparacion de criterios, existe un problema de consistencias. Pondere con mejor Juicio");

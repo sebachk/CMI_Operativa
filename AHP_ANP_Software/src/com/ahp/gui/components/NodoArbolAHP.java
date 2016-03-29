@@ -2,6 +2,7 @@ package com.ahp.gui.components;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import com.ahp.ArbolDecisionAHP;
 import com.ahp.NodoArbolDecision;
 
 public class NodoArbolAHP extends DefaultMutableTreeNode {
@@ -20,6 +21,12 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 		referencia.setNombre(nombre);
 	}
 
+	public NodoArbolAHP(NodoArbolDecision ref) {
+		super(ref.getNombre());
+		referencia = ref;
+
+	}
+
 	public void setNombre(String nombre) {
 		this.setUserObject(nombre);
 		referencia.setNombre(nombre);
@@ -35,7 +42,10 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 
 	public void addSubCriterio(String nombre) {
 		NodoArbolAHP nuevo = new NodoArbolAHP(nombre);
-		referencia.addHijo(nuevo.referencia);
+
+		ArbolDecisionAHP.getInstance().addNodo(referencia, nuevo.referencia);
+
+		// referencia.addHijo(nuevo.referencia);
 		this.add(nuevo);
 	}
 

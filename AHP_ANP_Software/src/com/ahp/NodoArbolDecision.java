@@ -64,7 +64,7 @@ public class NodoArbolDecision {
 
 	}
 
-	public void addPadre(NodoArbolDecision padre) {
+	private void addPadre(NodoArbolDecision padre) {
 		padres.add(padre);
 	}
 
@@ -73,6 +73,13 @@ public class NodoArbolDecision {
 			return;
 
 		List<NodoArbolDecision> hijosRef = ref.getHijos();
+
+	}
+
+	public void removePadre(NodoArbolDecision padre) {
+		this.padres.remove(padre);
+		padre.hijos.remove(this);
+		padre.getMatriz().removeElemento(this);
 
 	}
 

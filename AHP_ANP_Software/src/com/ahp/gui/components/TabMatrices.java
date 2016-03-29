@@ -1,5 +1,6 @@
 package com.ahp.gui.components;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
@@ -9,6 +10,8 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
@@ -19,6 +22,8 @@ import com.ahp.NodoArbolDecision;
 public class TabMatrices extends JPanel {
 
 	private JPanel sliderPanel;
+	private JPanel matrizPanel;
+
 	private MatrizDobleTableModel matrizModel;
 	private JTable tabla;
 
@@ -39,7 +44,7 @@ public class TabMatrices extends JPanel {
 
 		sliderPanel = new JPanel();
 		matrizModel = new MatrizDobleTableModel();
-		tabla = new JTable();
+
 		criterioA = new JLabel("New label");
 		criterioB = new JLabel("New label");
 		slider = new JSlider();
@@ -76,6 +81,23 @@ public class TabMatrices extends JPanel {
 		slider.setMinorTickSpacing(1);
 		slider.setMinimum(-9);
 		slider.setMaximum(9);
+		criterioA.setHorizontalAlignment(SwingConstants.CENTER);
+		criterioB.setHorizontalAlignment(SwingConstants.CENTER);
+
+		sliderPanel.add(criterioA);
+		sliderPanel.add(slider);
+		sliderPanel.add(criterioB);
+		this.add(sliderPanel);
+
+		matrizPanel = new JPanel();
+		matrizPanel.setBackground(Color.WHITE);
+		matrizPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "jhohl", TitledBorder.CENTER,
+				TitledBorder.TOP, null, Color.DARK_GRAY));
+		add(matrizPanel);
+		matrizPanel.setLayout(new BorderLayout(0, 0));
+		tabla = new JTable();
+		matrizPanel.add(tabla);
+		tabla.setBorder(null);
 
 		tabla.setCellSelectionEnabled(true);
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -106,22 +128,15 @@ public class TabMatrices extends JPanel {
 
 			}
 		});
-		criterioA.setHorizontalAlignment(SwingConstants.CENTER);
-		criterioB.setHorizontalAlignment(SwingConstants.CENTER);
-
-		sliderPanel.add(criterioA);
-		sliderPanel.add(slider);
-		sliderPanel.add(criterioB);
 
 		tabla.setModel(matrizModel);
-		this.add(sliderPanel);
-		this.add(tabla);
 
 	}
 
 	public void actualizar(NodoArbolDecision actual) {
 		sliderPanel.setVisible(false);
-
+		((TitledBorder) matrizPanel.getBorder())
+				.setTitle("Matriz de comparación de a pares respecto de " + actual.getNombre());
 		matrizModel = new MatrizDobleTableModel(actual);
 		tabla.setModel(matrizModel);
 		tabla.setDefaultRenderer(Object.class, matrizModel);

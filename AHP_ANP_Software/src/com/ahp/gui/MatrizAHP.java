@@ -42,10 +42,14 @@ public class MatrizAHP {
 
 	public void removeElemento(NodoArbolDecision nodo) {
 		if (elementos.remove(nodo.getNombre())) {
+			List<String> keysASacar = new ArrayList<String>();
 			for (String key : parwise.keySet()) {
 				if (key.startsWith(nodo.getNombre() + SEPARATOR) || key.endsWith(SEPARATOR + nodo.getNombre())) {
-					parwise.remove(key);
+					keysASacar.add(key);
 				}
+			}
+			for (String key : keysASacar) {
+				parwise.remove(key);
 			}
 		}
 	}

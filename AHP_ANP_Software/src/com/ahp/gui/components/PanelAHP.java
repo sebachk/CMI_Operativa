@@ -5,6 +5,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.tree.DefaultTreeModel;
 
+import com.ahp.ArbolDecisionAHP;
+
 public class PanelAHP extends PanelPrincipal {
 	private JTabbedPane tabbedPane;
 
@@ -27,7 +29,7 @@ public class PanelAHP extends PanelPrincipal {
 
 		getPanelDerecho().add(tabbedPane);
 		super.getTree().setCellRenderer(new AHPCellTreeRenderer());
-		super.getTree().setModel(new DefaultTreeModel(new NodoArbolAHP("Goal")));
+		super.getTree().setModel(new DefaultTreeModel(new NodoArbolAHP(ArbolDecisionAHP.getInstance().getGoal())));
 
 		// this.tabbedPane.addTab("Decision", null,
 		// TabDefiniciones.getInstance(), null);
