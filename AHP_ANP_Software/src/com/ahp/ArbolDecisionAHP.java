@@ -1,7 +1,9 @@
 package com.ahp;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map.Entry;
 
 public class ArbolDecisionAHP {
 
@@ -9,8 +11,11 @@ public class ArbolDecisionAHP {
 
 	private List<NodoArbolDecision> alternativas;
 	private List<NodoArbolDecision> ultimosCriterios;
+	private Hashtable<String, Double> resultados = new Hashtable<String, Double>();
 
 	private static ArbolDecisionAHP instance;
+
+	private static String SEPARATOR = "><";
 
 	public static ArbolDecisionAHP getInstance() {
 		if (instance == null)
@@ -75,6 +80,39 @@ public class ArbolDecisionAHP {
 
 	public boolean esAlternativa(NodoArbolDecision nodo) {
 		return alternativas.contains(nodo);
+	}
+
+	public void tomarDecision() {
+		this.resultados.clear();
+		this.getValorRama(goal, 1, goal);
+	}
+
+	private void getValorRama(NodoArbolDecision nodo, double value, NodoArbolDecision n) {
+		if (this.esAlternativa(nodo)) { // Si soy alternativa y no tengo matriz
+			Double v = resultados.get(nodo.getNombre() + SEPARATOR + n.getNombre());
+			if (v == null) {
+				v = 0.00;
+			}
+			this.resultados.put(nodo.getNombre() + SEPARATOR + n.getNombre(), v + value);
+		} else {
+
+			for (NodoArbolDecision hijo : nodo.getHijos()) {
+				getValorRama(hijo, value * nodo.getMatriz().getEigenVector().get(nodo.getMatriz().indexOf(hijo)),
+						n == goal ? hijo : n);
+			}
+		}
+
+	}
+
+	public List<Entry<String, Double>> getResultado(NodoArbolDecision nodo) {
+		List<Entry<String, Double>> retorno = new ArrayList<Entry<String, Double>>();
+		for (Entry<String, Double> e : resultados.entrySet()) {
+			if (e.getKey().startsWith(nodo.getNombre())) {
+				retorno.add(e);
+			}
+		}
+		return retorno;
+
 	}
 
 }

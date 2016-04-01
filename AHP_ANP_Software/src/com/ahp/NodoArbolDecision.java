@@ -82,25 +82,5 @@ public class NodoArbolDecision {
 		padre.getMatriz().removeElemento(this);
 
 	}
-	
-//	public double getValorRama(NodoArbolDecision nodo, double value){
-//		if(nodo.getMatriz().calcularLambda() == 0){ //Si soy alternativa y no tengo matriz
-//			double[] valores = {};
-//			double result = 0.00;
-//			int n = 0;
-//			for(NodoArbolDecision padre: nodo.getPadres()){
-//				valores[n] = getValorRama(nodo, 1);
-//			}
-//			for(int i=0;i<=n;i++){
-//				result += valores[i];
-//			}
-//			return result;
-//		}
-//		else{
-//			for(NodoArbolDecision padre: nodo.getPadres()){
-//				return getValorRama(nodo, value * padre.getMatriz().calcularLambda());
-//			}
-//		}
-//	}
 
 }

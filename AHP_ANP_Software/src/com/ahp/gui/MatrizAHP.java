@@ -27,6 +27,7 @@ public class MatrizAHP {
 		elementos.add(nodo.getNombre());
 		parwise.put(nodo.getNombre() + SEPARATOR + nodo.getNombre(), 1.0);
 
+		eigenVector = null;
 	}
 
 	public boolean estaCompleta() {
@@ -200,6 +201,10 @@ public class MatrizAHP {
 
 	public Double getCR() {
 		Double ri = Ahp.RI[elementos.size() - 1];
+
+		if (ri == 0.0) {
+			return ri;
+		}
 
 		return getCI() / ri;
 	}

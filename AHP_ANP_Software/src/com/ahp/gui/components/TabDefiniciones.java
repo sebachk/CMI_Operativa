@@ -14,7 +14,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -63,12 +62,27 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.inactiveCaption);
 		panel_3.add(panel_4, BorderLayout.NORTH);
-		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
 
-		btnAgregarAlter = new JButton("agregar alter");
+		btnAgregarAlter = new JButton("Agregar Alternativa");
 		btnAgregarAlter.addActionListener(this);
+		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel_4.add(btnAgregarAlter);
+
+		fieldAlternativa = new JTextField();
+		fieldAlternativa.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_4.add(fieldAlternativa);
+		fieldAlternativa.setColumns(20);
+		fieldAlternativa.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+					arg0.setSource(btnAgregarAlter);
+					actionPerformed(new ActionEvent(btnAgregarAlter, 1, null));
+				}
+			}
+		});
 
 		listAlternativas = new JPanel();
 		alternativas = new ArrayList<String>();
@@ -87,7 +101,7 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		FlowLayout fl_panel_6 = new FlowLayout(FlowLayout.CENTER, 10, 5);
 		panel_6.setLayout(fl_panel_6);
 
-		btnAddSubcriterio = new JButton("Add SubCriterio");
+		btnAddSubcriterio = new JButton("Agregar SubCriterio");
 		btnAddSubcriterio.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnAddSubcriterio.addActionListener(this);
 		panel_6.add(btnAddSubcriterio);
@@ -122,22 +136,24 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnAgregarAlter)) {
-			String alter = JOptionPane.showInputDialog(this, "Ingrese nueva alternativa");
+			String alter = fieldAlternativa.getText();
+			if (alter == null || alter.equals("")) {
+				JOptionPane.showMessageDialog(this, "Debe ingresar una alternativa");
+			} else {
+				JLabel nuevo = new JLabel(alter);
+				nuevo.setFont(FUENTE);
+				fieldAlternativa.setText("");
+				listAlternativas.add(nuevo);
+				alternativas.add(alter);
+				NodoArbolDecision alt = new NodoArbolDecision();
+				alt.setNombre(alter);
+				ArbolDecisionAHP.getInstance().addAlternativa(alt);
 
-			JLabel nuevo = new JLabel(alter);
-			nuevo.setFont(FUENTE);
+				if (alternativas.size() > 9)
+					((GridLayout) listAlternativas.getLayout()).setRows(alternativas.size());
 
-			listAlternativas.add(nuevo);
-			alternativas.add(alter);
-			NodoArbolDecision alt = new NodoArbolDecision();
-			alt.setNombre(alter);
-			ArbolDecisionAHP.getInstance().addAlternativa(alt);
-
-			if (alternativas.size() > 9)
-				((GridLayout) listAlternativas.getLayout()).setRows(alternativas.size());
-
-			this.getRootPane().repaint();
-
+				this.getRootPane().repaint();
+			}
 		} else if (e.getSource().equals(btnAddSubcriterio)) {
 			String criterio = textField.getText();
 			if (criterio == null || criterio.equals("")) {
@@ -186,5 +202,6 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 
 	public JTree tree;
 	private JLabel lblCriterion;
+	private JTextField fieldAlternativa;
 
 }
