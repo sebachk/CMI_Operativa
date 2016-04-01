@@ -39,7 +39,8 @@ public class PanelAHP extends PanelPrincipal {
 
 		this.tabbedPane.addTab("Definiciones", null, defis, "DEFINIDENDO LAS COSAS");
 		this.tabbedPane.addTab("Matriz", null, TabMatrices.getInstance(), null);
-		this.tabbedPane.addTab("RESULTADOS", TabResults.getinstance());
+		this.tabbedPane.addTab("Resultados", TabResults.getinstance());
+		this.tabbedPane.addTab("Decision", TabDecision.getInstance());
 		defis.tree = getTree();
 
 	}
