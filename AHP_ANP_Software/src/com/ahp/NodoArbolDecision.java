@@ -72,8 +72,6 @@ public class NodoArbolDecision {
 		if (ref.esHoja())
 			return;
 
-		List<NodoArbolDecision> hijosRef = ref.getHijos();
-
 	}
 
 	public void removePadre(NodoArbolDecision padre) {
@@ -81,6 +79,18 @@ public class NodoArbolDecision {
 		padre.hijos.remove(this);
 		padre.getMatriz().removeElemento(this);
 
+	}
+
+	public boolean esHijo(NodoArbolDecision h) {
+		for (NodoArbolDecision hijo : this.getHijos()) {
+			if (hijo == h)
+				return true;
+		}
+		return false;
+	}
+
+	public boolean esPadre(NodoArbolDecision p) {
+		return p.esHijo(this);
 	}
 
 }

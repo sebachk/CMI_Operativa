@@ -2,12 +2,21 @@ package com.ahp.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTree;
 
+import com.ahp.ArbolDecisionAHP;
+import com.ahp.StructureManager;
+import com.ahp.XMLSaver;
 import com.ahp.gui.components.PanelAHP;
 import com.ahp.gui.components.TabDefiniciones;
 
@@ -65,47 +74,41 @@ public class Principal {
 		frame.setBounds(100, 100, 710, 476);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+
+		JMenu mnArchivo = new JMenu("Archivo");
+		menuBar.add(mnArchivo);
+
+		JMenuItem mntmNewMenuItem = new JMenuItem("Abrir");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				@SuppressWarnings("unused")
+				ArbolDecisionAHP arbol = XMLSaver.loadXML(getMain());
+
+				StructureManager.getInstance().setArbol(arbol);
+				panelAHP.arbolCargado();
+			}
+		});
+		mnArchivo.add(mntmNewMenuItem);
+
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Guardar");
+		mnArchivo.add(mntmNewMenuItem_1);
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				XMLSaver.saveXML(StructureManager.getInstance().getArbol(), getMain());
+			}
+		});
+
+		JSeparator separator = new JSeparator();
+		mnArchivo.add(separator);
+
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Salir");
+		mnArchivo.add(mntmNewMenuItem_2);
+
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
-		// panelPrincipal = new JPanel();
-		// frame.getContentPane().add(panelPrincipal);
-		// frame.getContentPane().add(panelAHP);
-		// frame.setContentPane(panelAHP);
-		// panelAHP.setLayout(new BorderLayout(0, 0));
-
-		// tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		// tabbedPane.setToolTipText("HOLA");
-		// tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		// // panelAHP.add(tabbedPane);
 		frame.setContentPane(panelAHP);
 
-		// panel = new JPanel();
-		// tabbedPane.addTab("AHP", null, panelAHP, null);
-		/**
-		 * panel.setLayout(new BorderLayout(0, 0));
-		 * 
-		 * desicionTree = new JPanel(); desicionTree.setBorder(new
-		 * LineBorder(new Color(0, 0, 0))); panel.add(desicionTree,
-		 * BorderLayout.WEST); desicionTree.setLayout(new BorderLayout(0, 0));
-		 * 
-		 * tree = new JTree(); tree.setCellRenderer(new AHPCellTreeRenderer());
-		 * tree.setShowsRootHandles(true); tree.setModel(new
-		 * DefaultTreeModel(new NodoArbolAHP("Goal"))); desicionTree.add(tree);
-		 * 
-		 * panel_2 = new JPanel(); panel.add(panel_2, BorderLayout.CENTER);
-		 * panel_2.setLayout(new BorderLayout(0, 0));
-		 * 
-		 * pestanias = new JTabbedPane(JTabbedPane.TOP); panel_2.add(pestanias);
-		 * 
-		 * // Tab de Definiciones
-		 * 
-		 * TabDefiniciones defis = TabDefiniciones.getInstance();
-		 * defis.setNodoActual((NodoArbolAHP) tree.getModel().getRoot());
-		 * pestanias.addTab("Definiciones", null, defis, null); defis.tree =
-		 * tree;
-		 * 
-		 * panel_1 = new JPanel(); tabbedPane.addTab("ANP", null, panel_1,
-		 * null); panelPrincipal.setLayout(null);
-		 **/
 	}
 }

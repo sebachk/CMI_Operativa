@@ -2,8 +2,8 @@ package com.ahp.gui.components;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import com.ahp.ArbolDecisionAHP;
 import com.ahp.NodoArbolDecision;
+import com.ahp.StructureManager;
 
 public class NodoArbolAHP extends DefaultMutableTreeNode {
 
@@ -43,10 +43,21 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 	public void addSubCriterio(String nombre) {
 		NodoArbolAHP nuevo = new NodoArbolAHP(nombre);
 
-		ArbolDecisionAHP.getInstance().addNodo(referencia, nuevo.referencia);
+		StructureManager.getInstance().getArbol().addNodo(referencia, nuevo.referencia);
 
-		// referencia.addHijo(nuevo.referencia);
 		this.add(nuevo);
+	}
+
+	public void addSubCriterio(NodoArbolAHP subC) {
+		// Se supone que la referencias ya estan unidas
+
+		this.add(subC);
+
+		if (!referencia.esHijo(subC.referencia)) {
+			StructureManager.getInstance().getArbol().addNodo(referencia, subC.referencia);
+
+		}
+
 	}
 
 	public NodoArbolDecision getReferencia() {

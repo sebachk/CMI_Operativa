@@ -24,8 +24,8 @@ import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.tree.DefaultTreeModel;
 
-import com.ahp.ArbolDecisionAHP;
 import com.ahp.NodoArbolDecision;
+import com.ahp.StructureManager;
 
 public class TabDefiniciones extends JSplitPane implements ActionListener {
 
@@ -140,19 +140,12 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 			if (alter == null || alter.equals("")) {
 				JOptionPane.showMessageDialog(this, "Debe ingresar una alternativa");
 			} else {
-				JLabel nuevo = new JLabel(alter);
-				nuevo.setFont(FUENTE);
-				fieldAlternativa.setText("");
-				listAlternativas.add(nuevo);
-				alternativas.add(alter);
 				NodoArbolDecision alt = new NodoArbolDecision();
 				alt.setNombre(alter);
-				ArbolDecisionAHP.getInstance().addAlternativa(alt);
-
-				if (alternativas.size() > 9)
-					((GridLayout) listAlternativas.getLayout()).setRows(alternativas.size());
-
+				StructureManager.getInstance().getArbol().addAlternativa(alt);
+				agregarAlternativa(alt);
 				this.getRootPane().repaint();
+
 			}
 		} else if (e.getSource().equals(btnAddSubcriterio)) {
 			String criterio = textField.getText();
@@ -177,7 +170,7 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		lblCriterion.setText(nodoActual.getNombre());
 		panelListaCriterios.removeAll();
 		for (NodoArbolDecision nad : nodoActual.getReferencia().getHijos()) {
-			if (!ArbolDecisionAHP.getInstance().esAlternativa(nad)) {
+			if (!StructureManager.getInstance().getArbol().esAlternativa(nad)) {
 				addCrit(nad.getNombre());
 			}
 
@@ -189,6 +182,21 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 
 	public NodoArbolDecision getNodoArbolDecisionActual() {
 		return nodoActual.getReferencia();
+	}
+
+	public void agregarAlternativa(NodoArbolDecision alt) {
+
+		if (StructureManager.getInstance().getArbol().esAlternativa(alt)) {
+			JLabel nuevo = new JLabel(alt.getNombre());
+			nuevo.setFont(FUENTE);
+			fieldAlternativa.setText("");
+			listAlternativas.add(nuevo);
+			alternativas.add(alt.getNombre());
+			if (alternativas.size() > 9)
+				((GridLayout) listAlternativas.getLayout()).setRows(alternativas.size());
+
+		}
+
 	}
 
 	private void addCrit(String criterio) {

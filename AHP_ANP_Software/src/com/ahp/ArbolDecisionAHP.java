@@ -13,16 +13,16 @@ public class ArbolDecisionAHP {
 	private List<NodoArbolDecision> ultimosCriterios;
 	private Hashtable<String, Double> resultados = new Hashtable<String, Double>();
 
-	private static ArbolDecisionAHP instance;
+	// private static ArbolDecisionAHP instance;
 
-	private static String SEPARATOR = "><";
+	public static String SEPARATOR = "><";
 
-	public static ArbolDecisionAHP getInstance() {
-		if (instance == null)
-			instance = new ArbolDecisionAHP();
-
-		return instance;
-	}
+	/*
+	 * public static ArbolDecisionAHP getInstance() { if (instance == null)
+	 * instance = new ArbolDecisionAHP();
+	 * 
+	 * return instance; }
+	 */
 
 	public NodoArbolDecision getGoal() {
 		return goal;
@@ -32,9 +32,37 @@ public class ArbolDecisionAHP {
 		return alternativas;
 	}
 
-	private ArbolDecisionAHP() {
+	public List<NodoArbolDecision> getUltimosCriterios() {
+		return ultimosCriterios;
+	}
+
+	public void setUltimosCriterios(List<NodoArbolDecision> ultimosCriterios) {
+		this.ultimosCriterios = ultimosCriterios;
+	}
+
+	public void setAlternativas(List<NodoArbolDecision> alternativas) {
+		this.alternativas = alternativas;
+	}
+
+	public void setGoal(NodoArbolDecision goal) {
+		this.goal = goal;
+	}
+
+	public Hashtable<String, Double> getResultados() {
+		return resultados;
+	}
+
+	public void setResultados(Hashtable<String, Double> resultados) {
+		this.resultados = resultados;
+	}
+
+	public ArbolDecisionAHP() {
+		this("GOL");
+	}
+
+	public ArbolDecisionAHP(String g) {
 		goal = new NodoArbolDecision();
-		goal.setNombre("Goal");
+		goal.setNombre(g);
 		alternativas = new ArrayList<NodoArbolDecision>();
 		ultimosCriterios = new ArrayList<NodoArbolDecision>();
 		ultimosCriterios.add(goal);

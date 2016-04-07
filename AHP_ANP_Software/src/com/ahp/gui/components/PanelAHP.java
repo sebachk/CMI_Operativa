@@ -5,7 +5,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.tree.DefaultTreeModel;
 
-import com.ahp.ArbolDecisionAHP;
+import com.ahp.NodoArbolDecision;
+import com.ahp.StructureManager;
 
 public class PanelAHP extends PanelPrincipal {
 	private JTabbedPane tabbedPane;
@@ -32,7 +33,9 @@ public class PanelAHP extends PanelPrincipal {
 
 		getPanelDerecho().add(tabbedPane);
 		super.getTree().setCellRenderer(new AHPCellTreeRenderer());
-		super.getTree().setModel(new DefaultTreeModel(new NodoArbolAHP(ArbolDecisionAHP.getInstance().getGoal())));
+		StructureManager.getInstance().crearArbol("Goal");
+		super.getTree()
+				.setModel(new DefaultTreeModel(new NodoArbolAHP(StructureManager.getInstance().getArbol().getGoal())));
 
 		// this.tabbedPane.addTab("Decision", null,
 		// TabDefiniciones.getInstance(), null);
@@ -50,5 +53,18 @@ public class PanelAHP extends PanelPrincipal {
 
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
+	}
+
+	public void arbolCargado() {
+		super.getTree().setModel(new DefaultTreeModel(StructureManager.getInstance().nuevoArbool()));
+		DefaultTreeModel model = (DefaultTreeModel) super.getTree().getModel();
+		model.reload();
+
+		for (NodoArbolDecision alt : StructureManager.getInstance().getArbol().getAlternativas()) {
+			TabDefiniciones.getInstance().agregarAlternativa(alt);
+		}
+
+		this.getRootPane().repaint();
+
 	}
 }

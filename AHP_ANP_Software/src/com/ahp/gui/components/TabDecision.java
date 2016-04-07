@@ -8,8 +8,8 @@ import java.util.Map.Entry;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
-import com.ahp.ArbolDecisionAHP;
 import com.ahp.NodoArbolDecision;
+import com.ahp.StructureManager;
 
 public class TabDecision extends JPanel {
 
@@ -70,9 +70,9 @@ public class TabDecision extends JPanel {
 		}
 		alternativas.clear();
 
-		ArbolDecisionAHP.getInstance().tomarDecision();
-		for (NodoArbolDecision nodo : ArbolDecisionAHP.getInstance().getAlternativas()) {
-			List<Entry<String, Double>> nueva = ArbolDecisionAHP.getInstance().getResultado(nodo);
+		StructureManager.getInstance().getArbol().tomarDecision();
+		for (NodoArbolDecision nodo : StructureManager.getInstance().getArbol().getAlternativas()) {
+			List<Entry<String, Double>> nueva = StructureManager.getInstance().getArbol().getResultado(nodo);
 			Double v = 0.0;
 			for (Entry<String, Double> e : nueva) {
 				// ir cargando la matriz con los getvalue, y obtenes del key la
