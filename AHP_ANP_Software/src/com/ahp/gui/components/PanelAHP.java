@@ -4,55 +4,59 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import com.ahp.NodoArbolDecision;
 import com.ahp.StructureManager;
 
 public class PanelAHP extends PanelPrincipal {
-	private JTabbedPane tabbedPane;
 
 	public PanelAHP() {
 		// getPanelDerecho().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		this.tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addChangeListener(new ChangeListener() {
+		StructureManager.getInstance().setTabbedPane(new JTabbedPane(JTabbedPane.TOP));
+		StructureManager.getInstance().getTabbedPane().addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				if (tabbedPane.getSelectedIndex() == tabbedPane.indexOfComponent(TabMatrices.getInstance()))
+				if (StructureManager.getInstance().getTabbedPane().getSelectedIndex() == StructureManager.getInstance()
+						.getTabbedPane().indexOfComponent(TabMatrices.getInstance()))
 					TabMatrices.getInstance().actualizar(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
-				if (tabbedPane.getSelectedIndex() == tabbedPane.indexOfComponent(TabResults.getinstance())) {
+				if (StructureManager.getInstance().getTabbedPane().getSelectedIndex() == StructureManager.getInstance()
+						.getTabbedPane().indexOfComponent(TabResults.getinstance())) {
 					TabResults.getinstance()
 							.armarEstadistica(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
 
 				}
-				if (tabbedPane.getSelectedIndex() == tabbedPane.indexOfComponent(TabDecision.getInstance())) {
+				if (StructureManager.getInstance().getTabbedPane().getSelectedIndex() == StructureManager.getInstance()
+						.getTabbedPane().indexOfComponent(TabDecision.getInstance())) {
 					TabDecision.getInstance().generarDecision();
 				}
 
 			}
 		});
 
-		getPanelDerecho().add(tabbedPane);
+		getPanelDerecho().add(StructureManager.getInstance().getTabbedPane());
 		super.getTree().setCellRenderer(new AHPCellTreeRenderer());
-		StructureManager.getInstance().crearArbol("Goal");
-		super.getTree()
-				.setModel(new DefaultTreeModel(new NodoArbolAHP(StructureManager.getInstance().getArbol().getGoal())));
+		// StructureManager.getInstance().crearArbol("Goal");
+		// super.getTree()
+		// .setModel(new DefaultTreeModel(new
+		// NodoArbolAHP(StructureManager.getInstance().getArbol().getGoal())));
 
 		// this.tabbedPane.addTab("Decision", null,
 		// TabDefiniciones.getInstance(), null);
 
-		TabDefiniciones defis = TabDefiniciones.getInstance();
-		defis.setNodoActual((NodoArbolAHP) getTree().getModel().getRoot());
+		super.getTree().setModel(new DefaultTreeModel(null));
 
-		this.tabbedPane.addTab("Definiciones", null, defis, "DEFINIDENDO LAS COSAS");
-		this.tabbedPane.addTab("Matriz", null, TabMatrices.getInstance(), null);
-		this.tabbedPane.addTab("Resultados", TabResults.getinstance());
-		this.tabbedPane.addTab("Decision", TabDecision.getInstance());
-		defis.tree = getTree();
+		StructureManager.getInstance().addTab("Definiciones", TabDefiniciones.getInstance(),
+				"Definicion de Criterios y alternativas");
+		StructureManager.getInstance().addTab("Matriz", TabMatrices.getInstance(), "Ponderacion de Criterios");
+		StructureManager.getInstance().addTab("Resultados", TabResults.getinstance(),
+				"Visualizar los resultados parciales");
+		StructureManager.getInstance().addTab("Decision", TabDecision.getInstance(), "Ver alternativa mas adecuada");
 
-	}
+		StructureManager.getInstance().getTabbedPane().setEnabledAt(
+				StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), false);
+		TabDefiniciones.getInstance().tree = getTree();
 
-	public JTabbedPane getTabbedPane() {
-		return tabbedPane;
 	}
 
 	public void arbolCargado() {
@@ -60,10 +64,14 @@ public class PanelAHP extends PanelPrincipal {
 		DefaultTreeModel model = (DefaultTreeModel) super.getTree().getModel();
 		model.reload();
 
+		this.getTree().setSelectionPath(new TreePath(this.getTree().getModel().getRoot()));
+
+		TabDefiniciones.getInstance().clearAlternativas();
+
 		for (NodoArbolDecision alt : StructureManager.getInstance().getArbol().getAlternativas()) {
 			TabDefiniciones.getInstance().agregarAlternativa(alt);
 		}
-
+		StructureManager.getInstance().arbolCompleto();
 		this.getRootPane().repaint();
 
 	}

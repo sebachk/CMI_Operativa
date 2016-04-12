@@ -37,6 +37,7 @@ public class PanelPrincipal extends JPanel {
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			public void valueChanged(TreeSelectionEvent arg0) {
 				if (arg0.isAddedPath()) {
+
 					TabDefiniciones.getInstance().setNodoActual((NodoArbolAHP) tree.getLastSelectedPathComponent());
 					TabMatrices.getInstance().actualizar(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
 					TabResults.getinstance()

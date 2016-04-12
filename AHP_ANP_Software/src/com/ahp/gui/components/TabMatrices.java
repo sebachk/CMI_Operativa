@@ -18,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.ahp.NodoArbolDecision;
+import com.ahp.StructureManager;
 
 public class TabMatrices extends JPanel {
 
@@ -52,7 +53,9 @@ public class TabMatrices extends JPanel {
 		sliderPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				if (TabDefiniciones.getInstance().getNodoArbolDecisionActual().getMatriz().size() > 0) {
+
+				if (TabDefiniciones.getInstance().getNodoArbolDecisionActual() != null
+						&& TabDefiniciones.getInstance().getNodoArbolDecisionActual().getMatriz().size() > 0) {
 
 					int i = slider.getValue();
 					Double value;
@@ -71,6 +74,8 @@ public class TabMatrices extends JPanel {
 							criterioB.getText(), value);
 
 					matrizModel.fireTableDataChanged();
+					StructureManager.getInstance().arbolCompleto();
+
 				}
 			}
 		});
@@ -123,6 +128,8 @@ public class TabMatrices extends JPanel {
 					}
 
 					slider.setValue(v.intValue());
+
+					StructureManager.getInstance().arbolCompleto();
 
 				}
 

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
@@ -87,9 +88,30 @@ public class Principal {
 				ArbolDecisionAHP arbol = XMLSaver.loadXML(getMain());
 
 				StructureManager.getInstance().setArbol(arbol);
+				StructureManager.getInstance().habilitar();
+
 				panelAHP.arbolCargado();
 			}
 		});
+
+		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
+		mntmNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String arbolName = JOptionPane.showInputDialog(frame, "¿Que quiere decidir? sea breve",
+						"Nuevo Objetivo");
+
+				if (arbolName != null && !arbolName.isEmpty()) {
+					StructureManager.getInstance().crearArbol(arbolName);
+					StructureManager.getInstance().habilitar();
+					panelAHP.arbolCargado();
+				}
+
+			}
+		});
+		mnArchivo.add(mntmNuevo);
+
+		JSeparator separator_1 = new JSeparator();
+		mnArchivo.add(separator_1);
 		mnArchivo.add(mntmNewMenuItem);
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Guardar");

@@ -17,15 +17,39 @@ public class MatrizAHP {
 
 	List<Double> eigenVector;
 
+	public Hashtable<String, Double> getParwise() {
+		return parwise;
+	}
+
+	public void setParwise(Hashtable<String, Double> parwise) {
+		this.parwise = parwise;
+	}
+
 	public MatrizAHP() {
 		elementos = new ArrayList<String>();
 		parwise = new Hashtable<String, Double>();
 		eigenVector = null;
 	}
 
+	public List<String> getElementos() {
+		return elementos;
+	}
+
+	public void setElementos(List<String> elementos) {
+		for (String e : elementos) {
+			addElemento(e);
+		}
+
+		this.elementos = elementos;
+	}
+
 	public void addElemento(NodoArbolDecision nodo) {
-		elementos.add(nodo.getNombre());
-		parwise.put(nodo.getNombre() + SEPARATOR + nodo.getNombre(), 1.0);
+		this.addElemento(nodo.getNombre());
+	}
+
+	public void addElemento(String s) {
+		elementos.add(s);
+		parwise.put(s + SEPARATOR + s, 1.0);
 
 		eigenVector = null;
 	}
@@ -193,6 +217,10 @@ public class MatrizAHP {
 
 	public Double getCI() {
 
+		if (elementos.size() < 2) {
+			return 0.0;
+		}
+
 		Double l = calcularLambda() - elementos.size();
 
 		l = l / (elementos.size() - 1);
@@ -232,6 +260,19 @@ public class MatrizAHP {
 			}
 		}
 		return -1;
+	}
+
+	public boolean isComplete() {
+		double v;
+		for (String a : this.elementos) {
+			for (String b : this.elementos) {
+				v = this.getValor(a, b);
+				if (v == 0 || Double.isNaN(v)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 }

@@ -11,8 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -32,9 +30,7 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	public JPanel panelCriterios;
 	private JButton btnAgregarAlter;
 	private JButton btnAddSubcriterio;
-	private JPanel listAlternativas;
-
-	private List<String> alternativas;
+	private JPanel panelAlternativas;
 
 	private static final Font FUENTE = new Font("Tahoma", Font.PLAIN, 15);
 	private JPanel panelListaCriterios;
@@ -84,10 +80,9 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 			}
 		});
 
-		listAlternativas = new JPanel();
-		alternativas = new ArrayList<String>();
-		panel_3.add(listAlternativas, BorderLayout.CENTER);
-		listAlternativas.setLayout(new GridLayout(10, 1, 0, 0));
+		panelAlternativas = new JPanel();
+		panel_3.add(panelAlternativas, BorderLayout.CENTER);
+		panelAlternativas.setLayout(new GridLayout(10, 1, 0, 0));
 
 		// La parte de abajo
 		panelCriterios = new JPanel();
@@ -144,6 +139,7 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 				alt.setNombre(alter);
 				StructureManager.getInstance().getArbol().addAlternativa(alt);
 				agregarAlternativa(alt);
+				StructureManager.getInstance().arbolCompleto();
 				this.getRootPane().repaint();
 
 			}
@@ -158,7 +154,10 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 				nodoActual.addSubCriterio(criterio);
 				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 				model.reload();
+				StructureManager.getInstance().arbolCompleto();
+
 			}
+
 			this.getRootPane().repaint();
 
 		}
@@ -181,6 +180,8 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	}
 
 	public NodoArbolDecision getNodoArbolDecisionActual() {
+		if (nodoActual == null)
+			return null;
 		return nodoActual.getReferencia();
 	}
 
@@ -190,10 +191,10 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 			JLabel nuevo = new JLabel(alt.getNombre());
 			nuevo.setFont(FUENTE);
 			fieldAlternativa.setText("");
-			listAlternativas.add(nuevo);
-			alternativas.add(alt.getNombre());
-			if (alternativas.size() > 9)
-				((GridLayout) listAlternativas.getLayout()).setRows(alternativas.size());
+			panelAlternativas.add(nuevo);
+			if (StructureManager.getInstance().getArbol().getAlternativas().size() > 9)
+				((GridLayout) panelAlternativas.getLayout())
+						.setRows(StructureManager.getInstance().getArbol().getAlternativas().size());
 
 		}
 
@@ -212,4 +213,7 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	private JLabel lblCriterion;
 	private JTextField fieldAlternativa;
 
+	public void clearAlternativas() {
+		this.panelAlternativas.removeAll();
+	}
 }

@@ -17,6 +17,11 @@ public class NodoArbolDecision {
 		return matriz;
 	}
 
+	public void setMatriz(MatrizAHP matriz) {
+		this.matriz = new MatrizAHP();
+		this.matriz.setElementos(matriz.getElementos());
+	}
+
 	public NodoArbolDecision() {
 		padres = new ArrayList<NodoArbolDecision>();
 		hijos = new ArrayList<NodoArbolDecision>();

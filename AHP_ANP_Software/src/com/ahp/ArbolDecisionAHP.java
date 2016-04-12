@@ -57,7 +57,7 @@ public class ArbolDecisionAHP {
 	}
 
 	public ArbolDecisionAHP() {
-		this("GOL");
+
 	}
 
 	public ArbolDecisionAHP(String g) {
