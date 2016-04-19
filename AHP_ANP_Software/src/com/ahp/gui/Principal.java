@@ -20,6 +20,7 @@ import com.ahp.StructureManager;
 import com.ahp.XMLSaver;
 import com.ahp.gui.components.PanelAHP;
 import com.ahp.gui.components.TabDefiniciones;
+import com.anp.gui.PanelANP;
 
 public class Principal {
 
@@ -27,7 +28,7 @@ public class Principal {
 	private JPanel panelPrincipal;
 
 	private PanelAHP panelAHP;
-	private JPanel panelANP;
+	private PanelANP panelANP;
 	private JTabbedPane tabbedPane;
 
 	private JPanel panel_1;
@@ -68,8 +69,6 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		panelAHP = new PanelAHP();
-		panelANP = new JPanel();
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 710, 476);
@@ -94,13 +93,30 @@ public class Principal {
 			}
 		});
 
-		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
-		mntmNuevo.addActionListener(new ActionListener() {
+		JMenu mnNuevo = new JMenu("Nuevo");
+		mnArchivo.add(mnNuevo);
+
+		JMenuItem mntmNuevoAHP = new JMenuItem("AHP");
+		mnNuevo.add(mntmNuevoAHP);
+
+		JMenuItem mntmAnp = new JMenuItem("ANP");
+		mntmAnp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelANP = new PanelANP();
+
+				frame.setContentPane(panelANP);
+			}
+		});
+		mnNuevo.add(mntmAnp);
+		mntmNuevoAHP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String arbolName = JOptionPane.showInputDialog(frame, "¿Que quiere decidir? sea breve",
 						"Nuevo Objetivo");
 
 				if (arbolName != null && !arbolName.isEmpty()) {
+					panelAHP = new PanelAHP();
+
+					frame.setContentPane(panelAHP);
 					StructureManager.getInstance().crearArbol(arbolName);
 					StructureManager.getInstance().habilitar();
 					panelAHP.arbolCargado();
@@ -108,7 +124,6 @@ public class Principal {
 
 			}
 		});
-		mnArchivo.add(mntmNuevo);
 
 		JSeparator separator_1 = new JSeparator();
 		mnArchivo.add(separator_1);
@@ -129,8 +144,6 @@ public class Principal {
 		mnArchivo.add(mntmNewMenuItem_2);
 
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-
-		frame.setContentPane(panelAHP);
 
 	}
 }

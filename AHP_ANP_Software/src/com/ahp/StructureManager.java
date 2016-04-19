@@ -30,6 +30,8 @@ public class StructureManager {
 		this.tabbedPane.addTab(nombreTab, null, tab, tooltip);
 		this.tabbedPane.setEnabledAt(this.tabbedPane.indexOfTab(nombreTab), false);
 
+		tabbedPane.indexOfComponent(TabDefiniciones.getInstance());
+
 	}
 
 	public static StructureManager getInstance() {

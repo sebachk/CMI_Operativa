@@ -8,6 +8,7 @@ import javax.swing.tree.TreePath;
 
 import com.ahp.NodoArbolDecision;
 import com.ahp.StructureManager;
+import com.anp.gui.ColoredLabel;
 
 public class PanelAHP extends PanelPrincipal {
 
@@ -52,6 +53,8 @@ public class PanelAHP extends PanelPrincipal {
 		StructureManager.getInstance().addTab("Resultados", TabResults.getinstance(),
 				"Visualizar los resultados parciales");
 		StructureManager.getInstance().addTab("Decision", TabDecision.getInstance(), "Ver alternativa mas adecuada");
+
+		StructureManager.getInstance().addTab("testColor", new ColoredLabel(), "asad");
 
 		StructureManager.getInstance().getTabbedPane().setEnabledAt(
 				StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), false);
