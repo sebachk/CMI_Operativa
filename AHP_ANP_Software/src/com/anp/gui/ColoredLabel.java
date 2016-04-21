@@ -22,7 +22,7 @@ public class ColoredLabel extends JPanel {
 		color.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				color.setBackground(JColorChooser.showDialog(color, "Color", Color.CYAN));
+				setColor(JColorChooser.showDialog(color, "Color", Color.CYAN));
 
 			}
 		});
@@ -41,6 +41,11 @@ public class ColoredLabel extends JPanel {
 	public void setName(String name) {
 		super.setName(name);
 		lblLabel.setText(name);
+	}
+	
+	public void setColor(Color c){
+		color.setBackground(c);
+
 	}
 
 }

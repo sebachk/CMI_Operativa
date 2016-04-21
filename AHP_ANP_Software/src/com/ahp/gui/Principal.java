@@ -1,6 +1,7 @@
 package com.ahp.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,6 +48,7 @@ public class Principal {
 				try {
 					Principal window = new Principal();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,6 +73,7 @@ public class Principal {
 	private void initialize() {
 
 		frame = new JFrame();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setBounds(100, 100, 710, 476);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -103,8 +106,8 @@ public class Principal {
 		mntmAnp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panelANP = new PanelANP();
-
 				frame.setContentPane(panelANP);
+				panelANP.updateUI();
 			}
 		});
 		mnNuevo.add(mntmAnp);
@@ -121,7 +124,7 @@ public class Principal {
 					StructureManager.getInstance().habilitar();
 					panelAHP.arbolCargado();
 				}
-
+				panelAHP.updateUI();
 			}
 		});
 

@@ -14,10 +14,14 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+
+import com.ahp.NodoArbolDecision;
+import com.ahp.StructureManager;
 
 public class PanelAlterClusANP extends JPanel implements ActionListener {
 
@@ -30,23 +34,33 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 
 	private JButton btnAddCluster;
 
+	private JButton btnAgregarAlter;
+
+	private JPanel panelListaAlternativas;
+
+	private JTextField newClustertextField;
+
+	private JPanel panelClusters;
+
+	private JPanel panelListaCluster;
+
 	public PanelAlterClusANP() {
 		// La parte de arriba
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(new BorderLayout(0, 0));
+		JPanel panelAlternativas = new JPanel();
+		panelAlternativas.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(SystemColor.inactiveCaption);
-		panel_3.add(panel_4, BorderLayout.SOUTH);
+		JPanel panelInputAlternativa = new JPanel();
+		panelInputAlternativa.setBackground(SystemColor.inactiveCaption);
+		panelAlternativas.add(panelInputAlternativa, BorderLayout.SOUTH);
 
-		JButton btnAgregarAlter = new JButton("Agregar Alternativa");
+		btnAgregarAlter = new JButton("Agregar Alternativa");
 		btnAgregarAlter.addActionListener(this);
-		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_4.add(btnAgregarAlter);
+		panelInputAlternativa.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panelInputAlternativa.add(btnAgregarAlter);
 
 		fieldAlternativa = new JTextField();
 		fieldAlternativa.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_4.add(fieldAlternativa);
+		panelInputAlternativa.add(fieldAlternativa);
 		fieldAlternativa.setColumns(20);
 		fieldAlternativa.addKeyListener(new KeyAdapter() {
 			@Override
@@ -59,38 +73,37 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 		});
 		setLayout(new GridLayout(0, 1, 0, 0));
 
-		JPanel panelAlternativas = new JPanel();
-		panel_3.add(panelAlternativas, BorderLayout.CENTER);
-		panelAlternativas.setLayout(new GridLayout(10, 1, 0, 0));
+		panelListaAlternativas = new JPanel();
+		panelAlternativas.add(panelListaAlternativas, BorderLayout.CENTER);
+		panelListaAlternativas.setLayout(new GridLayout(10, 1, 0, 0));
 
-		this.add(panel_3);
+		this.add(panelAlternativas);
 
 		JLabel lblAlternativas = new JLabel("Alternativas");
 		lblAlternativas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlternativas.setForeground(Color.BLACK);
 		lblAlternativas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblAlternativas.setBackground(SystemColor.activeCaption);
-		panel_3.add(lblAlternativas, BorderLayout.NORTH);
+		panelAlternativas.add(lblAlternativas, BorderLayout.NORTH);
 
-		// La parte de abajo
-		JPanel panelClusters = new JPanel();
+		panelClusters = new JPanel();
 		panelClusters.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 
 		panelClusters.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(SystemColor.activeCaption);
-		panelClusters.add(panel_6, BorderLayout.SOUTH);
-		FlowLayout fl_panel_6 = new FlowLayout(FlowLayout.CENTER, 10, 5);
-		panel_6.setLayout(fl_panel_6);
+		JPanel panelInputCluster = new JPanel();
+		panelInputCluster.setBackground(SystemColor.activeCaption);
+		panelClusters.add(panelInputCluster, BorderLayout.SOUTH);
+		FlowLayout fl_panelInputCluster = new FlowLayout(FlowLayout.CENTER, 10, 5);
+		panelInputCluster.setLayout(fl_panelInputCluster);
 
-		btnAddCluster = new JButton("Agregar SubCriterio");
+		btnAddCluster = new JButton("Agregar grupo");
 		btnAddCluster.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnAddCluster.addActionListener(this);
-		panel_6.add(btnAddCluster);
+		panelInputCluster.add(btnAddCluster);
 
-		JTextField textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		newClustertextField = new JTextField();
+		newClustertextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -99,9 +112,9 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 				}
 			}
 		});
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_6.add(textField);
-		textField.setColumns(20);
+		newClustertextField.setHorizontalAlignment(SwingConstants.CENTER);
+		panelInputCluster.add(newClustertextField);
+		newClustertextField.setColumns(20);
 
 		JLabel lblCriterion = new JLabel("Grupos");
 		panelClusters.add(lblCriterion, BorderLayout.NORTH);
@@ -110,9 +123,9 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 		lblCriterion.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblCriterion.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JPanel panelListaCriterios = new JPanel();
-		panelListaCriterios.setLayout(new GridLayout(10, 1, 0, 0));
-		panelClusters.add(panelListaCriterios, BorderLayout.CENTER);
+		panelListaCluster = new JPanel();
+		panelListaCluster.setLayout(new GridLayout(10, 1, 0, 0));
+		panelClusters.add(panelListaCluster, BorderLayout.CENTER);
 
 		this.add(panelClusters);
 
@@ -120,12 +133,36 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
 		if (e.getSource().equals(btnAddCluster)) {
-			ColoredLabel cluster = new ColoredLabel();
-			cluster.setName("Nuevo");
+			String grupo= newClustertextField.getText();
+			if(grupo==null || grupo.isEmpty()){
+				JOptionPane.showMessageDialog(this, "Debe ingresar un Grupo");
+			}
+			ColoredLabel cluster = new ClusterLabel();
+			cluster.setName(grupo);
+			int r= (int)(Math.random()*25)*10;
+			int g= (int)(Math.random()*25)*10;
+			int b= (int)(Math.random()*25)*10;
+			Color c= new Color(r,g,b);
+			cluster.setColor(c);
+			
+			
+			panelListaCluster.add(cluster);
+			panelListaCluster.updateUI();
+			newClustertextField.setText("");
+		}
+		if(e.getSource().equals(btnAgregarAlter)){
+			String alter = fieldAlternativa.getText();
+			if (alter == null || alter.equals("")) {
+				JOptionPane.showMessageDialog(this, "Debe ingresar una alternativa");
+			} else {
+				JLabel nuevo = new JLabel(alter);
+				panelListaAlternativas.add(nuevo);
+				panelListaAlternativas.updateUI();
+				fieldAlternativa.setText("");
 
+			}
+			
 		}
 	}
 

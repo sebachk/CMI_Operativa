@@ -14,6 +14,7 @@ import com.ahp.gui.components.TabDefiniciones;
 public class PanelANP extends PanelPrincipal {
 
 	public PanelANP() {
+		getSplitPane().setResizeWeight(0.01);
 		// getPanelDerecho().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		StructureManager.getInstance().setTabbedPane(new JTabbedPane(JTabbedPane.TOP));
@@ -46,11 +47,11 @@ public class PanelANP extends PanelPrincipal {
 
 		getPanelDerecho().add(StructureManager.getInstance().getTabbedPane());
 		this.remove(super.getTree());
-		// StructureManager.getInstance().addTab("Definiciones",
-		// TabDefiniciones.getInstance(),
-		// "Definicion de Criterios y alternativas");
-
+		
 		this.getPanelIzquierdo().add(new PanelAlterClusANP());
+
+		
+	//	StructureManager.getInstance().addTab("Definiciones", , "Definicion de Criterios");
 
 	}
 

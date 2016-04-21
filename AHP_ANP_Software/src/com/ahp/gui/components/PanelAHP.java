@@ -13,6 +13,7 @@ import com.anp.gui.ColoredLabel;
 public class PanelAHP extends PanelPrincipal {
 
 	public PanelAHP() {
+		getSplitPane().setResizeWeight(0.1);
 		// getPanelDerecho().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		StructureManager.getInstance().setTabbedPane(new JTabbedPane(JTabbedPane.TOP));
