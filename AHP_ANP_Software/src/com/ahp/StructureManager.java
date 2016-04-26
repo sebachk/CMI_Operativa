@@ -11,10 +11,8 @@ import com.ahp.gui.components.TabDecision;
 import com.ahp.gui.components.TabDefiniciones;
 import com.ahp.gui.components.TabMatrices;
 import com.ahp.gui.components.TabResults;
-import com.anp.CriterioANP;
 import com.anp.MatrizDefinicionANP;
 import com.anp.gui.ClusterLabel;
-import com.anp.gui.ColoredLabel;
 import com.anp.gui.CriterioLabel;
 import com.anp.gui.TabCriteriosANP;
 
@@ -25,11 +23,10 @@ public class StructureManager {
 
 	private JTabbedPane tabbedPane;
 
-	
-	
-	//ANP
+	// ANP
 	private TabCriteriosANP tabCriteriosANP;
 	private MatrizDefinicionANP matrizANP;
+
 	public void setTabbedPane(JTabbedPane tabbedPane) {
 		this.tabbedPane = tabbedPane;
 	}
@@ -53,7 +50,7 @@ public class StructureManager {
 	}
 
 	private StructureManager() {
-		tabCriteriosANP=new TabCriteriosANP();
+		tabCriteriosANP = new TabCriteriosANP();
 	}
 
 	public ArbolDecisionAHP getArbol() {
@@ -132,19 +129,40 @@ public class StructureManager {
 		return true;
 
 	}
-	
-	public void addToCluster(ClusterLabel cluster){
-		
-		List<CriterioLabel> crit= tabCriteriosANP.getSeleccionados();
-		for(CriterioLabel cl:crit){
-			
+
+	public void addToCluster(ClusterLabel cluster) {
+
+		List<CriterioLabel> crit = tabCriteriosANP.getSeleccionados();
+
+		for (CriterioLabel cl : crit) {
+
 			try {
 				matrizANP.addToCluster(cluster.getName(), cl.getCriterioANP());
+
+				cl.addToCluster(cluster);
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+
 		}
+	}
+
+	public MatrizDefinicionANP getMatrizANP() {
+		return matrizANP;
+	}
+
+	public TabCriteriosANP getTabCriterios() {
+		return this.tabCriteriosANP;
+	}
+
+	public void crearMatrizANP() {
+		this.matrizANP = new MatrizDefinicionANP();
+
+	}
+
+	public void clusterChanged(ClusterLabel cl) {
+		this.tabCriteriosANP.paintCriteriosFromCluster(cl);
 	}
 
 }

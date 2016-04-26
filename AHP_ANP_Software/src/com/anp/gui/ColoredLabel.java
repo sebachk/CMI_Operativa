@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class ColoredLabel extends JPanel {
-	private JPanel color;
+	protected JPanel color;
 	private JLabel lblLabel;
 
 	public ColoredLabel() {
@@ -26,6 +26,7 @@ public class ColoredLabel extends JPanel {
 
 			}
 		});
+
 		color.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblLabel = new JLabel();
 		lblLabel.setBackground(SystemColor.controlHighlight);
@@ -42,10 +43,14 @@ public class ColoredLabel extends JPanel {
 		super.setName(name);
 		lblLabel.setText(name);
 	}
-	
-	public void setColor(Color c){
+
+	public void setColor(Color c) {
 		color.setBackground(c);
 
+	}
+
+	public Color getColor() {
+		return color.getBackground();
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.ahp.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,7 +47,7 @@ public class Principal {
 				try {
 					Principal window = new Principal();
 					window.frame.setVisible(true);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -106,6 +105,7 @@ public class Principal {
 		mntmAnp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panelANP = new PanelANP();
+				StructureManager.getInstance().crearMatrizANP();
 				frame.setContentPane(panelANP);
 				panelANP.updateUI();
 			}

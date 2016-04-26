@@ -1,5 +1,7 @@
 package com.anp.gui;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -20,38 +22,24 @@ public class PanelANP extends PanelPrincipal {
 		StructureManager.getInstance().setTabbedPane(new JTabbedPane(JTabbedPane.TOP));
 		StructureManager.getInstance().getTabbedPane().addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				// if
-				// (StructureManager.getInstance().getTabbedPane().getSelectedIndex()
-				// == StructureManager.getInstance()
-				// .getTabbedPane().indexOfComponent(TabMatrices.getInstance()))
-				// TabMatrices.getInstance().actualizar(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
-				// if
-				// (StructureManager.getInstance().getTabbedPane().getSelectedIndex()
-				// == StructureManager.getInstance()
-				// .getTabbedPane().indexOfComponent(TabResults.getinstance()))
-				// {
-				// TabResults.getinstance()
-				// .armarEstadistica(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
-				//
-				// }
-				// if
-				// (StructureManager.getInstance().getTabbedPane().getSelectedIndex()
-				// == StructureManager.getInstance()
-				// .getTabbedPane().indexOfComponent(TabDecision.getInstance()))
-				// {
-				// TabDecision.getInstance().generarDecision();
-				// }
+				if (StructureManager.getInstance().getTabbedPane().getSelectedIndex() == StructureManager.getInstance()
+						.getTabbedPane().indexOfComponent(StructureManager.getInstance().getTabCriterios())) {
+					// sarasa
+				}
 
 			}
 		});
 
 		getPanelDerecho().add(StructureManager.getInstance().getTabbedPane());
+		getPanelDerecho().setLayout(new BorderLayout(0, 0));
+
 		this.remove(super.getTree());
-		
+
 		this.getPanelIzquierdo().add(new PanelAlterClusANP());
 
-		
-	//	StructureManager.getInstance().addTab("Definiciones", , "Definicion de Criterios");
+		StructureManager.getInstance().addTab("Definiciones", StructureManager.getInstance().getTabCriterios(),
+				"Definicion de Criterios");
+		this.getPanelDerecho().add(StructureManager.getInstance().getTabbedPane());
 
 	}
 
