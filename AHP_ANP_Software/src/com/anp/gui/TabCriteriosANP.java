@@ -44,15 +44,16 @@ public class TabCriteriosANP extends JPanel {
 		btnAgregarCriterio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Crear el crit (visual)
-				String grupo = textFieldCriterios.getText();
-				if (grupo == null || grupo.isEmpty()) {
+				String nombreCriterio = textFieldCriterios.getText();
+				if (nombreCriterio == null || nombreCriterio.isEmpty()) {
 					JOptionPane.showMessageDialog(textFieldCriterios, "Debe ingresar un Criterio");
 				} else {
-					CriterioLabel nuevo = new CriterioLabel(grupo);
+					CriterioLabel nuevo = new CriterioLabel(nombreCriterio);
 					StructureManager.getInstance().getMatrizANP().addCriterio(nuevo.getCriterioANP());
 					panelListaCrit.add(nuevo);
 					textFieldCriterios.setText("");
 					panelListaCrit.updateUI();
+					panelListaCrit.repaint();
 					criteriosLabel.add(nuevo);
 				}
 			}

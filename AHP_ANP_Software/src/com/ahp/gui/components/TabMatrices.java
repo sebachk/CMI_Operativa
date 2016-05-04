@@ -16,6 +16,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.tree.DefaultTreeModel;
 
 import com.ahp.NodoArbolDecision;
 import com.ahp.StructureManager;
@@ -74,6 +75,9 @@ public class TabMatrices extends JPanel {
 							criterioB.getText(), value);
 
 					matrizModel.fireTableDataChanged();
+
+					DefaultTreeModel model = (DefaultTreeModel) TabDefiniciones.getInstance().tree.getModel();
+					model.reload();
 					StructureManager.getInstance().arbolCompleto();
 
 				}

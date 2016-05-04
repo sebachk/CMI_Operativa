@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.ahp.Ahp;
 import com.ahp.NodoArbolDecision;
+import com.ahp.StructureManager;
 
 public class MatrizAHP {
 
@@ -63,6 +64,33 @@ public class MatrizAHP {
 			}
 		}
 		return true;
+	}
+
+	public int gradoCompletitud() {
+		boolean algunoIncompleto = false;
+		boolean algunoCompleto = false;
+
+		if (elementos.size() < 2)
+			return -2;
+		for (String a : elementos) {
+			for (String b : elementos) {
+				if (!a.equals(b)) {
+					if (!getValor(a, b).equals(0.0)) {
+						algunoCompleto = true;
+					} else {
+						algunoIncompleto = true;
+					}
+				}
+			}
+		}
+
+		if (algunoIncompleto && !algunoCompleto) {
+			return StructureManager.INCOMPLETO;
+		}
+		if (!algunoIncompleto && algunoCompleto) {
+			return StructureManager.COMPLETO;
+		}
+		return StructureManager.SEMICOMPLETO;
 	}
 
 	public void removeElemento(NodoArbolDecision nodo) {

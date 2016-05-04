@@ -45,6 +45,7 @@ public class ColoredLabel extends JPanel {
 	}
 
 	public void setColor(Color c) {
+		this.color.setVisible(true);
 		color.setBackground(c);
 
 	}

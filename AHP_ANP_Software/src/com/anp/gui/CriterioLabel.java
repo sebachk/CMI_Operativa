@@ -2,6 +2,7 @@ package com.anp.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.JCheckBox;
 
@@ -31,6 +32,7 @@ public class CriterioLabel extends ColoredLabel {
 
 		criterioANP = new CriterioANP();
 		criterioANP.setNombre(nombre);
+		this.color.setVisible(false);
 	}
 
 	private CriterioANP criterioANP;
@@ -61,4 +63,19 @@ public class CriterioLabel extends ColoredLabel {
 		return cLabel;
 	}
 
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paint(g);
+
+		if (this.cLabel == null) {
+
+			this.setColor(Color.white);
+			g.setColor(Color.RED);
+			g.drawLine(this.color.getX(), this.color.getY(), this.color.getWidth() + this.color.getX() - 1,
+					this.color.getHeight() + this.color.getY() - 1);
+
+		}
+
+	}
 }

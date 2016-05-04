@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JTabbedPane;
 import javax.swing.tree.DefaultTreeModel;
 
+import com.ahp.gui.components.AHPCellRenderer;
 import com.ahp.gui.components.NodoArbolAHP;
 import com.ahp.gui.components.TabDecision;
 import com.ahp.gui.components.TabDefiniciones;
@@ -17,6 +18,10 @@ import com.anp.gui.CriterioLabel;
 import com.anp.gui.TabCriteriosANP;
 
 public class StructureManager {
+
+	public static final int COMPLETO = 1;
+	public static final int SEMICOMPLETO = 0;
+	public static final int INCOMPLETO = -1;
 
 	private ArbolDecisionAHP arbol;
 	private static StructureManager instance;
@@ -60,6 +65,7 @@ public class StructureManager {
 	public void setArbol(ArbolDecisionAHP arbol) {
 		this.arbol = arbol;
 		TabDefiniciones.getInstance().tree.setModel(new DefaultTreeModel(new NodoArbolAHP(this.arbol.getGoal())));
+		TabDefiniciones.getInstance().tree.setCellRenderer(new AHPCellRenderer());
 
 		TabDefiniciones.getInstance()
 				.setNodoActual((NodoArbolAHP) TabDefiniciones.getInstance().tree.getModel().getRoot());
@@ -69,6 +75,7 @@ public class StructureManager {
 	public void crearArbol(String name) {
 		this.arbol = new ArbolDecisionAHP(name);
 		TabDefiniciones.getInstance().tree.setModel(new DefaultTreeModel(new NodoArbolAHP(this.arbol.getGoal())));
+		TabDefiniciones.getInstance().tree.setCellRenderer(new AHPCellRenderer());
 
 		TabDefiniciones.getInstance()
 				.setNodoActual((NodoArbolAHP) TabDefiniciones.getInstance().tree.getModel().getRoot());
@@ -163,6 +170,42 @@ public class StructureManager {
 
 	public void clusterChanged(ClusterLabel cl) {
 		this.tabCriteriosANP.paintCriteriosFromCluster(cl);
+	}
+
+	public int[] calcularCompletitudNodo(NodoArbolDecision nodo) {
+		int[] result = new int[2];
+
+		result[0] = nodo.getMatriz().gradoCompletitud();
+		result[1] = result[0];
+		if (result[0] == -2) {
+			return result;
+		}
+		Boolean esVerde = null;
+
+		for (NodoArbolDecision hijo : nodo.getHijos()) {
+			int[] hh = calcularCompletitudNodo(hijo);
+			int i = hh[1];
+			if (esVerde == null && i != -2) {
+				esVerde = i == StructureManager.COMPLETO;
+			}
+			if (i == StructureManager.SEMICOMPLETO || hh[0] != hh[1]) {
+				result[1] = StructureManager.SEMICOMPLETO;
+				return result;
+			}
+			if (i == StructureManager.INCOMPLETO && esVerde) {
+				result[1] = StructureManager.SEMICOMPLETO;
+				return result;
+			}
+			if (i == StructureManager.COMPLETO && !esVerde) {
+				result[1] = StructureManager.SEMICOMPLETO;
+				return result;
+			}
+
+		}
+
+		result[1] = (esVerde == null) ? result[0] : esVerde ? StructureManager.COMPLETO : StructureManager.INCOMPLETO;
+
+		return result;
 	}
 
 }
