@@ -118,7 +118,7 @@ public class TabMatrices extends JPanel {
 				int row = tabla.getSelectedRow();
 				int col = tabla.getSelectedColumn();
 
-				if (tabla.isCellEditable(row, col)) {
+				if (row != col && (row > 0 && col > 0)) {
 					criterioA.setText(
 							TabDefiniciones.getInstance().getNodoArbolDecisionActual().getMatriz().getElement(row - 1));
 					criterioB.setText(

@@ -20,8 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
-import com.ahp.NodoArbolDecision;
 import com.ahp.StructureManager;
+import com.anp.CriterioANP;
 
 public class PanelAlterClusANP extends JPanel implements ActionListener {
 
@@ -134,24 +134,23 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnAddCluster)) {
-			String grupo= newClustertextField.getText();
-			if(grupo==null || grupo.isEmpty()){
+			String grupo = newClustertextField.getText();
+			if (grupo == null || grupo.isEmpty()) {
 				JOptionPane.showMessageDialog(this, "Debe ingresar un Grupo");
 			}
 			ColoredLabel cluster = new ClusterLabel();
 			cluster.setName(grupo);
-			int r= (int)(Math.random()*25)*10;
-			int g= (int)(Math.random()*25)*10;
-			int b= (int)(Math.random()*25)*10;
-			Color c= new Color(r,g,b);
+			int r = (int) (Math.random() * 25) * 10;
+			int g = (int) (Math.random() * 25) * 10;
+			int b = (int) (Math.random() * 25) * 10;
+			Color c = new Color(r, g, b);
 			cluster.setColor(c);
-			
-			
+
 			panelListaCluster.add(cluster);
 			panelListaCluster.updateUI();
 			newClustertextField.setText("");
 		}
-		if(e.getSource().equals(btnAgregarAlter)){
+		if (e.getSource().equals(btnAgregarAlter)) {
 			String alter = fieldAlternativa.getText();
 			if (alter == null || alter.equals("")) {
 				JOptionPane.showMessageDialog(this, "Debe ingresar una alternativa");
@@ -160,9 +159,12 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 				panelListaAlternativas.add(nuevo);
 				panelListaAlternativas.updateUI();
 				fieldAlternativa.setText("");
+				CriterioANP alt = new CriterioANP();
+				alt.setNombre(alter);
+				StructureManager.getInstance().getMatrizANP().addAlternativa(alt);
 
 			}
-			
+
 		}
 	}
 

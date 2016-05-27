@@ -3,6 +3,7 @@ package com.ahp.gui.components;
 import java.awt.Color;
 import java.awt.Component;
 
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
@@ -78,14 +79,15 @@ public class MatrizDobleTableModel extends AbstractTableModel implements TableCe
 			return lbl;
 		} else {
 
-			JTextField field = new JTextField(arg1.toString());
-
+			JLabel field = new JLabel(arg1.toString());
+			field.setOpaque(true);
 			if (isSelected) {
 				field.setBackground(Color.CYAN);
 			}
 			if (column == row) {
 				field.setBackground(Color.GREEN);
 			}
+
 			return field;
 
 		}
@@ -94,7 +96,7 @@ public class MatrizDobleTableModel extends AbstractTableModel implements TableCe
 
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return (rowIndex > 0 && columnIndex > 0 && rowIndex != columnIndex);
+		return false;
 	}
 
 }

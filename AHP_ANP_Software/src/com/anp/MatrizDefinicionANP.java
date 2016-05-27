@@ -102,15 +102,43 @@ public class MatrizDefinicionANP {
 					matrizValues.setElement(c1.getCluster() + SEPARATOR + c2.getCluster(),
 							new MatrizTemplate<Double>());
 
-				Double v = matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster())
-						.getElement(c1.getNombre() + SEPARATOR + c2.getNombre());
+				Double v = getValueAt(c1, c2);
 				if (v == null)
-					matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster())
-							.setElement(c1.getNombre() + SEPARATOR + c2.getNombre(), 0.0);
+					setValueAt(c1, c2, 0.0);
 
 			}
 		}
 
+	}
+
+	public Double getValueAt(CriterioANP c1, CriterioANP c2) {
+
+		return matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster())
+				.getElement(c1.getNombre() + SEPARATOR + c2.getNombre());
+
+	}
+
+	public void setValueAt(CriterioANP c1, CriterioANP c2, Double v) {
+
+		matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster())
+				.setElement(c1.getNombre() + SEPARATOR + c2.getNombre(), v);
+
+	}
+
+	/* Manejo Matriz Doble entrada */
+
+	public CriterioANP getCriterioAt(int pos) {
+
+		for (String key : clusters.keySet()) {
+			List<CriterioANP> crit = clusters.get(key);
+			if (crit.size() > pos) {
+				return crit.get(pos);
+			} else {
+				pos -= crit.size();
+			}
+		}
+
+		return null;
 	}
 
 }

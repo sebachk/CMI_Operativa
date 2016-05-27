@@ -48,6 +48,12 @@ public class StructureManager {
 
 	}
 
+	public void enableTabs() {
+		for (int i = 0; i < this.tabbedPane.getTabCount(); i++) {
+			this.tabbedPane.setEnabledAt(i, true);
+		}
+	}
+
 	public static StructureManager getInstance() {
 		if (instance == null)
 			instance = new StructureManager();

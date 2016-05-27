@@ -104,8 +104,8 @@ public class Principal {
 		JMenuItem mntmAnp = new JMenuItem("ANP");
 		mntmAnp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panelANP = new PanelANP();
 				StructureManager.getInstance().crearMatrizANP();
+				panelANP = new PanelANP();
 				frame.setContentPane(panelANP);
 				panelANP.updateUI();
 			}

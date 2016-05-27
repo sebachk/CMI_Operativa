@@ -5,13 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreePath;
 
-import com.ahp.NodoArbolDecision;
 import com.ahp.StructureManager;
 import com.ahp.gui.components.PanelPrincipal;
-import com.ahp.gui.components.TabDefiniciones;
 
 public class PanelANP extends PanelPrincipal {
 
@@ -26,6 +22,10 @@ public class PanelANP extends PanelPrincipal {
 						.getTabbedPane().indexOfComponent(StructureManager.getInstance().getTabCriterios())) {
 					// sarasa
 				}
+				if (StructureManager.getInstance().getTabbedPane().getSelectedIndex() == StructureManager.getInstance()
+						.getTabbedPane().indexOfComponent(TabSuperMatrizInicial.getInstance())) {
+					TabSuperMatrizInicial.getInstance().actualizar();
+				}
 
 			}
 		});
@@ -39,24 +39,13 @@ public class PanelANP extends PanelPrincipal {
 
 		StructureManager.getInstance().addTab("Definiciones", StructureManager.getInstance().getTabCriterios(),
 				"Definicion de Criterios");
+		StructureManager.getInstance().addTab("Super Matriz", TabSuperMatrizInicial.getInstance(),
+				"Super matriz sin ponderar");
+
+		StructureManager.getInstance().enableTabs();
+
 		this.getPanelDerecho().add(StructureManager.getInstance().getTabbedPane());
 
 	}
 
-	public void arbolCargado() {
-		super.getTree().setModel(new DefaultTreeModel(StructureManager.getInstance().nuevoArbool()));
-		DefaultTreeModel model = (DefaultTreeModel) super.getTree().getModel();
-		model.reload();
-
-		this.getTree().setSelectionPath(new TreePath(this.getTree().getModel().getRoot()));
-
-		TabDefiniciones.getInstance().clearAlternativas();
-
-		for (NodoArbolDecision alt : StructureManager.getInstance().getArbol().getAlternativas()) {
-			TabDefiniciones.getInstance().agregarAlternativa(alt);
-		}
-		StructureManager.getInstance().arbolCompleto();
-		this.getRootPane().repaint();
-
-	}
 }
