@@ -91,6 +91,7 @@ public class TabCriteriosANP extends JPanel {
 		for (CriterioLabel crit : criteriosLabel) {
 			if (crit.isSelected()) {
 				resultado.add(crit);
+				crit.deseleccionar();
 			}
 		}
 

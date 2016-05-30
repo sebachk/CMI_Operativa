@@ -1,11 +1,14 @@
 package com.anp.gui;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import com.ahp.StructureManager;
-import com.anp.gui.utils.SuperMatrixTableModel;
+import com.anp.MatrizDefinicionANP;
+import com.anp.gui.utils.SuperMatrizNivelClusterTableModel;
 
 public class TabSuperMatrizInicial extends JPanel {
 
@@ -22,7 +25,11 @@ public class TabSuperMatrizInicial extends JPanel {
 
 	public TabSuperMatrizInicial() {
 
-		SuperMatrixTableModel tablaModel = new SuperMatrixTableModel(StructureManager.getInstance().getMatrizANP());
+		// SuperMatrixTableModel tablaModel = new
+		// SuperMatrixTableModel(StructureManager.getInstance().getMatrizANP());
+		this.setLayout(new BorderLayout());
+
+		MatrizDefinicionANP matriz = StructureManager.getInstance().getMatrizANP();
 		tabla = new JTable();
 		this.add(tabla);
 		tabla.setBorder(null);
@@ -30,16 +37,21 @@ public class TabSuperMatrizInicial extends JPanel {
 		tabla.setCellSelectionEnabled(true);
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		tabla.setModel(tablaModel);
-		tabla.setDefaultRenderer(Object.class, tablaModel);
-
+		if (matriz != null) {
+			SuperMatrizNivelClusterTableModel crits = new SuperMatrizNivelClusterTableModel(matriz.getAlternativas(),
+					matriz.getCriterios());
+			tabla.setModel(crits);
+			tabla.setDefaultRenderer(Object.class, crits);
+		}
 	}
 
 	public void actualizar() {
-		SuperMatrixTableModel tableModel = new SuperMatrixTableModel(StructureManager.getInstance().getMatrizANP());
-
-		tabla.setModel(tableModel);
-		tabla.setDefaultRenderer(Object.class, tableModel);
-
+		MatrizDefinicionANP matriz = StructureManager.getInstance().getMatrizANP();
+		if (matriz != null) {
+			SuperMatrizNivelClusterTableModel crits = new SuperMatrizNivelClusterTableModel(matriz.getAlternativas(),
+					matriz.getCriterios());
+			tabla.setModel(crits);
+			tabla.setDefaultRenderer(Object.class, crits);
+		}
 	}
 }

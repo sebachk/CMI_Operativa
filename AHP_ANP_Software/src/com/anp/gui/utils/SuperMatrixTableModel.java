@@ -74,7 +74,7 @@ public class SuperMatrixTableModel extends AbstractTableModel implements TableCe
 	}
 
 	@Override
-	public Component getTableCellRendererComponent(JTable arg0, Object arg1, boolean isSelected, boolean arg3, int row,
+	public Component getTableCellRendererComponent(JTable arg0, Object value, boolean isSelected, boolean arg3, int row,
 			int column) {
 
 		Rectangle r = arg0.getCellRect(row, column, false);

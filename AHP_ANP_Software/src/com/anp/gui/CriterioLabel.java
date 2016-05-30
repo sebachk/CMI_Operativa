@@ -25,6 +25,10 @@ public class CriterioLabel extends ColoredLabel {
 		return check.isSelected();
 	}
 
+	public void deseleccionar() {
+		check.setSelected(false);
+	}
+
 	public CriterioLabel(String nombre) {
 		this();
 		this.setName(nombre);
