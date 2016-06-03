@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.ahp.StructureManager;
+import com.anp.CriterioANP;
 
 public class TabCriteriosANP extends JPanel {
 
@@ -106,6 +107,14 @@ public class TabCriteriosANP extends JPanel {
 			}
 		}
 
+	}
+	
+	public void cargarCriterio(CriterioANP criterio, ClusterLabel cLabel){
+		CriterioLabel nuevo = new CriterioLabel(criterio);
+		nuevo.addToCluster(cLabel);
+		panelListaCrit.add(nuevo);
+		panelListaCrit.updateUI();
+		criteriosLabel.add(nuevo);
 	}
 
 }

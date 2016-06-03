@@ -13,7 +13,7 @@ public class MatrizDefinicionANP {
 
 	private MatrizTemplate<MatrizTemplate<Double>> matrizValues;
 
-	private static final String CLUSTER_ALTERNATIVAS = "Alternativas";
+	public static final String CLUSTER_ALTERNATIVAS = "Alternativas";
 	private static final String SEPARATOR = "//";
 
 	public MatrizDefinicionANP() {

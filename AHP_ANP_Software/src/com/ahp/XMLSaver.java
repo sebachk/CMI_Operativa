@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import com.anp.MatrizDefinicionANP;
+
 public class XMLSaver {
 
 	private static JFileChooser jfc = new JFileChooser() {
@@ -75,5 +77,41 @@ public class XMLSaver {
 		}
 		return null;
 	}
+	
+	/****************** ANP *******************/
+	
+	public static void saveANPToXML(MatrizDefinicionANP matriz, Component parent) {
+		try {
+			int i = jfc.showSaveDialog(parent);
+			if (i == JFileChooser.APPROVE_OPTION) {
+				String path = jfc.getSelectedFile().getName();
+				if (path.split("\\.").length < 2) {// Si no tiene extension le agrego					
+					path += ".axp";
+				}
+				XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(
+						new FileOutputStream(jfc.getCurrentDirectory().getPath() + "\\" + path)));
+				encoder.writeObject(matriz);
+				encoder.close();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static MatrizDefinicionANP loadANPFromXML(Component parent) {
+
+		try {
+			int i = jfc.showOpenDialog(parent);
+			if (i == JFileChooser.APPROVE_OPTION) {
+				XMLDecoder decoder = new XMLDecoder(
+						new BufferedInputStream(new FileInputStream(jfc.getSelectedFile())));
+				return MatrizDefinicionANP.class.cast(decoder.readObject());
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	} 
 
 }

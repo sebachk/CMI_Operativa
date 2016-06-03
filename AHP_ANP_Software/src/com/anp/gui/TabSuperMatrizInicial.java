@@ -1,6 +1,8 @@
 package com.anp.gui;
 
 import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -34,12 +36,25 @@ public class TabSuperMatrizInicial extends JPanel {
 		this.add(tabla);
 		tabla.setBorder(null);
 
-		tabla.setCellSelectionEnabled(true);
+		tabla.setCellSelectionEnabled(false);
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tabla.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println(e.getClickCount());
+				if (e.getClickCount()%2==0 && !e.isConsumed()) {
+				     e.consume();
+				     System.out.println("Double Click");
+				     //handle double click event.
+				}
+			}
+			
+		});
 
 		if (matriz != null) {
-			SuperMatrizNivelClusterTableModel crits = new SuperMatrizNivelClusterTableModel(matriz.getAlternativas(),
-					matriz.getCriterios());
+			//SuperMatrizNivelClusterTableModel crits = new SuperMatrizNivelClusterTableModel(matriz.getAlternativas(),
+			//		matriz.getCriterios());
+			SuperMatrizNivelClusterTableModel crits = new SuperMatrizNivelClusterTableModel(matriz.getClusters());
 			tabla.setModel(crits);
 			tabla.setDefaultRenderer(Object.class, crits);
 		}
@@ -48,8 +63,7 @@ public class TabSuperMatrizInicial extends JPanel {
 	public void actualizar() {
 		MatrizDefinicionANP matriz = StructureManager.getInstance().getMatrizANP();
 		if (matriz != null) {
-			SuperMatrizNivelClusterTableModel crits = new SuperMatrizNivelClusterTableModel(matriz.getAlternativas(),
-					matriz.getCriterios());
+			SuperMatrizNivelClusterTableModel crits = new SuperMatrizNivelClusterTableModel(matriz.getClusters());
 			tabla.setModel(crits);
 			tabla.setDefaultRenderer(Object.class, crits);
 		}

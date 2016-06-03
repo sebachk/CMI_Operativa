@@ -2,9 +2,14 @@ package com.anp.gui.utils;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -16,17 +21,15 @@ import com.anp.CriterioANP;
 public class SuperMatrizNivelClusterTableModel extends DefaultTableModel implements TableCellRenderer {
 
 	private static final long serialVersionUID = 1L;
-	protected List<CriterioANP> cols;
-	protected List<CriterioANP> rows;
+	protected HashMap<String, List<CriterioANP>> rows;
 
-	public SuperMatrizNivelClusterTableModel(List<CriterioANP> cols, List<CriterioANP> rows) {
-		this.cols = cols;
+	public SuperMatrizNivelClusterTableModel(HashMap<String, List<CriterioANP>> rows) {
 		this.rows = rows;
 	}
 
 	@Override
 	public int getColumnCount() {
-		return cols == null ? 0 : cols.size() + 1;
+		return rows == null ? 0 : rows.size() + 1;
 	}
 
 	@Override
@@ -40,18 +43,18 @@ public class SuperMatrizNivelClusterTableModel extends DefaultTableModel impleme
 			return " ";
 		}
 		if (row == 0) {
-			return cols.get(col - 1).getNombre();
+			return rows.keySet().toArray(new String[]{})[col-1];
 		}
 		if (col == 0) {
-			return rows.get(row - 1).getNombre();
+			return rows.keySet().toArray(new String[]{})[row-1];
 		}
-		return StructureManager.getInstance().getMatrizANP().getValueAt(rows.get(row - 1), cols.get(col - 1));
+		return "PENDIENTE";
 	}
 
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 
-		super.setValueAt(aValue, rowIndex, columnIndex);
+		//super.setValueAt(aValue, rowIndex, columnIndex);
 	}
 
 	@Override
@@ -68,16 +71,20 @@ public class SuperMatrizNivelClusterTableModel extends DefaultTableModel impleme
 			return lbl;
 		} else {
 
-			JLabel field = new JLabel(value.toString());
+			JPanel field = new JPanel();
 			field.setOpaque(true);
 			if (isSelected) {
 				field.setBackground(Color.CYAN);
 			}
-
 			return field;
 
 		}
 
+	}
+	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return false;
 	}
 
 }

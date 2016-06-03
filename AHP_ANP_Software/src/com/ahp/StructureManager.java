@@ -164,6 +164,10 @@ public class StructureManager {
 	public MatrizDefinicionANP getMatrizANP() {
 		return matrizANP;
 	}
+	
+	public void setMatrizANP(MatrizDefinicionANP matrizANP) {
+		this.matrizANP = matrizANP;
+	}
 
 	public TabCriteriosANP getTabCriterios() {
 		return this.tabCriteriosANP;

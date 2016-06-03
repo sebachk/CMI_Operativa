@@ -38,6 +38,14 @@ public class CriterioLabel extends ColoredLabel {
 		criterioANP.setNombre(nombre);
 		this.color.setVisible(false);
 	}
+	
+	public CriterioLabel(CriterioANP c){
+		this();
+		this.setName(c.getNombre());
+		this.setColor(Color.LIGHT_GRAY);
+		this.setCriterioANP(c);
+		this.color.setVisible(false);
+	}
 
 	private CriterioANP criterioANP;
 	private JCheckBox check;

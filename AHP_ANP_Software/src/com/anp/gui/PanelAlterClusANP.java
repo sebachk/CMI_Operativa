@@ -24,7 +24,7 @@ import com.ahp.StructureManager;
 import com.anp.CriterioANP;
 
 public class PanelAlterClusANP extends JPanel implements ActionListener {
-
+	
 	/**
 	 * 
 	 */
@@ -72,7 +72,7 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 			}
 		});
 		setLayout(new GridLayout(0, 1, 0, 0));
-
+	
 		panelListaAlternativas = new JPanel();
 		panelAlternativas.add(panelListaAlternativas, BorderLayout.CENTER);
 		panelListaAlternativas.setLayout(new GridLayout(10, 1, 0, 0));
@@ -162,9 +162,39 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 				CriterioANP alt = new CriterioANP();
 				alt.setNombre(alter);
 				StructureManager.getInstance().getMatrizANP().addAlternativa(alt);
-
 			}
+		}
+	}
+	
+	public ClusterLabel cargarCluster(String grupo){
+		if (grupo == null || grupo.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Debe ingresar un Grupo");
+		}
+		ClusterLabel cluster = new ClusterLabel();
+		cluster.setName(grupo);
+		int r = (int) (Math.random() * 25) * 10;
+		int g = (int) (Math.random() * 25) * 10;
+		int b = (int) (Math.random() * 25) * 10;
+		Color c = new Color(r, g, b);
+		cluster.setColor(c);
 
+		panelListaCluster.add(cluster);
+		panelListaCluster.updateUI();
+		newClustertextField.setText("");
+		return cluster;
+	}
+	
+	public void cargarAlternativa(String alter){
+		if (alter == null || alter.equals("")) {
+			JOptionPane.showMessageDialog(this, "Debe ingresar una alternativa");
+		} else {
+			JLabel nuevo = new JLabel(alter);
+			panelListaAlternativas.add(nuevo);
+			panelListaAlternativas.updateUI();
+			fieldAlternativa.setText("");
+//			CriterioANP alt = new CriterioANP();
+//			alt.setNombre(alter);
+//			StructureManager.getInstance().getMatrizANP().addAlternativa(alt);
 		}
 	}
 
