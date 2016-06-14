@@ -119,8 +119,9 @@ public class Principal {
 					StructureManager.getInstance().crearArbol(arbolName);
 					StructureManager.getInstance().habilitar();
 					panelAHP.arbolCargado();
+					panelAHP.updateUI();
 				}
-				panelAHP.updateUI();
+				
 			}
 		});
 
@@ -135,10 +136,12 @@ public class Principal {
 		subMenuAbrirAHP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArbolDecisionAHP arbol = XMLSaver.loadXML(getMain());
-//				for(arbol.getAlternativas())
+				panelAHP = new PanelAHP();
+				frame.setContentPane(panelAHP);
 				StructureManager.getInstance().setArbol(arbol);
 				StructureManager.getInstance().habilitar();
 				panelAHP.arbolCargado();
+				panelAHP.updateUI();
 			}
 		});
 		mnAbrir.add(subMenuAbrirAHP);

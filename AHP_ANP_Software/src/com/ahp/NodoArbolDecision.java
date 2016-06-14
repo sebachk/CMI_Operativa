@@ -28,6 +28,13 @@ public class NodoArbolDecision {
 		matriz = new MatrizAHP();
 		nombre = "";
 	}
+	
+	public NodoArbolDecision(String nom) {
+		padres = new ArrayList<NodoArbolDecision>();
+		hijos = new ArrayList<NodoArbolDecision>();
+		matriz = new MatrizAHP();
+		nombre = nom;
+	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -64,26 +71,22 @@ public class NodoArbolDecision {
 	public void addHijo(NodoArbolDecision hijo) {
 		hijos.add(hijo);
 		hijo.addPadre(this);
-
 		matriz.addElemento(hijo);
-
 	}
 
 	private void addPadre(NodoArbolDecision padre) {
 		padres.add(padre);
 	}
 
-	public void generarMatriz(NodoArbolDecision ref) {
-		if (ref.esHoja())
-			return;
-
-	}
+//	public void generarMatriz(NodoArbolDecision ref) {
+//		if (ref.esHoja())
+//			return;
+//	}
 
 	public void removePadre(NodoArbolDecision padre) {
 		this.padres.remove(padre);
 		padre.hijos.remove(this);
 		padre.getMatriz().removeElemento(this);
-
 	}
 
 	public boolean esHijo(NodoArbolDecision h) {
@@ -97,5 +100,5 @@ public class NodoArbolDecision {
 	public boolean esPadre(NodoArbolDecision p) {
 		return p.esHijo(this);
 	}
-
+	
 }

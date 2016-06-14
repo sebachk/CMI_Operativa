@@ -1,6 +1,7 @@
 package com.ahp;
 
 import java.awt.Component;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.swing.JTabbedPane;
@@ -31,6 +32,8 @@ public class StructureManager {
 	// ANP
 	private TabCriteriosANP tabCriteriosANP;
 	private MatrizDefinicionANP matrizANP;
+	
+	private Hashtable<String, NodoArbolAHP> nodosAHP = new Hashtable<String, NodoArbolAHP>();
 
 	public void setTabbedPane(JTabbedPane tabbedPane) {
 		this.tabbedPane = tabbedPane;
@@ -90,6 +93,7 @@ public class StructureManager {
 
 	private NodoArbolAHP CargarArbol(NodoArbolDecision nodo) {
 		if (this.arbol.esUltimoCriterio(nodo)) {
+			this.getNewNodoAHP(nodo.getNombre(), null);
 			return new NodoArbolAHP(nodo);
 		}
 
@@ -216,6 +220,19 @@ public class StructureManager {
 		result[1] = (esVerde == null) ? result[0] : esVerde ? StructureManager.COMPLETO : StructureManager.INCOMPLETO;
 
 		return result;
+	}
+	
+	public NodoArbolAHP getNewNodoAHP(String nom, NodoArbolAHP ref){
+		NodoArbolAHP nuevo = nodosAHP.get(nom);
+		if(nuevo == null){
+			nuevo = new NodoArbolAHP(nom);
+			nodosAHP.put(nom, nuevo);
+		}
+		else{
+//			if((ref != null) && (ref.getLevel() >= nuevo.getLevel()))
+				return null;
+		}
+		return nuevo;
 	}
 
 }

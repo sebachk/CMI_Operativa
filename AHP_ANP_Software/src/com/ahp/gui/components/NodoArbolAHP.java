@@ -11,20 +11,14 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 
 	private NodoArbolDecision referencia;
 
-	public NodoArbolAHP() {
-		this("Criterio_" + NodoArbolAHP.INSTANCIAS++);
-	}
-
-	public NodoArbolAHP(String nombre) {
+	public NodoArbolAHP(String nombre){
 		super(nombre);
-		referencia = new NodoArbolDecision();
-		referencia.setNombre(nombre);
+		referencia = new NodoArbolDecision(nombre);
 	}
 
 	public NodoArbolAHP(NodoArbolDecision ref) {
 		super(ref.getNombre());
 		referencia = ref;
-
 	}
 
 	public void setNombre(String nombre) {
@@ -40,12 +34,15 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 
 	}
 
-	public void addSubCriterio(String nombre) {
-		NodoArbolAHP nuevo = new NodoArbolAHP(nombre);
+	public boolean addSubCriterio(String nombre, NodoArbolAHP actual) {
+		NodoArbolAHP nuevo = StructureManager.getInstance().getNewNodoAHP(nombre, actual);
+		if(nuevo!=null){
+			StructureManager.getInstance().getArbol().addNodo(referencia, nuevo.referencia);
 
-		StructureManager.getInstance().getArbol().addNodo(referencia, nuevo.referencia);
-
-		this.add(nuevo);
+			this.add(nuevo);
+			return true;
+		}
+		return false;
 	}
 
 	public void addSubCriterio(NodoArbolAHP subC) {
@@ -62,6 +59,11 @@ public class NodoArbolAHP extends DefaultMutableTreeNode {
 
 	public NodoArbolDecision getReferencia() {
 		return referencia;
+	}
+	
+	public void removeFromArbol(){
+		StructureManager.getInstance().getArbol().removeNodo(this.referencia);
+		this.removeFromParent();
 	}
 
 }

@@ -12,6 +12,8 @@ public class ArbolDecisionAHP {
 	private List<NodoArbolDecision> alternativas;
 	private List<NodoArbolDecision> ultimosCriterios;
 	private Hashtable<String, Double> resultados = new Hashtable<String, Double>();
+	
+	private Hashtable<String, NodoArbolDecision> criterios = new Hashtable<String, NodoArbolDecision>();
 
 	// private static ArbolDecisionAHP instance;
 
@@ -66,7 +68,17 @@ public class ArbolDecisionAHP {
 		alternativas = new ArrayList<NodoArbolDecision>();
 		ultimosCriterios = new ArrayList<NodoArbolDecision>();
 		ultimosCriterios.add(goal);
-
+	}
+	
+	public NodoArbolDecision getNewNodo(String nom, NodoArbolDecision padre){
+		NodoArbolDecision nuevo = criterios.get(nom);
+		if(nuevo == null){
+			nuevo = new NodoArbolDecision(nom);
+			criterios.put(nom, nuevo);
+		}
+		if(padre.getNombre().equals(nom))
+			return null;
+		return nuevo;
 	}
 
 	public boolean esUltimoCriterio(NodoArbolDecision nodo) {
@@ -103,7 +115,6 @@ public class ArbolDecisionAHP {
 		ultimosCriterios.add(hijo);
 		padre.addHijo(hijo);
 		ligarCriterio(hijo);
-
 	}
 
 	public boolean esAlternativa(NodoArbolDecision nodo) {
@@ -142,5 +153,36 @@ public class ArbolDecisionAHP {
 		return retorno;
 
 	}
+	
+	public void removeNodo(NodoArbolDecision nodo){this.removeNodo(nodo, null);}
 
+	/**
+	 * Remueve el nodo this del arbol. 
+	 * Elimina tambien todos los hijos si es que es el unico padre
+	 **/
+	private void removeNodo(NodoArbolDecision nodo, NodoArbolDecision padre){
+		/*Se pensó como si hubiese punteros cruzados*/
+		for(NodoArbolDecision hijo: nodo.getHijos()){
+			removeNodo(hijo, nodo); //Me meto iterativamente
+		}
+		//Cuando salí del FOR es porque estoy en una hoja (no alternativa)
+		if(!esAlternativa(nodo)){
+			if(padre != null){//desligo
+				nodo.getPadres().remove(padre);
+			}
+			else { 
+				/*Si el padre es null, es porque es el nodo que inició el llamado iterativo
+				  y debo eliminarlo de todos los padres*/
+				for(NodoArbolDecision papa: nodo.getPadres()){
+					papa.getHijos().remove(nodo);
+					papa.getMatriz().removeElemento(nodo);
+//					nodo.getPadres().remove(papa);
+				}
+			}
+		}
+		else{
+			nodo.getPadres().remove(padre);
+		}
+	}
+	
 }

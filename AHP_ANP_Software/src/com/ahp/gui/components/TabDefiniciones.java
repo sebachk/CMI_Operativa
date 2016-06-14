@@ -20,10 +20,24 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
+import javax.swing.text.FlowView.FlowStrategy;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import com.ahp.NodoArbolDecision;
 import com.ahp.StructureManager;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+
+import javax.swing.BoxLayout;
+import javax.swing.border.MatteBorder;
+
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.ComponentOrientation;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class TabDefiniciones extends JSplitPane implements ActionListener {
 
@@ -90,18 +104,32 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		this.setRightComponent(panelCriterios);
 		panelCriterios.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(SystemColor.activeCaption);
-		panelCriterios.add(panel_6, BorderLayout.SOUTH);
-		FlowLayout fl_panel_6 = new FlowLayout(FlowLayout.CENTER, 10, 5);
-		panel_6.setLayout(fl_panel_6);
-
+		JPanel crt_panel_sur = new JPanel();
+		crt_panel_sur.setBackground(SystemColor.activeCaption);
+		panelCriterios.add(crt_panel_sur, BorderLayout.SOUTH);
+		crt_panel_sur.setLayout(new BorderLayout(0, 0));
+		
+		crt_btn_remove = new JButton("Eliminar");
+		crt_btn_remove.setAlignmentX(Component.CENTER_ALIGNMENT);
+		crt_btn_remove.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		crt_btn_remove.setHorizontalTextPosition(SwingConstants.RIGHT);
+		crt_btn_remove.setToolTipText("Eliminar el criterio seleccionado");
+		crt_btn_remove.setHorizontalAlignment(SwingConstants.RIGHT);
+		crt_btn_remove.addActionListener(this);
+		crt_panel_sur.add(crt_btn_remove, BorderLayout.EAST);
+		
+		panel = new JPanel();
+		panel.setBackground(SystemColor.activeCaption);
+		crt_panel_sur.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
 		btnAddSubcriterio = new JButton("Agregar SubCriterio");
+		panel.add(btnAddSubcriterio);
 		btnAddSubcriterio.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnAddSubcriterio.addActionListener(this);
-		panel_6.add(btnAddSubcriterio);
-
+		
 		textField = new JTextField();
+		panel.add(textField);
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
@@ -112,8 +140,10 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 			}
 		});
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_6.add(textField);
 		textField.setColumns(20);
+		
+		label = new JLabel("");
+		panel.add(label);
 
 		lblCriterion = new JLabel("CriterioN");
 		lblCriterion.setForeground(Color.BLACK);
@@ -143,26 +173,36 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 				this.getRootPane().repaint();
 
 			}
-		} else if (e.getSource().equals(btnAddSubcriterio)) {
-			String criterio = textField.getText();
-			if (criterio == null || criterio.equals("")) {
-				JOptionPane.showMessageDialog(this, "Debe ingresar un criterio");
-			} else {
+		} else {
+			if (e.getSource().equals(btnAddSubcriterio)) {
+				String criterio = textField.getText();
+				if (criterio == null || criterio.equals("")) {
+					JOptionPane.showMessageDialog(this, "Debe ingresar un criterio");
+				} else {
 
-				addCrit(criterio);
-				textField.setText("");
-				nodoActual.addSubCriterio(criterio);
+					textField.setText("");
+					if(nodoActual.addSubCriterio(criterio,nodoActual)){
+						addCrit(criterio);
+						DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+						model.reload();
+						StructureManager.getInstance().arbolCompleto();
+					}
+					else{
+						JOptionPane.showMessageDialog(this, "El criterio ya se encuentra cargado");
+					}
+					
+				}
 
-				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-				model.reload();
-				StructureManager.getInstance().arbolCompleto();
-
+				this.getRootPane().repaint();
 			}
-
-			this.getRootPane().repaint();
-
 		}
-
+		if (e.getSource().equals(crt_btn_remove)) {
+			nodoActual.removeFromArbol();
+			DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+			model.reload();
+			StructureManager.getInstance().arbolCompleto();
+			tree.setSelectionPath(new TreePath(tree.getModel().getRoot()));
+		}
 	}
 
 	public void setNodoActual(NodoArbolAHP nodo) {
@@ -213,6 +253,9 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	public JTree tree;
 	private JLabel lblCriterion;
 	private JTextField fieldAlternativa;
+	private JButton crt_btn_remove;
+	private JPanel panel;
+	private JLabel label;
 
 	public void clearAlternativas() {
 		this.panelAlternativas.removeAll();
