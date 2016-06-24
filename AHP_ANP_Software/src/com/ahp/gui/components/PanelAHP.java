@@ -53,9 +53,7 @@ public class PanelAHP extends PanelPrincipal {
 		StructureManager.getInstance().addTab("Matriz", TabMatrices.getInstance(), "Ponderacion de Criterios");
 		StructureManager.getInstance().addTab("Resultados", TabResults.getinstance(),
 				"Visualizar los resultados parciales");
-		StructureManager.getInstance().addTab("Decision", TabDecision.getInstance(), "Ver alternativa mas adecuada");
-
-		StructureManager.getInstance().addTab("testColor", new ColoredLabel(), "asad");
+		StructureManager.getInstance().addTab("Decision", TabDecision.getInstance(), "Ver alternativa mas adecuada");		
 
 		StructureManager.getInstance().getTabbedPane().setEnabledAt(
 				StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), false);

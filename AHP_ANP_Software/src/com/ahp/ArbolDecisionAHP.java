@@ -154,8 +154,23 @@ public class ArbolDecisionAHP {
 
 	}
 	
-	public void removeNodo(NodoArbolDecision nodo){this.removeNodo(nodo, null);}
+	public void removeNodo(NodoArbolDecision nodo){
+		this.removeNodo(nodo, null);
+		limpiarArbol(nodo);
+	}
 
+	public void limpiarArbol(NodoArbolDecision nodo){
+		for(int i=0; i<nodo.getHijos().size();){
+			limpiarArbol(nodo.getHijos().get(i));
+			if(nodo.getHijos().get(i).getPadres().contains(nodo)){
+				i++;
+			}
+			else{
+				nodo.getHijos().remove(i);
+			}
+		}
+	}
+	
 	/**
 	 * Remueve el nodo this del arbol. 
 	 * Elimina tambien todos los hijos si es que es el unico padre
@@ -168,20 +183,41 @@ public class ArbolDecisionAHP {
 		//Cuando salí del FOR es porque estoy en una hoja (no alternativa)
 		if(!esAlternativa(nodo)){
 			if(padre != null){//desligo
+				if(padre.getHijos().size() == 1){//Si tiene un hijo
+					for(NodoArbolDecision alternativa: this.alternativas){
+						padre.addHijo(alternativa);
+					}
+					this.ultimosCriterios.add(padre);
+				}
 				nodo.getPadres().remove(padre);
+				padre.getMatriz().removeElemento(nodo);
+				this.ultimosCriterios.remove(nodo);
 			}
 			else { 
 				/*Si el padre es null, es porque es el nodo que inició el llamado iterativo
 				  y debo eliminarlo de todos los padres*/
 				for(NodoArbolDecision papa: nodo.getPadres()){
+					if(papa.getHijos().size() == 1){//Si tiene un hijo
+						for(NodoArbolDecision alternativa: this.alternativas){
+							papa.addHijo(alternativa);
+						}
+						this.ultimosCriterios.add(papa);
+					}
 					papa.getHijos().remove(nodo);
-					papa.getMatriz().removeElemento(nodo);
-//					nodo.getPadres().remove(papa);
+					papa.getMatriz().removeElemento(nodo);				
 				}
+				this.ultimosCriterios.remove(nodo);
 			}
 		}
 		else{
-			nodo.getPadres().remove(padre);
+			if(padre == null){
+				for(NodoArbolDecision ultimo: this.ultimosCriterios){
+					ultimo.getHijos().remove(nodo);
+					ultimo.getMatriz().removeElemento(nodo);
+				}
+				alternativas.remove(nodo);
+			}
+			nodo.getPadres().remove(padre);		
 		}
 	}
 	

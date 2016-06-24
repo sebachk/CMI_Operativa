@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -39,7 +41,7 @@ import java.awt.ComponentOrientation;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
-public class TabDefiniciones extends JSplitPane implements ActionListener {
+public class TabDefiniciones extends JSplitPane implements ActionListener,MouseListener {
 
 	public JPanel panelCriterios;
 	private JButton btnAgregarAlter;
@@ -50,6 +52,7 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	private JPanel panelListaCriterios;
 	private JTextField textField;
 	private NodoArbolAHP nodoActual;
+	private NodeList altActual;
 
 	private static TabDefiniciones instance;
 
@@ -71,18 +74,18 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		this.setLeftComponent(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(SystemColor.inactiveCaption);
-		panel_3.add(panel_4, BorderLayout.NORTH);
+		JPanel alt_pnl_actions = new JPanel();
+		alt_pnl_actions.setBackground(SystemColor.inactiveCaption);
+		panel_3.add(alt_pnl_actions, BorderLayout.NORTH);
 
 		btnAgregarAlter = new JButton("Agregar Alternativa");
 		btnAgregarAlter.addActionListener(this);
-		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_4.add(btnAgregarAlter);
+		alt_pnl_actions.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		alt_pnl_actions.add(btnAgregarAlter);
 
 		fieldAlternativa = new JTextField();
 		fieldAlternativa.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_4.add(fieldAlternativa);
+		alt_pnl_actions.add(fieldAlternativa);
 		fieldAlternativa.setColumns(20);
 		fieldAlternativa.addKeyListener(new KeyAdapter() {
 			@Override
@@ -98,6 +101,15 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		panel_3.add(panelAlternativas, BorderLayout.CENTER);
 		panelAlternativas.setLayout(new GridLayout(10, 1, 0, 0));
 
+		alt_btn_remove = new JButton("Eliminar");
+		alt_btn_remove.setAlignmentX(Component.CENTER_ALIGNMENT);
+		alt_btn_remove.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		alt_btn_remove.setHorizontalTextPosition(SwingConstants.RIGHT);
+		alt_btn_remove.setToolTipText("Eliminar el criterio seleccionado");
+		alt_btn_remove.setHorizontalAlignment(SwingConstants.RIGHT);
+		alt_btn_remove.addActionListener(this);
+		alt_pnl_actions.add(alt_btn_remove, BorderLayout.EAST);
+		
 		// La parte de abajo
 		panelCriterios = new JPanel();
 
@@ -117,6 +129,7 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 		crt_btn_remove.setHorizontalAlignment(SwingConstants.RIGHT);
 		crt_btn_remove.addActionListener(this);
 		crt_panel_sur.add(crt_btn_remove, BorderLayout.EAST);
+		
 		
 		panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);
@@ -197,11 +210,24 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 			}
 		}
 		if (e.getSource().equals(crt_btn_remove)) {
-			nodoActual.removeFromArbol();
-			DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-			model.reload();
-			StructureManager.getInstance().arbolCompleto();
-			tree.setSelectionPath(new TreePath(tree.getModel().getRoot()));
+			if(nodoActual.equals(tree.getModel().getRoot())){
+				JOptionPane.showMessageDialog(this, "El nodo que intenta borrar es el objetivo. No se borrará");
+			}
+			else {
+				nodoActual.removeFromArbol();
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				model.reload();
+				StructureManager.getInstance().arbolCompleto();
+				tree.setSelectionPath(new TreePath(tree.getModel().getRoot()));
+			}
+		}
+		if (e.getSource().equals(alt_btn_remove)) {
+			if(altActual!=null){
+				StructureManager.getInstance().getArbol().removeNodo(altActual.getReferencia());
+				panelAlternativas.remove(altActual);
+				this.getRootPane().repaint();
+			}
+			
 		}
 	}
 
@@ -219,6 +245,8 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 			this.getRootPane().repaint();
 
 	}
+	
+
 
 	public NodoArbolDecision getNodoArbolDecisionActual() {
 		if (nodoActual == null)
@@ -229,8 +257,8 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	public void agregarAlternativa(NodoArbolDecision alt) {
 
 		if (StructureManager.getInstance().getArbol().esAlternativa(alt)) {
-			JLabel nuevo = new JLabel(alt.getNombre());
-			nuevo.setFont(FUENTE);
+			NodeList nuevo = new NodeList(alt);
+			nuevo.addMouseListener(this);
 			fieldAlternativa.setText("");
 			panelAlternativas.add(nuevo);
 			if (StructureManager.getInstance().getArbol().getAlternativas().size() > 9)
@@ -254,10 +282,52 @@ public class TabDefiniciones extends JSplitPane implements ActionListener {
 	private JLabel lblCriterion;
 	private JTextField fieldAlternativa;
 	private JButton crt_btn_remove;
+	private JButton alt_btn_remove;
 	private JPanel panel;
 	private JLabel label;
 
 	public void clearAlternativas() {
 		this.panelAlternativas.removeAll();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) { //Para los NodeList
+		NodeList nodo=(NodeList)e.getSource();
+		if(nodo.equals(altActual)){
+			nodo.deseleccionar();
+			altActual=null;
+		}
+		else{
+			nodo.seleccionar();
+			if(altActual!=null){
+				altActual.deseleccionar();
+			}
+			altActual=nodo;
+		}
+		panelAlternativas.repaint();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

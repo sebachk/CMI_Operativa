@@ -167,6 +167,12 @@ public class Principal {
 						StructureManager.getInstance().getTabCriterios().cargarCriterio(c, cLabel);
 					}					
 				}
+				try {
+					StructureManager.getInstance().getMatrizANP().generarMatriz();
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
 				panelANP.getPanelIzquierdo().add(panelIzquierdo);
 				frame.setContentPane(panelANP);
 				panelANP.updateUI();

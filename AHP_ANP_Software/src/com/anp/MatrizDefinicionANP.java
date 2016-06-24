@@ -85,7 +85,7 @@ public class MatrizDefinicionANP {
 		return clusters.get(cluster);
 	}
 
-	private void generarMatriz() throws Exception {
+	public void generarMatriz() throws Exception {
 		List<CriterioANP> aux = new ArrayList<CriterioANP>(alternativas);
 
 		int size = alternativas.size();
