@@ -43,7 +43,7 @@ public class SuperMatrizNivelCriterioTableModel extends DefaultTableModel implem
 
 	@Override
 	public int getRowCount() {
-		return rows == null ? 0 : rows.size()+1;
+		return rows == null ? 0 : rows.size()+2;
 	}
 
 	@Override
@@ -51,23 +51,34 @@ public class SuperMatrizNivelCriterioTableModel extends DefaultTableModel implem
 		if ((row == col) && col == 0) {
 			return " ";
 		}
+		if(row == getRowCount()-1){
+			if(col==0){
+				return " ";
+			}
+			switch (StructureManager.getInstance().getMatrizANP().getRelacionColumna(cols.get(col-1), rows.get(0).getCluster())){
+				case -1: return Color.RED;
+				case 0: return Color.ORANGE;
+				default: return Color.GREEN;
+			}
+		}
 		if (row == 0) {
 			return cols.get(col-1).getNombre();
 		}
 		if (col == 0) {
 			return rows.get(row-1).getNombre();
 		}
-		return StructureManager.getInstance().getMatrizANP().getValueAt(rows.get(row-1), cols.get(col-1)) ==null?0:1;
+		
+		
+		
+		return StructureManager.getInstance().getMatrizANP().getValueAt(rows.get(row-1), cols.get(col-1));
 	}
 
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		Double v=null;
-		if((Integer)aValue==1)
-			v=0.0;
+		Double v=Double.valueOf(aValue.toString());
 		if(rowIndex==0 || columnIndex==0) return;
-		System.out.println("NADA");
-		StructureManager.getInstance().getMatrizANP().setValueAt(rows.get(rowIndex), cols.get(columnIndex),v);
+		StructureManager.getInstance().getMatrizANP().setValueAt(rows.get(rowIndex-1), cols.get(columnIndex-1),v);
+		this.fireTableDataChanged();
 		
 		//super.setValueAt(aValue, rowIndex, columnIndex);
 	}
@@ -85,14 +96,13 @@ public class SuperMatrizNivelCriterioTableModel extends DefaultTableModel implem
 
 			return lbl;
 		} else {
-
-			JTextField field = new JTextField();
-			if (isSelected) {
-				field.setBackground(Color.CYAN);
-			
+			if(row==getRowCount()-1){
+				JTextField field = new JTextField();			
+				field.setBackground((Color)value);
+				return field;
 			}
-			field.setText(String.valueOf(value));
-		
+			JTextField field = new JTextField();			
+			field.setText(String.valueOf(value));		
 			return field;
 
 		}
@@ -101,7 +111,12 @@ public class SuperMatrizNivelCriterioTableModel extends DefaultTableModel implem
 	
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return false;
+		if(rowIndex==getRowCount()-1 || columnIndex==0 || rowIndex==0){
+			return false;
+		}
+		return true;
+		
+		
 	}
 
 }

@@ -48,7 +48,13 @@ public class SuperMatrizNivelClusterTableModel extends DefaultTableModel impleme
 		if (col == 0) {
 			return rows.keySet().toArray(new String[]{})[row-1];
 		}
-		return "PENDIENTE";
+		String colName = rows.keySet().toArray(new String[]{})[col-1];
+		String rowName = rows.keySet().toArray(new String[]{})[row-1];
+		switch (StructureManager.getInstance().getMatrizANP().getRelacion(rowName, colName)){
+			case -1: return Color.RED;
+			case 0: return Color.ORANGE;
+			default: return Color.GREEN;
+		}
 	}
 
 	@Override
@@ -75,6 +81,9 @@ public class SuperMatrizNivelClusterTableModel extends DefaultTableModel impleme
 			field.setOpaque(true);
 			if (isSelected) {
 				field.setBackground(Color.CYAN);
+			}
+			else {
+				field.setBackground((Color)value);
 			}
 			return field;
 

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.anp.gui.ClusterLabel;
+
 public class MatrizDefinicionANP {
 
 	List<CriterioANP> alternativas;
@@ -140,5 +142,34 @@ public class MatrizDefinicionANP {
 
 		return null;
 	}
+	
+	public int getRelacion(String cl1, String cl2){
+		MatrizTemplate<Double> matriz= this.matrizValues.getElement(cl1 + SEPARATOR + cl2);
+		boolean ok = false;
+		for(CriterioANP c2: this.getClusters().get(cl2)){
+			Double suma = 0.00;
+			for(CriterioANP c1: this.getClusters().get(cl1)){
+				suma = suma+matriz.getElement(c1.getNombre() + SEPARATOR + c2.getNombre());
+				if(suma > 1.00){ return -1;}
+				if(suma > 0.00){ ok=true;}
+			}
+			if(suma > 0.00 && suma < 1.00){return -1;}
+		}
+		return ok?1:0;
+	}
 
+	public int getRelacionColumna(CriterioANP c1, String clusterRows){
+		MatrizTemplate<Double> matriz= this.matrizValues.getElement(clusterRows + SEPARATOR + c1.getCluster());
+		boolean ok = false;
+		Double suma = 0.00;
+		for(CriterioANP c2: this.getClusters().get(clusterRows)){
+			suma = suma+matriz.getElement(c2.getNombre() + SEPARATOR + c1.getNombre());
+			if(suma > 1.00){ return -1;}
+			if(suma > 0.00){ ok=true;}
+		}
+		
+		if(suma > 0.00 && suma < 1.00){return -1;}
+		return ok?1:0;
+	}
+	
 }

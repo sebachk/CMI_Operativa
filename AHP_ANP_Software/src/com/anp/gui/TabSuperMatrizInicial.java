@@ -16,6 +16,8 @@ import com.anp.gui.utils.SuperMatrizNivelCriterioTableModel;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 public class TabSuperMatrizInicial extends JPanel {
 
@@ -65,21 +67,22 @@ public class TabSuperMatrizInicial extends JPanel {
 		tabla.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(e.getClickCount());
-				if (e.getClickCount()%2==0 && !e.isConsumed()) {
-				     e.consume();
-				     int row = tabla.getSelectedRow();
-				     int col = tabla.getSelectedColumn();
-				     String clusterFila = (String) tabla.getModel().getValueAt(row, 0);
-				     String clusterCol =  (String) tabla.getModel().getValueAt(0, col);
-				     SuperMatrizNivelCriterioTableModel modelo = 
-				    		 new SuperMatrizNivelCriterioTableModel(
-				    				 StructureManager.getInstance().getMatrizANP().getFromCluster(clusterCol), 
-				    				 StructureManager.getInstance().getMatrizANP().getFromCluster(clusterFila));
-				     tablaIncidencia.setModel(modelo);
-				     tablaIncidencia.setDefaultRenderer(Object.class, modelo);
-				     panelOeste.updateUI();
-				}
+				 e.consume();
+			     int row = tabla.getSelectedRow();
+			     int col = tabla.getSelectedColumn();
+			     String clusterFila = (String) tabla.getModel().getValueAt(row, 0);
+			     String clusterCol =  (String) tabla.getModel().getValueAt(0, col);
+			     SuperMatrizNivelCriterioTableModel modelo = 
+			    		 new SuperMatrizNivelCriterioTableModel(
+			    				 StructureManager.getInstance().getMatrizANP().getFromCluster(clusterCol), 
+			    				 StructureManager.getInstance().getMatrizANP().getFromCluster(clusterFila));
+			     tablaIncidencia.setModel(modelo);
+			     
+			     tablaIncidencia.setDefaultRenderer(Object.class, modelo);
+			     panelOeste.updateUI();
+				     
+				  
+				
 			}
 			
 		});
@@ -101,4 +104,6 @@ public class TabSuperMatrizInicial extends JPanel {
 			tabla.setDefaultRenderer(Object.class, crits);
 		}
 	}
+	
+
 }

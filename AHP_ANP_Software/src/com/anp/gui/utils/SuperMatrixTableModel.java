@@ -142,4 +142,8 @@ public class SuperMatrixTableModel extends AbstractTableModel implements TableCe
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return (rowIndex > 0 && columnIndex > 0 && rowIndex != columnIndex);
 	}
+	
+	
+	
+	
 }
