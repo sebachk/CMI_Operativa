@@ -2,23 +2,21 @@ package com.anp.gui.utils;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import com.ahp.StructureManager;
 import com.anp.CriterioANP;
 
-public class SuperMatrizNivelClusterTableModel extends DefaultTableModel implements TableCellRenderer {
+public class SuperMatrizNivelClusterTableModel extends DefaultTableModel
+		implements TableCellRenderer {
 
 	private static final long serialVersionUID = 1L;
 	protected HashMap<String, List<CriterioANP>> rows;
@@ -43,36 +41,39 @@ public class SuperMatrizNivelClusterTableModel extends DefaultTableModel impleme
 			return " ";
 		}
 		if (row == 0) {
-			return rows.keySet().toArray(new String[]{})[col-1];
+			return rows.keySet().toArray(new String[] {})[col - 1];
 		}
 		if (col == 0) {
-			return rows.keySet().toArray(new String[]{})[row-1];
+			return rows.keySet().toArray(new String[] {})[row - 1];
 		}
-		String colName = rows.keySet().toArray(new String[]{})[col-1];
-		String rowName = rows.keySet().toArray(new String[]{})[row-1];
-		switch (StructureManager.getInstance().getMatrizANP().getRelacion(rowName, colName)){
-			case -1: return Color.RED;
-			case 0: return Color.ORANGE;
-			default: return Color.GREEN;
+		String colName = rows.keySet().toArray(new String[] {})[col - 1];
+		String rowName = rows.keySet().toArray(new String[] {})[row - 1];
+		switch (StructureManager.getInstance().getMatrizANP().getRelacion(rowName, colName)) {
+		case -1:
+			return ANPColors.INCOMPLETO.getColor();
+		case 0:
+			return ANPColors.NO_CRIT_CELL.getColor();
+		default:
+			return ANPColors.COMPLETO.getColor();
 		}
 	}
 
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 
-		//super.setValueAt(aValue, rowIndex, columnIndex);
+		// super.setValueAt(aValue, rowIndex, columnIndex);
 	}
 
 	@Override
-	public Component getTableCellRendererComponent(JTable obj, Object value, boolean isSelected, boolean arg3, int row,
-			int col) {
+	public Component getTableCellRendererComponent(JTable obj, Object value, boolean isSelected,
+			boolean arg3, int row, int col) {
 
 		if (row == 0 || col == 0) {
 
 			JTextField lbl = new JTextField();
 			lbl.setEditable(false);
 			lbl.setText(value.toString());
-			lbl.setBackground(col == row ? Color.WHITE : Color.LIGHT_GRAY);
+			lbl.setBackground(col == row ? Color.WHITE : ANPColors.TABLEHEADER.getColor());
 
 			return lbl;
 		} else {
@@ -80,21 +81,19 @@ public class SuperMatrizNivelClusterTableModel extends DefaultTableModel impleme
 			JPanel field = new JPanel();
 			field.setOpaque(true);
 			if (isSelected) {
-				field.setBackground(Color.CYAN);
+				field.setBorder(new MatteBorder(1, 1, 1, 1, Color.cyan));
+
 			}
-			else {
-				field.setBackground((Color)value);
-			}
+			field.setBackground((Color) value);
 			return field;
 
 		}
 
 	}
-	
+
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return false;
 	}
-
 
 }

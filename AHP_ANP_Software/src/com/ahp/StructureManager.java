@@ -17,6 +17,7 @@ import com.anp.MatrizDefinicionANP;
 import com.anp.gui.ClusterLabel;
 import com.anp.gui.CriterioLabel;
 import com.anp.gui.TabCriteriosANP;
+import com.anp.gui.TabSuperMatrizInicial;
 
 public class StructureManager {
 
@@ -32,7 +33,7 @@ public class StructureManager {
 	// ANP
 	private TabCriteriosANP tabCriteriosANP;
 	private MatrizDefinicionANP matrizANP;
-	
+
 	private Hashtable<String, NodoArbolAHP> nodosAHP = new Hashtable<String, NodoArbolAHP>();
 
 	public void setTabbedPane(JTabbedPane tabbedPane) {
@@ -44,16 +45,14 @@ public class StructureManager {
 	}
 
 	public void addTab(String nombreTab, Component tab, String tooltip) {
-		this.tabbedPane.addTab(nombreTab, null, tab, tooltip);
-		this.tabbedPane.setEnabledAt(this.tabbedPane.indexOfTab(nombreTab), false);
-
-		tabbedPane.indexOfComponent(TabDefiniciones.getInstance());
+		tabbedPane.addTab(nombreTab, null, tab, tooltip);
+		tabbedPane.setEnabledAt(tabbedPane.indexOfTab(nombreTab), false);
 
 	}
 
 	public void enableTabs() {
-		for (int i = 0; i < this.tabbedPane.getTabCount(); i++) {
-			this.tabbedPane.setEnabledAt(i, true);
+		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+			tabbedPane.setEnabledAt(i, true);
 		}
 	}
 
@@ -73,26 +72,28 @@ public class StructureManager {
 
 	public void setArbol(ArbolDecisionAHP arbol) {
 		this.arbol = arbol;
-		TabDefiniciones.getInstance().tree.setModel(new DefaultTreeModel(new NodoArbolAHP(this.arbol.getGoal())));
+		TabDefiniciones.getInstance().tree
+				.setModel(new DefaultTreeModel(new NodoArbolAHP(this.arbol.getGoal())));
 		TabDefiniciones.getInstance().tree.setCellRenderer(new AHPCellRenderer());
 
-		TabDefiniciones.getInstance()
-				.setNodoActual((NodoArbolAHP) TabDefiniciones.getInstance().tree.getModel().getRoot());
+		TabDefiniciones.getInstance().setNodoActual(
+				(NodoArbolAHP) TabDefiniciones.getInstance().tree.getModel().getRoot());
 
 	}
 
 	public void crearArbol(String name) {
-		this.arbol = new ArbolDecisionAHP(name);
-		TabDefiniciones.getInstance().tree.setModel(new DefaultTreeModel(new NodoArbolAHP(this.arbol.getGoal())));
+		arbol = new ArbolDecisionAHP(name);
+		TabDefiniciones.getInstance().tree
+				.setModel(new DefaultTreeModel(new NodoArbolAHP(arbol.getGoal())));
 		TabDefiniciones.getInstance().tree.setCellRenderer(new AHPCellRenderer());
 
-		TabDefiniciones.getInstance()
-				.setNodoActual((NodoArbolAHP) TabDefiniciones.getInstance().tree.getModel().getRoot());
+		TabDefiniciones.getInstance().setNodoActual(
+				(NodoArbolAHP) TabDefiniciones.getInstance().tree.getModel().getRoot());
 
 	}
 
 	private NodoArbolAHP CargarArbol(NodoArbolDecision nodo) {
-		if (this.arbol.esUltimoCriterio(nodo)) {
+		if (arbol.esUltimoCriterio(nodo)) {
 			this.getNewNodoAHP(nodo.getNombre(), null);
 			return new NodoArbolAHP(nodo);
 		}
@@ -109,24 +110,24 @@ public class StructureManager {
 	}
 
 	public NodoArbolAHP nuevoArbool() {
-		if (this.arbol != null) {
+		if (arbol != null) {
 			return CargarArbol(arbol.getGoal());
 		}
 		return null;
 	}
 
 	public void habilitar() {
-		this.tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabDefiniciones.getInstance()), true);
-		this.tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabMatrices.getInstance()), true);
-		this.tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabResults.getinstance()), true);
+		tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabDefiniciones.getInstance()), true);
+		tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabMatrices.getInstance()), true);
+		tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabResults.getinstance()), true);
 
 	}
 
 	public void arbolCompleto() {
-		if (this.arbol.getAlternativas().isEmpty()) {
-			this.tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabDecision.getInstance()), false);
+		if (arbol.getAlternativas().isEmpty()) {
+			tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabDecision.getInstance()), false);
 		} else {
-			this.tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabDecision.getInstance()),
+			tabbedPane.setEnabledAt(tabbedPane.indexOfComponent(TabDecision.getInstance()),
 					arbolCompleto(this.getArbol().getGoal()));
 		}
 	}
@@ -168,22 +169,22 @@ public class StructureManager {
 	public MatrizDefinicionANP getMatrizANP() {
 		return matrizANP;
 	}
-	
+
 	public void setMatrizANP(MatrizDefinicionANP matrizANP) {
 		this.matrizANP = matrizANP;
 	}
 
 	public TabCriteriosANP getTabCriterios() {
-		return this.tabCriteriosANP;
+		return tabCriteriosANP;
 	}
 
 	public void crearMatrizANP() {
-		this.matrizANP = new MatrizDefinicionANP();
+		matrizANP = new MatrizDefinicionANP();
 
 	}
 
 	public void clusterChanged(ClusterLabel cl) {
-		this.tabCriteriosANP.paintCriteriosFromCluster(cl);
+		tabCriteriosANP.paintCriteriosFromCluster(cl);
 	}
 
 	public int[] calcularCompletitudNodo(NodoArbolDecision nodo) {
@@ -217,22 +218,30 @@ public class StructureManager {
 
 		}
 
-		result[1] = (esVerde == null) ? result[0] : esVerde ? StructureManager.COMPLETO : StructureManager.INCOMPLETO;
+		result[1] = (esVerde == null) ? result[0]
+				: esVerde ? StructureManager.COMPLETO : StructureManager.INCOMPLETO;
 
 		return result;
 	}
-	
-	public NodoArbolAHP getNewNodoAHP(String nom, NodoArbolAHP ref){
+
+	public NodoArbolAHP getNewNodoAHP(String nom, NodoArbolAHP ref) {
 		NodoArbolAHP nuevo = nodosAHP.get(nom);
-		if(nuevo == null){
+		if (nuevo == null) {
 			nuevo = new NodoArbolAHP(nom);
 			nodosAHP.put(nom, nuevo);
-		}
-		else{
-//			if((ref != null) && (ref.getLevel() >= nuevo.getLevel()))
-				return null;
+		} else {
+			// if((ref != null) && (ref.getLevel() >= nuevo.getLevel()))
+			return null;
 		}
 		return nuevo;
+	}
+
+	public void tabSuperMatrizANPChangedState() {
+		for (Component tab : tabbedPane.getComponents()) {
+			if (tab instanceof TabSuperMatrizInicial) {
+				((TabSuperMatrizInicial) tab).changedTables();
+			}
+		}
 	}
 
 }
