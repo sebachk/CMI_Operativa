@@ -18,6 +18,7 @@ import com.anp.gui.ClusterLabel;
 import com.anp.gui.CriterioLabel;
 import com.anp.gui.TabCriteriosANP;
 import com.anp.gui.TabSuperMatrizInicial;
+import com.anp.gui.TabSuperMatrizPonderada;
 
 public class StructureManager {
 
@@ -244,4 +245,11 @@ public class StructureManager {
 		}
 	}
 
+	public void tabMatrizPonderadaANPChangedState() {
+		for (Component tab : tabbedPane.getComponents()) {
+			if (tab instanceof TabSuperMatrizPonderada) {
+				((TabSuperMatrizPonderada) tab).changedTables();
+			}
+		}
+	}
 }

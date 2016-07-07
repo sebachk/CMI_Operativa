@@ -14,6 +14,7 @@ public class MatrizDefinicionANP {
 	HashMap<String, List<CriterioANP>> clusters;
 
 	private MatrizTemplate<MatrizTemplate<Double>> matrizValues;
+	private MatrizTemplate<Double> clusterValues;
 
 	public static final String CLUSTER_ALTERNATIVAS = "Alternativas";
 	private static final String SEPARATOR = "//";
@@ -26,7 +27,7 @@ public class MatrizDefinicionANP {
 		criterios = new ArrayList<CriterioANP>();
 
 		matrizValues = new MatrizTemplate<MatrizTemplate<Double>>();
-
+		clusterValues = new MatrizTemplate<Double>();
 	}
 
 	public void addCluster(String cluster) {
@@ -100,10 +101,11 @@ public class MatrizDefinicionANP {
 		for (CriterioANP c1 : aux) {
 			for (CriterioANP c2 : aux) {
 				MatrizTemplate<Double> mat = matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster());
-				if (mat == null)
+				if (mat == null){
 					matrizValues.setElement(c1.getCluster() + SEPARATOR + c2.getCluster(),
 							new MatrizTemplate<Double>());
-
+					clusterValues.setElement(c1.getCluster() + SEPARATOR + c2.getCluster(), 0.00);
+				}
 				Double v = getValueAt(c1, c2);
 				if (v == null)
 					setValueAt(c1, c2, 0.0);
@@ -118,6 +120,14 @@ public class MatrizDefinicionANP {
 		return matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster())
 				.getElement(c1.getNombre() + SEPARATOR + c2.getNombre());
 
+	}
+	
+	public Double getValueClusterAt(String cl1, String cl2){
+		return clusterValues.getElement(cl1 + SEPARATOR + cl2);
+	}
+	
+	public void setValueClusterAt(String cl1, String cl2, Double v){
+		clusterValues.setElement(cl1 + SEPARATOR + cl2, v);
 	}
 
 	public void setValueAt(CriterioANP c1, CriterioANP c2, Double v) {

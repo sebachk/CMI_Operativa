@@ -41,7 +41,10 @@ public class PanelANP extends PanelPrincipal {
 				"Definicion de Criterios");
 		StructureManager.getInstance().addTab("Super Matriz", TabSuperMatrizInicial.getInstance(),
 				"Super matriz sin ponderar");
+		StructureManager.getInstance().addTab("Matriz Ponderada", TabSuperMatrizPonderada.getInstance(),
+				"Super matriz ponderada");
 
+		
 		StructureManager.getInstance().enableTabs();
 
 		this.getPanelDerecho().add(StructureManager.getInstance().getTabbedPane());
