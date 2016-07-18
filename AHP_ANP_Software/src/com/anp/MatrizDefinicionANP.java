@@ -36,7 +36,7 @@ public class MatrizDefinicionANP {
 	public void addAlternativa(CriterioANP toAdd) {
 		clusters.get(CLUSTER_ALTERNATIVAS).add(toAdd);
 		toAdd.setCluster(CLUSTER_ALTERNATIVAS);
-		this.alternativas.add(toAdd);
+		alternativas.add(toAdd);
 	}
 
 	public List<CriterioANP> getAlternativas() {
@@ -46,9 +46,9 @@ public class MatrizDefinicionANP {
 	public void setAlternativas(List<CriterioANP> alternativas) {
 		this.alternativas = alternativas;
 	}
-	
+
 	public void addCriterio(CriterioANP toAdd) {
-		this.criterios.add(toAdd);
+		criterios.add(toAdd);
 	}
 
 	public List<CriterioANP> getCriterios() {
@@ -74,7 +74,7 @@ public class MatrizDefinicionANP {
 		clusters.get(cluster).add(criterio);
 		criterio.setCluster(cluster);
 
-		if (!this.criterios.contains(criterio))
+		if (!criterios.contains(criterio))
 			this.addCriterio(criterio);
 
 		generarMatriz();
@@ -96,8 +96,9 @@ public class MatrizDefinicionANP {
 
 		for (CriterioANP c1 : aux) {
 			for (CriterioANP c2 : aux) {
-				MatrizTemplate<Double> mat = matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster());
-				if (mat == null){
+				MatrizTemplate<Double> mat = matrizValues
+						.getElement(c1.getCluster() + SEPARATOR + c2.getCluster());
+				if (mat == null) {
 					matrizValues.setElement(c1.getCluster() + SEPARATOR + c2.getCluster(),
 							new MatrizTemplate<Double>());
 					clusterValues.setElement(c1.getCluster() + SEPARATOR + c2.getCluster(), 0.00);
@@ -115,18 +116,19 @@ public class MatrizDefinicionANP {
 		return matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster())
 				.getElement(c1.getNombre() + SEPARATOR + c2.getNombre());
 	}
+
 	public void setValueAt(CriterioANP c1, CriterioANP c2, Double v) {
 		matrizValues.getElement(c1.getCluster() + SEPARATOR + c2.getCluster())
 				.setElement(c1.getNombre() + SEPARATOR + c2.getNombre(), v);
 	}
-	
-	public Double getValueClusterAt(String cl1, String cl2){
+
+	public Double getValueClusterAt(String cl1, String cl2) {
 		return clusterValues.getElement(cl1 + SEPARATOR + cl2);
 	}
-	public void setValueClusterAt(String cl1, String cl2, Double v){
+
+	public void setValueClusterAt(String cl1, String cl2, Double v) {
 		clusterValues.setElement(cl1 + SEPARATOR + cl2, v);
 	}
-	
 
 	/* Manejo Matriz Doble entrada */
 	public CriterioANP getCriterioAt(int pos) {
@@ -140,102 +142,138 @@ public class MatrizDefinicionANP {
 		}
 		return null;
 	}
-	
-	public int getRelacion(String cl1, String cl2){
-		MatrizTemplate<Double> matriz= this.matrizValues.getElement(cl1 + SEPARATOR + cl2);
-		boolean ok = false;
-		for(CriterioANP c2: this.getClusters().get(cl2)){
-			Double suma = 0.00;
-			for(CriterioANP c1: this.getClusters().get(cl1)){
-				suma = suma+matriz.getElement(c1.getNombre() + SEPARATOR + c2.getNombre());
-				if(suma > 1.00){ return -1;}
-				if(suma > 0.00){ ok=true;}
+
+	public int getRelacionCluster(String clusterColumna, List<String> clustersRow) {
+		double suma = 0.0;
+		for (String cluster : clustersRow) {
+			suma += getValueClusterAt(cluster, clusterColumna);
+			if (suma > 1.0) {
+				return -1;
 			}
-			if(suma > 0.00 && suma < 1.00){return -1;}
 		}
-		return ok?1:0;
+		if (suma > 0.0 && suma < 1.0) {
+			return -1;
+		}
+		if (suma == 0.0) {
+			return 0;
+		}
+		return 1; // la suma dio 1
 	}
 
-	public int getRelacionColumna(CriterioANP c1, String clusterRows){
-		MatrizTemplate<Double> matriz= this.matrizValues.getElement(clusterRows + SEPARATOR + c1.getCluster());
+	public int getRelacion(String cl1, String cl2) {
+		MatrizTemplate<Double> matriz = matrizValues.getElement(cl1 + SEPARATOR + cl2);
+		boolean ok = false;
+		for (CriterioANP c2 : this.getClusters().get(cl2)) {
+			Double suma = 0.00;
+			for (CriterioANP c1 : this.getClusters().get(cl1)) {
+				suma = suma + matriz.getElement(c1.getNombre() + SEPARATOR + c2.getNombre());
+				if (suma > 1.00) {
+					return -1;
+				}
+				if (suma > 0.00) {
+					ok = true;
+				}
+			}
+			if (suma > 0.00 && suma < 1.00) {
+				return -1;
+			}
+		}
+		return ok ? 1 : 0;
+	}
+
+	public int getRelacionColumna(CriterioANP c1, String clusterRows) {
+		MatrizTemplate<Double> matriz = matrizValues
+				.getElement(clusterRows + SEPARATOR + c1.getCluster());
 		boolean ok = false;
 		Double suma = 0.00;
-		for(CriterioANP c2: this.getClusters().get(clusterRows)){
-			suma = suma+matriz.getElement(c2.getNombre() + SEPARATOR + c1.getNombre());
-			if(suma > 1.00){ return -1;}
-			if(suma > 0.00){ ok=true;}
+		for (CriterioANP c2 : this.getClusters().get(clusterRows)) {
+			suma = suma + matriz.getElement(c2.getNombre() + SEPARATOR + c1.getNombre());
+			if (suma > 1.00) {
+				return -1;
+			}
+			if (suma > 0.00) {
+				ok = true;
+			}
 		}
-		
-		if(suma > 0.00 && suma < 1.00){return -1;}
-		return ok?1:0;
+
+		if (suma > 0.00 && suma < 1.00) {
+			return -1;
+		}
+		return ok ? 1 : 0;
 	}
-	
-	public MatrizTemplate<Double> converger(){		
+
+	public MatrizTemplate<Double> converger() {
 		MatrizTemplate<Double> resultado = new MatrizTemplate<Double>();
-		
-		//lista de alternativas+criterios
-		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(this.alternativas);
+
+		// lista de alternativas+criterios
+		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(alternativas);
 		allCrit.addAll(criterios);
-		
+
 		resultado = llenarDeCeros(allCrit);
-		
-		Iterator<CriterioANP> itv1 = allCrit.iterator();
-		Iterator<CriterioANP> ith1 = allCrit.iterator();
-		
-		while(!converge(resultado)){
-			while(itv1.hasNext()){
-				CriterioANP f1 = itv1.next();					
+
+		Iterator<CriterioANP> itv1 = allCrit.iterator();// [a,b,c]
+		Iterator<CriterioANP> ith1 = allCrit.iterator();// [a,b,c]
+
+		while (!converge(resultado)) {
+			while (itv1.hasNext()) {
+				CriterioANP f1 = itv1.next();
 				String keyToSet = f1.getNombre();
-				for(CriterioANP c2: allCrit){
+				for (CriterioANP c2 : allCrit) {
 					CriterioANP c1 = ith1.next();
 					keyToSet = keyToSet + SEPARATOR + c2.getNombre();
 					Double suma = 0.00;
-					for(CriterioANP f2: allCrit){					
-						suma += (this.getValueAt(f1, c1) * this.getValueAt(f2, c2));
+					for (CriterioANP f2 : allCrit) {
+						double v1 = this.getValueAt(f1, c1)
+								* this.getValueClusterAt(f1.getCluster(), c1.getCluster());
+						double v2 = this.getValueAt(f2, c2)
+								* this.getValueClusterAt(f2.getCluster(), c2.getCluster());
+						suma += v1 * v2;
 						c1 = ith1.next();
 					}
 					resultado.setElement(keyToSet, suma);
 					keyToSet = f1.getNombre();
-					ith1 = allCrit.iterator(); //Lo posiciono al principio nuevamente
+					ith1 = allCrit.iterator(); // Lo posiciono al principio
+												// nuevamente
 				}
 			}
 		}
-				
+
 		return resultado;
 	}
-	
-	private boolean converge(MatrizTemplate<Double> m1){
+
+	private boolean converge(MatrizTemplate<Double> m1) {
 		Double delta = 0.0001;
-		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(this.alternativas);
+		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(alternativas);
 		allCrit.addAll(criterios);
-		Iterator<CriterioANP> itf = allCrit.iterator();		
-		while(itf.hasNext()){
+		Iterator<CriterioANP> itf = allCrit.iterator();
+		while (itf.hasNext()) {
 			CriterioANP c1 = itf.next();
 			Iterator<CriterioANP> itc = allCrit.iterator();
-			while(itc.hasNext()){
+			while (itc.hasNext()) {
 				CriterioANP c2 = itc.next();
-				String key = c1.getNombre()+SEPARATOR+c2.getNombre();
-				if(Math.sqrt(Math.pow((m1.getElement(key) - this.getValueAt(c1,c2)), 2)) > delta){
+				String key = c1.getNombre() + SEPARATOR + c2.getNombre();
+				if (Math.sqrt(
+						Math.pow((m1.getElement(key) - this.getValueAt(c1, c2)), 2)) > delta) {
 					return false;
-				}	
+				}
 			}
 		}
 		return true;
 	}
-	
-	private MatrizTemplate<Double> llenarDeCeros(List<CriterioANP> encabezado){
+
+	private MatrizTemplate<Double> llenarDeCeros(List<CriterioANP> encabezado) {
 		MatrizTemplate<Double> resultado = new MatrizTemplate<Double>();
-		Iterator<CriterioANP> itf = encabezado.iterator();		
-		while(itf.hasNext()){
+		Iterator<CriterioANP> itf = encabezado.iterator();
+		while (itf.hasNext()) {
 			CriterioANP c1 = itf.next();
 			Iterator<CriterioANP> itc = encabezado.iterator();
-			while(itc.hasNext()){
+			while (itc.hasNext()) {
 				CriterioANP c2 = itc.next();
-				String key = c1.getNombre()+SEPARATOR+c2.getNombre();
-				resultado.setElement(key, 0.00);	
+				String key = c1.getNombre() + SEPARATOR + c2.getNombre();
+				resultado.setElement(key, 0.00);
 			}
 		}
 		return resultado;
 	}
-		
+
 }
