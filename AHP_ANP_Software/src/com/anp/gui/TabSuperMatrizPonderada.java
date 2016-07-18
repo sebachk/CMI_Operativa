@@ -100,6 +100,20 @@ public class TabSuperMatrizPonderada extends JPanel {
 			tabla.setDefaultRenderer(Object.class, crits);
 		}
 	}
+	
+	public JTable getTabla() {
+		return tabla;
+	}
+	public void setTabla(JTable tabla) {
+		this.tabla = tabla;
+	}
+	
+	public JTable getTablaIncidencia() {
+		return tablaIncidencia;
+	}
+	public void setTablaIncidencia(JTable tablaIncidencia) {
+		this.tablaIncidencia = tablaIncidencia;
+	}
 
 	public void actualizar() {
 		MatrizDefinicionANP matriz = StructureManager.getInstance().getMatrizANP();

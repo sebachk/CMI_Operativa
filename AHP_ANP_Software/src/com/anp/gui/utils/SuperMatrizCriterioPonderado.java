@@ -42,5 +42,23 @@ public class SuperMatrizCriterioPonderado extends
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public Double getValueByCriterios(CriterioANP f, CriterioANP c){
+		int indexf = 0; 
+		int indexc = 0;
+		for(CriterioANP fila: this.rows){
+			indexf += 1;
+			if(f.getNombre().equals(fila.getNombre())){
+				break;
+			}
+		}
+		for(CriterioANP columna: this.cols){
+			indexc += 1;
+			if(c.getNombre().equals(columna.getNombre())){
+				break;
+			}
+		}
+		return (Double)this.getValueAt(indexf, indexc);
+	}
 
 }
