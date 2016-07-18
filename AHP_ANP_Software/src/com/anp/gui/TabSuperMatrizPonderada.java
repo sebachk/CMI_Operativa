@@ -18,6 +18,11 @@ import com.anp.gui.utils.SuperMatrizCriterioPonderado;
 
 public class TabSuperMatrizPonderada extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private static TabSuperMatrizPonderada instance;
 
 	public static TabSuperMatrizPonderada getInstance() {
@@ -41,7 +46,6 @@ public class TabSuperMatrizPonderada extends JPanel {
 		tabla = new JTable();
 		panelNorte.add(tabla);
 		tabla.setBorder(null);
-
 		tabla.setCellSelectionEnabled(true);
 
 		JPanel panelSur = new JPanel();
@@ -50,16 +54,13 @@ public class TabSuperMatrizPonderada extends JPanel {
 
 		JPanel panelOeste = new JPanel();
 		panelSur.add(panelOeste);
-
 		tablaIncidencia = new JTable();
 		panelOeste.add(tablaIncidencia);
-
 		tablaIncidencia.setCellSelectionEnabled(true);
+		
 		JPanel panelEste = new JPanel();
 		panelSur.add(panelEste);
 
-		JButton selectAll = new JButton("Seleccionar todo");
-		panelEste.add(selectAll);
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabla.addMouseListener(new MouseAdapter() {
 

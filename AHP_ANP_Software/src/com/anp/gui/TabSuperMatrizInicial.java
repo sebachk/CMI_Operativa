@@ -5,7 +5,6 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -18,6 +17,10 @@ import com.anp.gui.utils.SuperMatrizNivelCriterioTableModel;
 
 public class TabSuperMatrizInicial extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static TabSuperMatrizInicial instance;
 
 	public static TabSuperMatrizInicial getInstance() {
@@ -41,7 +44,6 @@ public class TabSuperMatrizInicial extends JPanel {
 		tabla = new JTable();
 		panelNorte.add(tabla);
 		tabla.setBorder(null);
-
 		tabla.setCellSelectionEnabled(true);
 
 		JPanel panelSur = new JPanel();
@@ -50,35 +52,31 @@ public class TabSuperMatrizInicial extends JPanel {
 
 		JPanel panelOeste = new JPanel();
 		panelSur.add(panelOeste);
-
 		tablaIncidencia = new JTable();
 		panelOeste.add(tablaIncidencia);
-
 		tablaIncidencia.setCellSelectionEnabled(true);
 		JPanel panelEste = new JPanel();
+		
 		panelSur.add(panelEste);
 
-		JButton selectAll = new JButton("Seleccionar todo");
-		panelEste.add(selectAll);
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabla.addMouseListener(new MouseAdapter() {
 
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				super.mouseReleased(e);
-				int row = tabla.getSelectedRow();
-				int col = tabla.getSelectedColumn();
-				String clusterFila = (String) tabla.getModel().getValueAt(row, 0);
-				String clusterCol = (String) tabla.getModel().getValueAt(0, col);
-				SuperMatrizNivelCriterioTableModel modelo = new SuperMatrizNivelCriterioTableModel(
-						StructureManager.getInstance().getMatrizANP().getFromCluster(clusterCol),
-						StructureManager.getInstance().getMatrizANP().getFromCluster(clusterFila));
-				tablaIncidencia.setModel(modelo);
-				e.consume();
-				tablaIncidencia.setDefaultRenderer(Object.class, modelo);
-				panelOeste.updateUI();
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			super.mouseReleased(e);
+			int row = tabla.getSelectedRow();
+			int col = tabla.getSelectedColumn();
+			String clusterFila = (String) tabla.getModel().getValueAt(row, 0);
+			String clusterCol = (String) tabla.getModel().getValueAt(0, col);
+			SuperMatrizNivelCriterioTableModel modelo = new SuperMatrizNivelCriterioTableModel(
+					StructureManager.getInstance().getMatrizANP().getFromCluster(clusterCol),
+					StructureManager.getInstance().getMatrizANP().getFromCluster(clusterFila));
+			tablaIncidencia.setModel(modelo);
+			e.consume();
+			tablaIncidencia.setDefaultRenderer(Object.class, modelo);
+			panelOeste.updateUI();
 			}
-
 		});
 
 		if (matriz != null) {

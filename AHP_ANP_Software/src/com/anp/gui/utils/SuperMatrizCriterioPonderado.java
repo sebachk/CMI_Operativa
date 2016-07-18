@@ -8,6 +8,11 @@ import com.anp.CriterioANP;
 public class SuperMatrizCriterioPonderado extends
 		SuperMatrizNivelCriterioTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public SuperMatrizCriterioPonderado(List<CriterioANP> cols,
 			List<CriterioANP> rows) {
 		super(cols, rows);

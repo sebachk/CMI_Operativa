@@ -15,8 +15,9 @@ import javax.swing.table.TableCellRenderer;
 import com.ahp.StructureManager;
 import com.anp.CriterioANP;
 
-public class SuperMatrizNivelClusterTableModel extends DefaultTableModel
-		implements TableCellRenderer {
+public class SuperMatrizNivelClusterTableModel 
+		extends DefaultTableModel
+		implements TableCellRenderer{
 
 	private static final long serialVersionUID = 1L;
 	protected HashMap<String, List<CriterioANP>> rows;
@@ -56,6 +57,11 @@ public class SuperMatrizNivelClusterTableModel extends DefaultTableModel
 		default:
 			return ANPColors.COMPLETO.getColor();
 		}
+	}
+	
+	public Object getValueAt(String row, String col){
+		
+		return null;
 	}
 
 	@Override
