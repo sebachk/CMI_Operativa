@@ -60,6 +60,15 @@ public class TabSuperMatrizPonderada extends JPanel {
 		
 		JPanel panelEste = new JPanel();
 		panelSur.add(panelEste);
+		
+		JButton btn_converger = new JButton("Converger");
+		btn_converger.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				StructureManager.getInstance().getMatrizANP().converger();
+			}
+		});
+		panelEste.add(btn_converger);
 
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabla.addMouseListener(new MouseAdapter() {

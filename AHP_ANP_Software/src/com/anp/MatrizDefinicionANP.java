@@ -204,17 +204,19 @@ public class MatrizDefinicionANP {
 
 	public MatrizTemplate<Double> converger() {
 		MatrizTemplate<Double> resultado = new MatrizTemplate<Double>();
-
+		MatrizTemplate<Double> anterior = new MatrizTemplate<Double>();
+		
 		// lista de alternativas+criterios
 		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(alternativas);
 		allCrit.addAll(criterios);
 
 		resultado = llenarDeCeros(allCrit);
+		anterior = planchar();
 
-		Iterator<CriterioANP> itv1 = allCrit.iterator();// [a,b,c]
-		Iterator<CriterioANP> ith1 = allCrit.iterator();// [a,b,c]
-
-		while (!converge(resultado)) {
+		while (!converge(resultado, anterior)) {
+			anterior = resultado;
+			Iterator<CriterioANP> itv1 = allCrit.iterator();// [a,b,c]
+			Iterator<CriterioANP> ith1 = allCrit.iterator();// [a,b,c]
 			while (itv1.hasNext()) {
 				CriterioANP f1 = itv1.next();
 				String keyToSet = f1.getNombre();
@@ -228,21 +230,22 @@ public class MatrizDefinicionANP {
 						double v2 = this.getValueAt(f2, c2)
 								* this.getValueClusterAt(f2.getCluster(), c2.getCluster());
 						suma += v1 * v2;
-						c1 = ith1.next();
+						if(ith1.hasNext()){
+							c1 = ith1.next();
+						}
 					}
 					resultado.setElement(keyToSet, suma);
 					keyToSet = f1.getNombre();
-					ith1 = allCrit.iterator(); // Lo posiciono al principio
-												// nuevamente
-				}
+					ith1 = allCrit.iterator(); // Lo posiciono al principio												// nuevamente
+				}				
 			}
 		}
-
+		printMatriz(resultado, allCrit);
 		return resultado;
 	}
 
-	private boolean converge(MatrizTemplate<Double> m1) {
-		Double delta = 0.0001;
+	private boolean converge(MatrizTemplate<Double> m1, MatrizTemplate<Double> m2) {
+		Double delta = 0.001;
 		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(alternativas);
 		allCrit.addAll(criterios);
 		Iterator<CriterioANP> itf = allCrit.iterator();
@@ -252,8 +255,7 @@ public class MatrizDefinicionANP {
 			while (itc.hasNext()) {
 				CriterioANP c2 = itc.next();
 				String key = c1.getNombre() + SEPARATOR + c2.getNombre();
-				if (Math.sqrt(
-						Math.pow((m1.getElement(key) - this.getValueAt(c1, c2)), 2)) > delta) {
+				if (Math.sqrt(Math.pow((m1.getElement(key) - m2.getElement(key)), 2)) > delta) {
 					return false;
 				}
 			}
@@ -271,6 +273,46 @@ public class MatrizDefinicionANP {
 				CriterioANP c2 = itc.next();
 				String key = c1.getNombre() + SEPARATOR + c2.getNombre();
 				resultado.setElement(key, 0.00);
+			}
+		}
+		return resultado;
+	}
+	
+	private void printMatriz(MatrizTemplate<Double> m, List<CriterioANP> encabezado){
+		Iterator<CriterioANP> itf = encabezado.iterator();
+		System.out.println("-------------------------------------------------------------");
+		String header = "    |";
+		for(CriterioANP c: encabezado){
+			header += c.getNombre()+" | ";
+		}
+		System.out.println(header);
+		while (itf.hasNext()) {
+			CriterioANP c1 = itf.next();
+			Iterator<CriterioANP> itc = encabezado.iterator();
+			String linea = "";		
+			while (itc.hasNext()) {
+				CriterioANP c2 = itc.next();
+				String key = c1.getNombre() + SEPARATOR + c2.getNombre();
+				linea += m.getElement(key)+" - ";			
+			}
+			System.out.println(c1.getNombre()+" | "+linea);
+		}
+		System.out.println("-------------------------------------------------------------");
+
+	}
+	
+	private MatrizTemplate<Double> planchar(){
+		MatrizTemplate<Double> resultado = new MatrizTemplate<Double>();
+		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(alternativas);
+		allCrit.addAll(criterios);
+		Iterator<CriterioANP> itf = allCrit.iterator();
+		while (itf.hasNext()) {
+			CriterioANP c1 = itf.next();
+			Iterator<CriterioANP> itc = allCrit.iterator();
+			while (itc.hasNext()) {
+				CriterioANP c2 = itc.next();
+				String key = c1.getNombre() + SEPARATOR + c2.getNombre();
+				resultado.setElement(key, this.getValueAt(c1, c2));
 			}
 		}
 		return resultado;
