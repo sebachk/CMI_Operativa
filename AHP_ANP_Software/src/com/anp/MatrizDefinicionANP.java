@@ -7,14 +7,14 @@ import java.util.List;
 
 public class MatrizDefinicionANP {
 
-	List<CriterioANP> alternativas;
-	List<CriterioANP> criterios;
+	private List<CriterioANP> alternativas;
+	private List<CriterioANP> criterios;
 
-	HashMap<String, List<CriterioANP>> clusters;
+	private HashMap<String, List<CriterioANP>> clusters;
 
 	private MatrizTemplate<MatrizTemplate<Double>> matrizValues;
 	private MatrizTemplate<Double> clusterValues;
-
+	
 	public static final String CLUSTER_ALTERNATIVAS = "Alternativas";
 	private static final String SEPARATOR = "//";
 
@@ -28,6 +28,44 @@ public class MatrizDefinicionANP {
 		matrizValues = new MatrizTemplate<MatrizTemplate<Double>>();
 		clusterValues = new MatrizTemplate<Double>();
 	}
+	
+	/******* SETS y GETS ********/
+	public List<CriterioANP> getAlternativas() {
+		return alternativas;
+	}
+	public void setAlternativas(List<CriterioANP> alternativas) {
+		this.alternativas = alternativas;
+	}
+	
+	public List<CriterioANP> getCriterios() {
+		return criterios;
+	}
+	public void setCriterios(List<CriterioANP> criterios) {
+		this.criterios = criterios;
+	}
+	
+	public HashMap<String, List<CriterioANP>> getClusters() {
+		return clusters;
+	}
+	public void setClusters(HashMap<String, List<CriterioANP>> clusters) {
+		this.clusters = clusters;
+	}
+	
+	public MatrizTemplate<MatrizTemplate<Double>> getMatrizValues() {
+		return matrizValues;
+	}
+	public void setMatrizValues(
+			MatrizTemplate<MatrizTemplate<Double>> matrizValues) {
+		this.matrizValues = matrizValues;
+	}
+	
+	public MatrizTemplate<Double> getClusterValues() {
+		return clusterValues;
+	}
+	public void setClusterValues(MatrizTemplate<Double> clusterValues) {
+		this.clusterValues = clusterValues;
+	}
+	/******* FUNCIONALIDAD ********/
 
 	public void addCluster(String cluster) {
 		clusters.put(cluster, new ArrayList<CriterioANP>());
@@ -39,32 +77,8 @@ public class MatrizDefinicionANP {
 		alternativas.add(toAdd);
 	}
 
-	public List<CriterioANP> getAlternativas() {
-		return alternativas;
-	}
-
-	public void setAlternativas(List<CriterioANP> alternativas) {
-		this.alternativas = alternativas;
-	}
-
 	public void addCriterio(CriterioANP toAdd) {
 		criterios.add(toAdd);
-	}
-
-	public List<CriterioANP> getCriterios() {
-		return criterios;
-	}
-
-	public void setCriterios(List<CriterioANP> criterios) {
-		this.criterios = criterios;
-	}
-
-	public HashMap<String, List<CriterioANP>> getClusters() {
-		return clusters;
-	}
-
-	public void setClusters(HashMap<String, List<CriterioANP>> clusters) {
-		this.clusters = clusters;
 	}
 
 	public void addToCluster(String cluster, CriterioANP criterio) throws Exception {
@@ -147,11 +161,11 @@ public class MatrizDefinicionANP {
 		double suma = 0.0;
 		for (String cluster : clustersRow) {
 			suma += getValueClusterAt(cluster, clusterColumna);
-			if (suma > 1.0) {
+			if (suma > 1.0+0.000000001) {
 				return -1;
 			}
 		}
-		if (suma > 0.0 && suma < 1.0) {
+		if (suma > 0.0 && suma < 1.0-0.000000001) {
 			return -1;
 		}
 		if (suma == 0.0) {
@@ -167,14 +181,14 @@ public class MatrizDefinicionANP {
 			Double suma = 0.00;
 			for (CriterioANP c1 : this.getClusters().get(cl1)) {
 				suma = suma + matriz.getElement(c1.getNombre() + SEPARATOR + c2.getNombre());
-				if (suma > 1.00) {
+				if (suma > 1.00+0.000000001) {
 					return -1;
 				}
 				if (suma > 0.00) {
 					ok = true;
 				}
 			}
-			if (suma > 0.00 && suma < 1.00) {
+			if (suma > 0.00 && suma < 1.00- 0.000000001) {
 				return -1;
 			}
 		}
@@ -188,7 +202,7 @@ public class MatrizDefinicionANP {
 		Double suma = 0.00;
 		for (CriterioANP c2 : this.getClusters().get(clusterRows)) {
 			suma = suma + matriz.getElement(c2.getNombre() + SEPARATOR + c1.getNombre());
-			if (suma > 1.00) {
+			if (suma > 1.00+0.000000001) {
 				return -1;
 			}
 			if (suma > 0.00) {
@@ -196,7 +210,7 @@ public class MatrizDefinicionANP {
 			}
 		}
 
-		if (suma > 0.00 && suma < 1.00) {
+		if (suma > 0.00 && suma < 1.00-0.000000001) {
 			return -1;
 		}
 		return ok ? 1 : 0;
@@ -236,16 +250,18 @@ public class MatrizDefinicionANP {
 					}
 					resultado.setElement(keyToSet, suma);
 					keyToSet = f1.getNombre();
-					ith1 = allCrit.iterator(); // Lo posiciono al principio												// nuevamente
+					ith1 = allCrit.iterator(); // Lo posiciono al principio	nuevamente
 				}				
 			}
 		}
+		printMatriz(anterior, allCrit);
 		printMatriz(resultado, allCrit);
+		printPromedios(resultado, allCrit);
 		return resultado;
 	}
 
 	private boolean converge(MatrizTemplate<Double> m1, MatrizTemplate<Double> m2) {
-		Double delta = 0.001;
+		Double delta = 0.00;
 		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(alternativas);
 		allCrit.addAll(criterios);
 		Iterator<CriterioANP> itf = allCrit.iterator();
@@ -317,5 +333,40 @@ public class MatrizDefinicionANP {
 		}
 		return resultado;
 	}
+	
+	private Double promedioFila(MatrizTemplate<Double> m,CriterioANP fila){
+		
+		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(alternativas);
+		allCrit.addAll(criterios);
+		
+		if(!allCrit.contains(fila)){
+			return -1.0;
+		}
+		
+		Iterator<CriterioANP> itf = allCrit.iterator();
+		
+		double suma=0.0;
+		while (itf.hasNext()) {
+			CriterioANP c1 = itf.next();
+			String key = fila.getNombre() + SEPARATOR + c1.getNombre();
+			suma+=m.getElement(key);
+		}
+			
+		return suma/allCrit.size();
+		
+	}
+	
+	private void printPromedios(MatrizTemplate<Double> m, List<CriterioANP> encabezado){
+		
+		for(CriterioANP c:encabezado){
+			System.out.println(c.getNombre()+": "+promedioFila(m, c));
+		}
+		
+	}
+	
+	
+	
+	
+	
 
 }
