@@ -57,6 +57,11 @@ public class StructureManager {
 		}
 	}
 
+	public static void reset(){
+		instance = new StructureManager();
+		TabResults.reset();
+	}
+	
 	public static StructureManager getInstance() {
 		if (instance == null)
 			instance = new StructureManager();

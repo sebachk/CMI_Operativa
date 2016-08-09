@@ -15,6 +15,7 @@ public class PanelANP extends PanelPrincipal {
 		getSplitPane().setResizeWeight(0.01);
 		// getPanelDerecho().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
+		
 		StructureManager.getInstance().setTabbedPane(new JTabbedPane(JTabbedPane.TOP));
 		StructureManager.getInstance().getTabbedPane().addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
@@ -43,9 +44,13 @@ public class PanelANP extends PanelPrincipal {
 				"Super matriz sin ponderar");
 		StructureManager.getInstance().addTab("Matriz Ponderada", TabSuperMatrizPonderada.getInstance(),
 				"Super matriz ponderada");
-
+		StructureManager.getInstance().addTab("Decisión", TabDecision.getInstance(),
+				"Resultado final");
 		
 		StructureManager.getInstance().enableTabs();
+		
+		StructureManager.getInstance().getTabbedPane().setEnabledAt(
+				StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), false);
 
 		this.getPanelDerecho().add(StructureManager.getInstance().getTabbedPane());
 

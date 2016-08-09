@@ -15,10 +15,11 @@ public class PanelAHP extends PanelPrincipal {
 	public PanelAHP() {
 		getSplitPane().setResizeWeight(0.1);
 		// getPanelDerecho().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
+		StructureManager.reset();
 		StructureManager.getInstance().setTabbedPane(new JTabbedPane(JTabbedPane.TOP));
 		StructureManager.getInstance().getTabbedPane().addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
+				if(StructureManager.getInstance().getTabbedPane().getSelectedIndex()!=-1){
 				if (StructureManager.getInstance().getTabbedPane().getSelectedIndex() == StructureManager.getInstance()
 						.getTabbedPane().indexOfComponent(TabMatrices.getInstance()))
 					TabMatrices.getInstance().actualizar(TabDefiniciones.getInstance().getNodoArbolDecisionActual());
@@ -32,7 +33,7 @@ public class PanelAHP extends PanelPrincipal {
 						.getTabbedPane().indexOfComponent(TabDecision.getInstance())) {
 					TabDecision.getInstance().generarDecision();
 				}
-
+				}
 			}
 		});
 

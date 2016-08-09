@@ -1,0 +1,2665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_40" class="java.beans.XMLDecoder">
+ <object class="com.anp.MatrizDefinicionANP" id="MatrizDefinicionANP0">
+  <void property="alternativas">
+   <void method="add">
+    <object class="com.anp.CriterioANP" id="CriterioANP0">
+     <void property="cluster">
+      <string>Alternativas</string>
+     </void>
+     <void property="nombre">
+      <string>Walmart</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.anp.CriterioANP" id="CriterioANP1">
+     <void property="cluster">
+      <string>Alternativas</string>
+     </void>
+     <void property="nombre">
+      <string>Kmart</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.anp.CriterioANP" id="CriterioANP2">
+     <void property="cluster">
+      <string>Alternativas</string>
+     </void>
+     <void property="nombre">
+      <string>Target</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void id="MatrizTemplate0" property="clusterValues">
+   <void property="nucleo">
+    <void method="put">
+     <string>Advertising//Alternativas</string>
+     <double>0.091</double>
+    </void>
+    <void method="put">
+     <string>Locations//Characteristic</string>
+     <double>0.112</double>
+    </void>
+    <void method="put">
+     <string>Merchandise//Alternativas</string>
+     <double>0.442</double>
+    </void>
+    <void method="put">
+     <string>Merchandise//Merchandise</string>
+     <double>0.596</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Cust. Groups</string>
+     <double>0.057</double>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Advertising</string>
+     <double>0.429</double>
+    </void>
+    <void method="put">
+     <string>Advertising//Characteristic</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Characteristic</string>
+     <double>0.037</double>
+    </void>
+    <void method="put">
+     <string>Merchandise//Cust. Groups</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Merchandise</string>
+     <double>0.049</double>
+    </void>
+    <void method="put">
+     <string>Merchandise//Locations</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Characteristic//Advertising</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Advertising//Cust. Groups</string>
+     <double>0.234</double>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Locations</string>
+     <double>0.626</double>
+    </void>
+    <void method="put">
+     <string>Merchandise//Advertising</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Locations//Merchandise</string>
+     <double>0.102</double>
+    </void>
+    <void method="put">
+     <string>Merchandise//Characteristic</string>
+     <double>0.316</double>
+    </void>
+    <void method="put">
+     <string>Locations//Alternativas</string>
+     <double>0.276</double>
+    </void>
+    <void method="put">
+     <string>Advertising//Advertising</string>
+     <double>0.221</double>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Merchandise</string>
+     <double>0.253</double>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Cust. Groups</string>
+     <double>0.54</double>
+    </void>
+    <void method="put">
+     <string>Characteristic//Alternativas</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Advertising</string>
+     <double>0.174</double>
+    </void>
+    <void method="put">
+     <string>Characteristic//Characteristic</string>
+     <double>0.094</double>
+    </void>
+    <void method="put">
+     <string>Advertising//Merchandise</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Characteristic//Cust. Groups</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Characteristic//Locations</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Locations//Advertising</string>
+     <double>0.176</double>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Characteristic</string>
+     <double>0.441</double>
+    </void>
+    <void method="put">
+     <string>Characteristic//Merchandise</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Advertising//Locations</string>
+     <double>0.28</double>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Alternativas</string>
+     <double>0.054</double>
+    </void>
+    <void method="put">
+     <string>Locations//Locations</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Alternativas</string>
+     <double>0.137</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Locations</string>
+     <double>0.094</double>
+    </void>
+    <void method="put">
+     <string>Locations//Cust. Groups</string>
+     <double>0.169</double>
+    </void>
+   </void>
+  </void>
+  <void id="HashMap0" property="clusters">
+   <void method="get">
+    <string>Alternativas</string>
+    <void method="add">
+     <object idref="CriterioANP0"/>
+    </void>
+    <void method="add">
+     <object idref="CriterioANP1"/>
+    </void>
+    <void method="add">
+     <object idref="CriterioANP2"/>
+    </void>
+   </void>
+   <void method="put">
+    <string>Characteristic</string>
+    <object class="java.util.ArrayList">
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP3">
+       <void property="cluster">
+        <string>Characteristic</string>
+       </void>
+       <void property="nombre">
+        <string>Lighting</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP4">
+       <void property="cluster">
+        <string>Characteristic</string>
+       </void>
+       <void property="nombre">
+        <string>Organization</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP5">
+       <void property="cluster">
+        <string>Characteristic</string>
+       </void>
+       <void property="nombre">
+        <string>Cleanliness</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP6">
+       <void property="cluster">
+        <string>Characteristic</string>
+       </void>
+       <void property="nombre">
+        <string>Employes</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP7">
+       <void property="cluster">
+        <string>Characteristic</string>
+       </void>
+       <void property="nombre">
+        <string>Parking</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>Locations</string>
+    <object class="java.util.ArrayList">
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP8">
+       <void property="cluster">
+        <string>Locations</string>
+       </void>
+       <void property="nombre">
+        <string>Urban</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP9">
+       <void property="cluster">
+        <string>Locations</string>
+       </void>
+       <void property="nombre">
+        <string>Suburban</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP10">
+       <void property="cluster">
+        <string>Locations</string>
+       </void>
+       <void property="nombre">
+        <string>Rural</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>Advertising</string>
+    <object class="java.util.ArrayList">
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP11">
+       <void property="cluster">
+        <string>Advertising</string>
+       </void>
+       <void property="nombre">
+        <string>TV</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP12">
+       <void property="cluster">
+        <string>Advertising</string>
+       </void>
+       <void property="nombre">
+        <string>Print media</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP13">
+       <void property="cluster">
+        <string>Advertising</string>
+       </void>
+       <void property="nombre">
+        <string>Radio</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP14">
+       <void property="cluster">
+        <string>Advertising</string>
+       </void>
+       <void property="nombre">
+        <string>Direct Mail</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>Cust. Groups</string>
+    <object class="java.util.ArrayList">
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP15">
+       <void property="cluster">
+        <string>Cust. Groups</string>
+       </void>
+       <void property="nombre">
+        <string>White Collar</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP16">
+       <void property="cluster">
+        <string>Cust. Groups</string>
+       </void>
+       <void property="nombre">
+        <string>Blue Collar</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP17">
+       <void property="cluster">
+        <string>Cust. Groups</string>
+       </void>
+       <void property="nombre">
+        <string>Families</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP18">
+       <void property="cluster">
+        <string>Cust. Groups</string>
+       </void>
+       <void property="nombre">
+        <string>Teenagers</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>Merchandise</string>
+    <object class="java.util.ArrayList">
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP19">
+       <void property="cluster">
+        <string>Merchandise</string>
+       </void>
+       <void property="nombre">
+        <string>Low Cost</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP20">
+       <void property="cluster">
+        <string>Merchandise</string>
+       </void>
+       <void property="nombre">
+        <string>Quality</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP21">
+       <void property="cluster">
+        <string>Merchandise</string>
+       </void>
+       <void property="nombre">
+        <string>Variety</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="criterios">
+   <void method="add">
+    <object idref="CriterioANP11"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP12"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP13"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP14"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP8"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP9"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP10"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP15"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP16"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP17"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP18"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP19"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP20"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP21"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP3"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP4"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP5"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP6"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP7"/>
+   </void>
+  </void>
+  <void id="MatrizTemplate1" property="matrizValues">
+   <void property="nucleo">
+    <void method="put">
+     <string>Advertising//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate2">
+      <void property="nucleo">
+       <void method="put">
+        <string>Direct Mail//Walmart</string>
+        <double>0.183</double>
+       </void>
+       <void method="put">
+        <string>TV//Walmart</string>
+        <double>0.553</double>
+       </void>
+       <void method="put">
+        <string>Print media//Target</string>
+        <double>0.428</double>
+       </void>
+       <void method="put">
+        <string>Radio//Target</string>
+        <double>0.054</double>
+       </void>
+       <void method="put">
+        <string>Print media//Walmart</string>
+        <double>0.202</double>
+       </void>
+       <void method="put">
+        <string>Print media//Kmart</string>
+        <double>0.349</double>
+       </void>
+       <void method="put">
+        <string>TV//Target</string>
+        <double>0.188</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Kmart</string>
+        <double>0.42</double>
+       </void>
+       <void method="put">
+        <string>Radio//Walmart</string>
+        <double>0.062</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Target</string>
+        <double>0.33</double>
+       </void>
+       <void method="put">
+        <string>TV//Kmart</string>
+        <double>0.176</double>
+       </void>
+       <void method="put">
+        <string>Radio//Kmart</string>
+        <double>0.055</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Locations//Characteristic</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate3">
+      <void property="nucleo">
+       <void method="put">
+        <string>Suburban//Parking</string>
+        <double>0.293</double>
+       </void>
+       <void method="put">
+        <string>Rural//Employes</string>
+        <double>0.444</double>
+       </void>
+       <void method="put">
+        <string>Urban//Cleanliness</string>
+        <double>0.091</double>
+       </void>
+       <void method="put">
+        <string>Rural//Lighting</string>
+        <double>0.467</double>
+       </void>
+       <void method="put">
+        <string>Urban//Employes</string>
+        <double>0.112</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Lighting</string>
+        <double>0.433</double>
+       </void>
+       <void method="put">
+        <string>Urban//Parking</string>
+        <double>0.067</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Cleanliness</string>
+        <double>0.455</double>
+       </void>
+       <void method="put">
+        <string>Rural//Cleanliness</string>
+        <double>0.454</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Organization</string>
+        <double>0.455</double>
+       </void>
+       <void method="put">
+        <string>Urban//Organization</string>
+        <double>0.091</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Employes</string>
+        <double>0.444</double>
+       </void>
+       <void method="put">
+        <string>Rural//Parking</string>
+        <double>0.64</double>
+       </void>
+       <void method="put">
+        <string>Rural//Organization</string>
+        <double>0.454</double>
+       </void>
+       <void method="put">
+        <string>Urban//Lighting</string>
+        <double>0.1</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Merchandise//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate4">
+      <void property="nucleo">
+       <void method="put">
+        <string>Variety//Walmart</string>
+        <double>0.377</double>
+       </void>
+       <void method="put">
+        <string>Quality//Kmart</string>
+        <double>0.14</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Walmart</string>
+        <double>0.362</double>
+       </void>
+       <void method="put">
+        <string>Variety//Target</string>
+        <double>0.348</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Kmart</string>
+        <double>0.333</double>
+       </void>
+       <void method="put">
+        <string>Quality//Walmart</string>
+        <double>0.261</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Target</string>
+        <double>0.168</double>
+       </void>
+       <void method="put">
+        <string>Quality//Target</string>
+        <double>0.484</double>
+       </void>
+       <void method="put">
+        <string>Variety//Kmart</string>
+        <double>0.527</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Merchandise//Merchandise</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate5">
+      <void property="nucleo">
+       <void method="put">
+        <string>Variety//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Quality</string>
+        <double>0.2</double>
+       </void>
+       <void method="put">
+        <string>Quality//Low Cost</string>
+        <double>0.75</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Variety</string>
+        <double>0.8</double>
+       </void>
+       <void method="put">
+        <string>Quality//Variety</string>
+        <double>0.2</double>
+       </void>
+       <void method="put">
+        <string>Variety//Low Cost</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Quality</string>
+        <double>0.8</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Cust. Groups</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate6">
+      <void property="nucleo">
+       <void method="put">
+        <string>Kmart//White Collar</string>
+        <double>0.105</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Blue Collar</string>
+        <double>0.208</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Teenagers</string>
+        <double>0.691</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Blue Collar</string>
+        <double>0.661</double>
+       </void>
+       <void method="put">
+        <string>Walmart//White Collar</string>
+        <double>0.637</double>
+       </void>
+       <void method="put">
+        <string>Target//White Collar</string>
+        <double>0.258</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Teenagers</string>
+        <double>0.149</double>
+       </void>
+       <void method="put">
+        <string>Target//Blue Collar</string>
+        <double>0.131</double>
+       </void>
+       <void method="put">
+        <string>Target//Families</string>
+        <double>0.152</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Families</string>
+        <double>0.63</double>
+       </void>
+       <void method="put">
+        <string>Target//Teenagers</string>
+        <double>0.16</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Families</string>
+        <double>0.218</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Advertising</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate7">
+      <void property="nucleo">
+       <void method="put">
+        <string>Teenagers//Direct Mail</string>
+        <double>0.041</double>
+       </void>
+       <void method="put">
+        <string>Families//Radio</string>
+        <double>0.641</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//TV</string>
+        <double>0.049</double>
+       </void>
+       <void method="put">
+        <string>Families//TV</string>
+        <double>0.621</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Radio</string>
+        <double>0.116</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Radio</string>
+        <double>0.045</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Print media</string>
+        <double>0.155</double>
+       </void>
+       <void method="put">
+        <string>Families//Print media</string>
+        <double>0.647</double>
+       </void>
+       <void method="put">
+        <string>White Collar//TV</string>
+        <double>0.165</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Print media</string>
+        <double>0.155</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Radio</string>
+        <double>0.198</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Direct Mail</string>
+        <double>0.121</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//TV</string>
+        <double>0.165</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Direct Mail</string>
+        <double>0.203</double>
+       </void>
+       <void method="put">
+        <string>Families//Direct Mail</string>
+        <double>0.635</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Print media</string>
+        <double>0.043</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Advertising//Characteristic</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate8">
+      <void property="nucleo">
+       <void method="put">
+        <string>Print media//Organization</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Organization</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Organization</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//Organization</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Characteristic</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate9">
+      <void property="nucleo">
+       <void method="put">
+        <string>Target//Organization</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Target//Lighting</string>
+        <double>0.222</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Organization</string>
+        <double>0.095</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Cleanliness</string>
+        <double>0.57</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Organization</string>
+        <double>0.655</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Lighting</string>
+        <double>0.667</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Cleanliness</string>
+        <double>0.097</double>
+       </void>
+       <void method="put">
+        <string>Target//Cleanliness</string>
+        <double>0.333</double>
+       </void>
+       <void method="put">
+        <string>Target//Employes</string>
+        <double>0.271</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Lighting</string>
+        <double>0.111</double>
+       </void>
+       <void method="put">
+        <string>Target//Parking</string>
+        <double>0.32</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Parking</string>
+        <double>0.558</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Parking</string>
+        <double>0.122</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Employes</string>
+        <double>0.644</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Employes</string>
+        <double>0.085</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Merchandise//Cust. Groups</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate10">
+      <void property="nucleo">
+       <void method="put">
+        <string>Variety//Teenagers</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Teenagers</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Teenagers</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Families</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Families</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Families</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Merchandise</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate11">
+      <void property="nucleo">
+       <void method="put">
+        <string>Target//Quality</string>
+        <double>0.269</double>
+       </void>
+       <void method="put">
+        <string>Target//Low Cost</string>
+        <double>0.131</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Quality</string>
+        <double>0.614</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Variety</string>
+        <double>0.122</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Variety</string>
+        <double>0.648</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Low Cost</string>
+        <double>0.208</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Quality</string>
+        <double>0.117</double>
+       </void>
+       <void method="put">
+        <string>Target//Variety</string>
+        <double>0.23</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Low Cost</string>
+        <double>0.661</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Merchandise//Locations</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate12">
+      <void property="nucleo">
+       <void method="put">
+        <string>Low Cost//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Rural</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Characteristic//Advertising</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate13">
+      <void property="nucleo">
+       <void method="put">
+        <string>Parking//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//TV</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Advertising//Cust. Groups</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate14">
+      <void property="nucleo">
+       <void method="put">
+        <string>Direct Mail//Teenagers</string>
+        <double>0.1</double>
+       </void>
+       <void method="put">
+        <string>Print media//Blue Collar</string>
+        <double>0.221</double>
+       </void>
+       <void method="put">
+        <string>TV//Teenagers</string>
+        <double>0.634</double>
+       </void>
+       <void method="put">
+        <string>Radio//Families</string>
+        <double>0.049</double>
+       </void>
+       <void method="put">
+        <string>TV//Blue Collar</string>
+        <double>0.51</double>
+       </void>
+       <void method="put">
+        <string>Radio//Blue Collar</string>
+        <double>0.063</double>
+       </void>
+       <void method="put">
+        <string>Print media//Families</string>
+        <double>0.27</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//White Collar</string>
+        <double>0.404</double>
+       </void>
+       <void method="put">
+        <string>Radio//White Collar</string>
+        <double>0.059</double>
+       </void>
+       <void method="put">
+        <string>Print media//Teenagers</string>
+        <double>0.17</double>
+       </void>
+       <void method="put">
+        <string>Radio//Teenagers</string>
+        <double>0.096</double>
+       </void>
+       <void method="put">
+        <string>TV//White Collar</string>
+        <double>0.323</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Blue Collar</string>
+        <double>0.206</double>
+       </void>
+       <void method="put">
+        <string>TV//Families</string>
+        <double>0.508</double>
+       </void>
+       <void method="put">
+        <string>Print media//White Collar</string>
+        <double>0.214</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Families</string>
+        <double>0.173</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Locations</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate15">
+      <void property="nucleo">
+       <void method="put">
+        <string>Blue Collar//Suburban</string>
+        <double>0.116</double>
+       </void>
+       <void method="put">
+        <string>Families//Suburban</string>
+        <double>0.641</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Suburban</string>
+        <double>0.045</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Urban</string>
+        <double>0.043</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Suburban</string>
+        <double>0.198</double>
+       </void>
+       <void method="put">
+        <string>Families//Rural</string>
+        <double>0.645</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Urban</string>
+        <double>0.078</double>
+       </void>
+       <void method="put">
+        <string>Families//Urban</string>
+        <double>0.656</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Urban</string>
+        <double>0.223</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Rural</string>
+        <double>0.224</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Rural</string>
+        <double>0.092</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Rural</string>
+        <double>0.039</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Merchandise//Advertising</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate16">
+      <void property="nucleo">
+       <void method="put">
+        <string>Low Cost//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Locations//Merchandise</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate17">
+      <void property="nucleo">
+       <void method="put">
+        <string>Suburban//Low Cost</string>
+        <double>0.117</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Variety</string>
+        <double>0.627</double>
+       </void>
+       <void method="put">
+        <string>Rural//Low Cost</string>
+        <double>0.615</double>
+       </void>
+       <void method="put">
+        <string>Rural//Variety</string>
+        <double>0.279</double>
+       </void>
+       <void method="put">
+        <string>Urban//Variety</string>
+        <double>0.094</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Quality</string>
+        <double>0.605</double>
+       </void>
+       <void method="put">
+        <string>Urban//Quality</string>
+        <double>0.105</double>
+       </void>
+       <void method="put">
+        <string>Rural//Quality</string>
+        <double>0.29</double>
+       </void>
+       <void method="put">
+        <string>Urban//Low Cost</string>
+        <double>0.268</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Merchandise//Characteristic</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate18">
+      <void property="nucleo">
+       <void method="put">
+        <string>Variety//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Organization</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Organization</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Low Cost//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Organization</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Variety//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Quality//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Locations//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate19">
+      <void property="nucleo">
+       <void method="put">
+        <string>Rural//Walmart</string>
+        <double>0.481</double>
+       </void>
+       <void method="put">
+        <string>Urban//Walmart</string>
+        <double>0.114</double>
+       </void>
+       <void method="put">
+        <string>Urban//Kmart</string>
+        <double>0.084</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Kmart</string>
+        <double>0.444</double>
+       </void>
+       <void method="put">
+        <string>Urban//Target</string>
+        <double>0.086</double>
+       </void>
+       <void method="put">
+        <string>Rural//Target</string>
+        <double>0.286</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Walmart</string>
+        <double>0.405</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Target</string>
+        <double>0.628</double>
+       </void>
+       <void method="put">
+        <string>Rural//Kmart</string>
+        <double>0.472</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Advertising//Advertising</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate20">
+      <void property="nucleo">
+       <void method="put">
+        <string>Direct Mail//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//TV</string>
+        <double>0.75</double>
+       </void>
+       <void method="put">
+        <string>Radio//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Radio</string>
+        <double>0.2</double>
+       </void>
+       <void method="put">
+        <string>TV//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//TV</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Print media//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Print media</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//TV</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Direct Mail</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Radio</string>
+        <double>0.8</double>
+       </void>
+       <void method="put">
+        <string>TV//Radio</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Radio</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Merchandise</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate21">
+      <void property="nucleo">
+       <void method="put">
+        <string>Teenagers//Low Cost</string>
+        <double>0.219</double>
+       </void>
+       <void method="put">
+        <string>Families//Low Cost</string>
+        <double>0.618</double>
+       </void>
+       <void method="put">
+        <string>Families//Variety</string>
+        <double>0.621</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Variety</string>
+        <double>0.049</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Variety</string>
+        <double>0.165</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Variety</string>
+        <double>0.165</double>
+       </void>
+       <void method="put">
+        <string>Families//Quality</string>
+        <double>0.566</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Low Cost</string>
+        <double>0.112</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Low Cost</string>
+        <double>0.051</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Quality</string>
+        <double>0.053</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Quality</string>
+        <double>0.222</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Quality</string>
+        <double>0.159</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Cust. Groups</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate22">
+      <void property="nucleo">
+       <void method="put">
+        <string>Families//White Collar</string>
+        <double>0.857</double>
+       </void>
+       <void method="put">
+        <string>Families//Teenagers</string>
+        <double>0.738</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Families</string>
+        <double>0.649</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Teenagers</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Blue Collar</string>
+        <double>0.143</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Families</string>
+        <double>0.072</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Families</string>
+        <double>0.279</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Teenagers</string>
+        <double>0.085</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//White Collar</string>
+        <double>0.143</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Families//Families</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Teenagers</string>
+        <double>0.177</double>
+       </void>
+       <void method="put">
+        <string>White Collar//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Families//Blue Collar</string>
+        <double>0.857</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Characteristic//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate23">
+      <void property="nucleo">
+       <void method="put">
+        <string>Cleanliness//Kmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Target</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Target</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Walmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Kmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Walmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Kmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Target</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Walmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Kmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Target</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Kmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Target</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Walmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Walmart</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Advertising</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate24">
+      <void property="nucleo">
+       <void method="put">
+        <string>Kmart//Radio</string>
+        <double>0.174</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Direct Mail</string>
+        <double>0.661</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Print media</string>
+        <double>0.297</double>
+       </void>
+       <void method="put">
+        <string>Target//TV</string>
+        <double>0.127</double>
+       </void>
+       <void method="put">
+        <string>Walmart//TV</string>
+        <double>0.687</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Radio</string>
+        <double>0.634</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Print media</string>
+        <double>0.54</double>
+       </void>
+       <void method="put">
+        <string>Kmart//TV</string>
+        <double>0.186</double>
+       </void>
+       <void method="put">
+        <string>Target//Radio</string>
+        <double>0.192</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Direct Mail</string>
+        <double>0.208</double>
+       </void>
+       <void method="put">
+        <string>Target//Print media</string>
+        <double>0.163</double>
+       </void>
+       <void method="put">
+        <string>Target//Direct Mail</string>
+        <double>0.131</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Characteristic//Characteristic</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate25">
+      <void property="nucleo">
+       <void method="put">
+        <string>Organization//Lighting</string>
+        <double>0.251</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Cleanliness</string>
+        <double>0.121</double>
+       </void>
+       <void method="put">
+        <string>Organization//Organization</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Lighting</string>
+        <double>0.076</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Parking</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Organization</string>
+        <double>0.169</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Cleanliness</string>
+        <double>0.304</double>
+       </void>
+       <void method="put">
+        <string>Employes//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Lighting</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Parking</string>
+        <double>0.75</double>
+       </void>
+       <void method="put">
+        <string>Employes//Organization</string>
+        <double>0.308</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Employes</string>
+        <double>0.8</double>
+       </void>
+       <void method="put">
+        <string>Employes//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Organization</string>
+        <double>0.054</double>
+       </void>
+       <void method="put">
+        <string>Parking//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Lighting</string>
+        <double>0.673</double>
+       </void>
+       <void method="put">
+        <string>Organization//Employes</string>
+        <double>0.2</double>
+       </void>
+       <void method="put">
+        <string>Parking//Employes</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Cleanliness</string>
+        <double>0.575</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Organization</string>
+        <double>0.469</double>
+       </void>
+       <void method="put">
+        <string>Parking//Cleanliness</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Advertising//Merchandise</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate26">
+      <void property="nucleo">
+       <void method="put">
+        <string>TV//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>TV//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Print media//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Radio//Quality</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Characteristic//Cust. Groups</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate27">
+      <void property="nucleo">
+       <void method="put">
+        <string>Employes//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Teenagers</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Teenagers</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Families</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Families</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Families</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Families</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Teenagers</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Families</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Teenagers</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Blue Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Teenagers</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Characteristic//Locations</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate28">
+      <void property="nucleo">
+       <void method="put">
+        <string>Cleanliness//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Rural</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Locations//Advertising</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate29">
+      <void property="nucleo">
+       <void method="put">
+        <string>Urban//Radio</string>
+        <double>0.08</double>
+       </void>
+       <void method="put">
+        <string>Suburban//TV</string>
+        <double>0.388</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Direct Mail</string>
+        <double>0.537</double>
+       </void>
+       <void method="put">
+        <string>Urban//Direct Mail</string>
+        <double>0.099</double>
+       </void>
+       <void method="put">
+        <string>Rural//TV</string>
+        <double>0.169</double>
+       </void>
+       <void method="put">
+        <string>Rural//Radio</string>
+        <double>0.311</double>
+       </void>
+       <void method="put">
+        <string>Rural//Direct Mail</string>
+        <double>0.364</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Print media</string>
+        <double>0.416</double>
+       </void>
+       <void method="put">
+        <string>Rural//Print media</string>
+        <double>0.458</double>
+       </void>
+       <void method="put">
+        <string>Urban//Print media</string>
+        <double>0.126</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Radio</string>
+        <double>0.609</double>
+       </void>
+       <void method="put">
+        <string>Urban//TV</string>
+        <double>0.443</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Characteristic</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate30">
+      <void property="nucleo">
+       <void method="put">
+        <string>White Collar//Cleanliness</string>
+        <double>0.242</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Cleanliness</string>
+        <double>0.056</double>
+       </void>
+       <void method="put">
+        <string>Families//Cleanliness</string>
+        <double>0.494</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Lighting</string>
+        <double>0.049</double>
+       </void>
+       <void method="put">
+        <string>Families//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Employes</string>
+        <double>0.165</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Lighting</string>
+        <double>0.383</double>
+       </void>
+       <void method="put">
+        <string>Families//Lighting</string>
+        <double>0.185</double>
+       </void>
+       <void method="put">
+        <string>Families//Organization</string>
+        <double>0.583</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Organization</string>
+        <double>0.043</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Employes</string>
+        <double>0.049</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Cleanliness</string>
+        <double>0.208</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Lighting</string>
+        <double>0.383</double>
+       </void>
+       <void method="put">
+        <string>Families//Employes</string>
+        <double>0.621</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Organization</string>
+        <double>0.187</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Employes</string>
+        <double>0.165</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Parking</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Organization</string>
+        <double>0.187</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Characteristic//Merchandise</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate31">
+      <void property="nucleo">
+       <void method="put">
+        <string>Organization//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Organization//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Lighting//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Low Cost</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Quality</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Parking//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Employes//Variety</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Cleanliness//Low Cost</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Advertising//Locations</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate32">
+      <void property="nucleo">
+       <void method="put">
+        <string>Direct Mail//Urban</string>
+        <double>0.272</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Suburban</string>
+        <double>0.173</double>
+       </void>
+       <void method="put">
+        <string>TV//Suburban</string>
+        <double>0.543</double>
+       </void>
+       <void method="put">
+        <string>Radio//Suburban</string>
+        <double>0.053</double>
+       </void>
+       <void method="put">
+        <string>TV//Rural</string>
+        <double>0.558</double>
+       </void>
+       <void method="put">
+        <string>TV//Urban</string>
+        <double>0.288</double>
+       </void>
+       <void method="put">
+        <string>Print media//Urban</string>
+        <double>0.381</double>
+       </void>
+       <void method="put">
+        <string>Print media//Rural</string>
+        <double>0.175</double>
+       </void>
+       <void method="put">
+        <string>Direct Mail//Rural</string>
+        <double>0.219</double>
+       </void>
+       <void method="put">
+        <string>Print media//Suburban</string>
+        <double>0.231</double>
+       </void>
+       <void method="put">
+        <string>Radio//Urban</string>
+        <double>0.059</double>
+       </void>
+       <void method="put">
+        <string>Radio//Rural</string>
+        <double>0.048</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Cust. Groups//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate33">
+      <void property="nucleo">
+       <void method="put">
+        <string>White Collar//Walmart</string>
+        <double>0.141</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Target</string>
+        <double>0.208</double>
+       </void>
+       <void method="put">
+        <string>Families//Kmart</string>
+        <double>0.623</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Target</string>
+        <double>0.055</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Walmart</string>
+        <double>0.217</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Walmart</string>
+        <double>0.063</double>
+       </void>
+       <void method="put">
+        <string>Families//Target</string>
+        <double>0.62</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Kmart</string>
+        <double>0.214</double>
+       </void>
+       <void method="put">
+        <string>Blue Collar//Target</string>
+        <double>0.117</double>
+       </void>
+       <void method="put">
+        <string>Families//Walmart</string>
+        <double>0.579</double>
+       </void>
+       <void method="put">
+        <string>Teenagers//Kmart</string>
+        <double>0.049</double>
+       </void>
+       <void method="put">
+        <string>White Collar//Kmart</string>
+        <double>0.114</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Locations//Locations</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate34">
+      <void property="nucleo">
+       <void method="put">
+        <string>Suburban//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Rural//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Rural//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Urban//Suburban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Urban//Urban</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Urban//Rural</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Rural//Suburban</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate35">
+      <void property="nucleo">
+       <void method="put">
+        <string>Walmart//Kmart</string>
+        <double>0.833</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Walmart</string>
+        <double>0.75</double>
+       </void>
+       <void method="put">
+        <string>Target//Target</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Target</string>
+        <double>0.167</double>
+       </void>
+       <void method="put">
+        <string>Target//Kmart</string>
+        <double>0.167</double>
+       </void>
+       <void method="put">
+        <string>Target//Walmart</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Target</string>
+        <double>0.833</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Kmart</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Walmart</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Locations</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate36">
+      <void property="nucleo">
+       <void method="put">
+        <string>Walmart//Urban</string>
+        <double>0.614</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Suburban</string>
+        <double>0.652</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Suburban</string>
+        <double>0.235</double>
+       </void>
+       <void method="put">
+        <string>Target//Urban</string>
+        <double>0.118</double>
+       </void>
+       <void method="put">
+        <string>Target//Rural</string>
+        <double>0.117</double>
+       </void>
+       <void method="put">
+        <string>Target//Suburban</string>
+        <double>0.113</double>
+       </void>
+       <void method="put">
+        <string>Walmart//Rural</string>
+        <double>0.683</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Urban</string>
+        <double>0.268</double>
+       </void>
+       <void method="put">
+        <string>Kmart//Rural</string>
+        <double>0.2</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Locations//Cust. Groups</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate37">
+      <void property="nucleo">
+       <void method="put">
+        <string>Urban//Blue Collar</string>
+        <double>0.094</double>
+       </void>
+       <void method="put">
+        <string>Rural//Blue Collar</string>
+        <double>0.626</double>
+       </void>
+       <void method="put">
+        <string>Rural//Families</string>
+        <double>0.596</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Teenagers</string>
+        <double>0.309</double>
+       </void>
+       <void method="put">
+        <string>Urban//Families</string>
+        <double>0.096</double>
+       </void>
+       <void method="put">
+        <string>Suburban//White Collar</string>
+        <double>0.833</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Blue Collar</string>
+        <double>0.28</double>
+       </void>
+       <void method="put">
+        <string>Rural//White Collar</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Suburban//Families</string>
+        <double>0.308</double>
+       </void>
+       <void method="put">
+        <string>Urban//White Collar</string>
+        <double>0.167</double>
+       </void>
+       <void method="put">
+        <string>Rural//Teenagers</string>
+        <double>0.582</double>
+       </void>
+       <void method="put">
+        <string>Urban//Teenagers</string>
+        <double>0.109</double>
+       </void>
+      </void>
+     </object>
+    </void>
+   </void>
+  </void>
+ </object>
+</java>

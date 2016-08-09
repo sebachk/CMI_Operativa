@@ -100,7 +100,8 @@ public class Principal {
 		JMenuItem mntmAnp = new JMenuItem("ANP");
 		mntmAnp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				StructureManager.getInstance().crearMatrizANP();
+				StructureManager.reset();
+				
 				panelANP = new PanelANP();
 				frame.setContentPane(panelANP);
 				panelANP.updateUI();
@@ -136,12 +137,14 @@ public class Principal {
 		subMenuAbrirAHP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArbolDecisionAHP arbol = XMLSaver.loadXML(getMain());
-				panelAHP = new PanelAHP();
-				frame.setContentPane(panelAHP);
-				StructureManager.getInstance().setArbol(arbol);
-				StructureManager.getInstance().habilitar();
-				panelAHP.arbolCargado();
-				panelAHP.updateUI();
+				if(arbol != null){
+					panelAHP = new PanelAHP();
+					frame.setContentPane(panelAHP);
+					StructureManager.getInstance().setArbol(arbol);
+					StructureManager.getInstance().habilitar();
+					panelAHP.arbolCargado();
+					panelAHP.updateUI();
+				}
 			}
 		});
 		mnAbrir.add(subMenuAbrirAHP);
@@ -150,32 +153,35 @@ public class Principal {
 		subMenuAbrirANP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MatrizDefinicionANP matrizANP = XMLSaver.loadANPFromXML(getMain());
-				StructureManager.getInstance().setMatrizANP(matrizANP);
-				panelANP = new PanelANP();
-				panelANP.getPanelIzquierdo().removeAll();
-				PanelAlterClusANP panelIzquierdo = new PanelAlterClusANP();
-				Iterator<CriterioANP> it = matrizANP.getAlternativas().iterator();
-				while(it.hasNext()){
-					CriterioANP next = it.next();
-					panelIzquierdo.cargarAlternativa(next.getNombre());
-				}
-				List<String> clusters = new ArrayList<String>(matrizANP.getClusters().keySet());
-				for(String cluster: clusters){
-					if(cluster.equals(matrizANP.CLUSTER_ALTERNATIVAS)){continue;}
-					ClusterLabel cLabel=panelIzquierdo.cargarCluster(cluster);
-					for(CriterioANP c: matrizANP.getClusters().get(cluster)){
-						StructureManager.getInstance().getTabCriterios().cargarCriterio(c, cLabel);
-					}					
-				}
-				try {
-					StructureManager.getInstance().getMatrizANP().generarMatriz();
-				} catch (Exception e) {
-					
-					e.printStackTrace();
-				}
-				panelANP.getPanelIzquierdo().add(panelIzquierdo);
-				frame.setContentPane(panelANP);
-				panelANP.updateUI();
+				if(matrizANP != null){
+					StructureManager.reset();			
+					StructureManager.getInstance().setMatrizANP(matrizANP);
+					panelANP = new PanelANP();
+					panelANP.getPanelIzquierdo().removeAll();
+					PanelAlterClusANP panelIzquierdo = new PanelAlterClusANP();
+					Iterator<CriterioANP> it = matrizANP.getAlternativas().iterator();
+					while(it.hasNext()){
+						CriterioANP next = it.next();
+						panelIzquierdo.cargarAlternativa(next.getNombre());
+					}
+					List<String> clusters = new ArrayList<String>(matrizANP.getClusters().keySet());
+					for(String cluster: clusters){
+						if(cluster.equals(matrizANP.CLUSTER_ALTERNATIVAS)){continue;}
+						ClusterLabel cLabel=panelIzquierdo.cargarCluster(cluster);
+						for(CriterioANP c: matrizANP.getClusters().get(cluster)){
+							StructureManager.getInstance().getTabCriterios().cargarCriterio(c, cLabel);
+						}					
+					}
+					try {
+						StructureManager.getInstance().getMatrizANP().generarMatriz();
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+					}
+					panelANP.getPanelIzquierdo().add(panelIzquierdo);
+					frame.setContentPane(panelANP);
+					panelANP.updateUI();
+				}			
 			}
 		});
 		mnAbrir.add(subMenuAbrirANP);
@@ -206,6 +212,11 @@ public class Principal {
 		mnArchivo.add(separator);
 
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Salir");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+			}
+		});
 		mnArchivo.add(mntmNewMenuItem_2);
 
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));

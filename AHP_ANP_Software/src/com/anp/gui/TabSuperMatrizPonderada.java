@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,7 +15,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import com.ahp.StructureManager;
+import com.anp.CriterioANP;
 import com.anp.MatrizDefinicionANP;
+import com.anp.MatrizTemplate;
 import com.anp.gui.utils.SuperMatrizClusterPonderada;
 import com.anp.gui.utils.SuperMatrizCriterioPonderado;
 
@@ -34,6 +39,8 @@ public class TabSuperMatrizPonderada extends JPanel {
 
 	private JTable tabla;
 	private JTable tablaIncidencia;
+	
+	private MatrizTemplate<Double> matrizConvergida;
 
 	public TabSuperMatrizPonderada() {
 
@@ -65,7 +72,10 @@ public class TabSuperMatrizPonderada extends JPanel {
 		btn_converger.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				StructureManager.getInstance().getMatrizANP().converger();
+				matrizConvergida = StructureManager.getInstance().getMatrizANP().converger();
+				printPromedios();
+				StructureManager.getInstance().getTabbedPane().setEnabledAt(
+						StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), true);
 			}
 		});
 		panelEste.add(btn_converger);
@@ -137,6 +147,31 @@ public class TabSuperMatrizPonderada extends JPanel {
 	public void changedTables() {
 		((DefaultTableModel) tabla.getModel()).fireTableDataChanged();
 		((DefaultTableModel) tablaIncidencia.getModel()).fireTableDataChanged();
+	}
+	
+	private Double promedioFila(MatrizTemplate<Double> m,CriterioANP fila){		
+		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(StructureManager.getInstance().getMatrizANP().getAlternativas());
+		allCrit.addAll(StructureManager.getInstance().getMatrizANP().getCriterios());
+		
+		if(!allCrit.contains(fila)){
+			return -1.0;
+		}
+		
+		Iterator<CriterioANP> itf = allCrit.iterator();
+		
+		double suma=0.0;
+		while (itf.hasNext()) {
+			CriterioANP c1 = itf.next();
+			String key = fila.getNombre() + MatrizDefinicionANP.SEPARATOR + c1.getNombre();
+			suma+=m.getElement(key);
+		}		
+		return suma/allCrit.size();	
+	}
+	
+	private void printPromedios(){
+		for(CriterioANP c:StructureManager.getInstance().getMatrizANP().getAlternativas()){
+			TabDecision.getInstance().addCriterio(c.getNombre(), promedioFila(matrizConvergida, c));
+		}		
 	}
 
 }

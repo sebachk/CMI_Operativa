@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 
 import com.anp.MatrizDefinicionANP;
 
@@ -66,6 +67,13 @@ public class XMLSaver {
 	public static ArbolDecisionAHP loadXML(Component parent) {
 
 		try {
+			//jfc.removeChoosableFileFilter(jfc.getFileFilter());
+			jfc.resetChoosableFileFilters();
+			FileFilter[] ff=jfc.getChoosableFileFilters();
+			for(FileFilter f:ff){
+				jfc.removeChoosableFileFilter(f);
+			}
+			jfc.addChoosableFileFilter(NewFileFilter("AHP Files", new String[] { "ahp" }));
 			int i = jfc.showOpenDialog(parent);
 			if (i == JFileChooser.APPROVE_OPTION) {
 				XMLDecoder decoder = new XMLDecoder(
@@ -100,8 +108,13 @@ public class XMLSaver {
 	}
 
 	public static MatrizDefinicionANP loadANPFromXML(Component parent) {
-
 		try {
+			jfc.resetChoosableFileFilters();
+			FileFilter[] ff=jfc.getChoosableFileFilters();
+			for(FileFilter f:ff){
+				jfc.removeChoosableFileFilter(f);
+			}
+			jfc.addChoosableFileFilter(NewFileFilter("ANP Files", new String[] { "anp" }));
 			int i = jfc.showOpenDialog(parent);
 			if (i == JFileChooser.APPROVE_OPTION) {
 				XMLDecoder decoder = new XMLDecoder(
@@ -113,5 +126,33 @@ public class XMLSaver {
 		}
 		return null;
 	} 
+	
+	private static FileFilter NewFileFilter(final String desc, final String[] allowed_extensions) {
+        return new FileFilter() {
+            @Override
+            public boolean accept(java.io.File f) {
+                if (f.isDirectory()) {
+                    return true;
+                }
+                int pos = f.getName().lastIndexOf('.');
+                if (pos == -1) {
+                    return false;
+                } else {
+                    String extension = f.getName().substring(pos + 1);
+                    for (String allowed_extension : allowed_extensions) {
+                        if (extension.equalsIgnoreCase(allowed_extension)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+
+            @Override
+            public String getDescription() {
+                return desc;
+            }
+        };
+    }
 
 }

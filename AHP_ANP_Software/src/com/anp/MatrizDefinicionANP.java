@@ -16,7 +16,7 @@ public class MatrizDefinicionANP {
 	private MatrizTemplate<Double> clusterValues;
 	
 	public static final String CLUSTER_ALTERNATIVAS = "Alternativas";
-	private static final String SEPARATOR = "//";
+	public static final String SEPARATOR = "//";
 
 	public MatrizDefinicionANP() {
 		clusters = new HashMap<String, List<CriterioANP>>();
@@ -256,7 +256,6 @@ public class MatrizDefinicionANP {
 		}
 		printMatriz(anterior, allCrit);
 		printMatriz(resultado, allCrit);
-		printPromedios(resultado, allCrit);
 		return resultado;
 	}
 
@@ -333,40 +332,5 @@ public class MatrizDefinicionANP {
 		}
 		return resultado;
 	}
-	
-	private Double promedioFila(MatrizTemplate<Double> m,CriterioANP fila){
-		
-		List<CriterioANP> allCrit = new ArrayList<CriterioANP>(alternativas);
-		allCrit.addAll(criterios);
-		
-		if(!allCrit.contains(fila)){
-			return -1.0;
-		}
-		
-		Iterator<CriterioANP> itf = allCrit.iterator();
-		
-		double suma=0.0;
-		while (itf.hasNext()) {
-			CriterioANP c1 = itf.next();
-			String key = fila.getNombre() + SEPARATOR + c1.getNombre();
-			suma+=m.getElement(key);
-		}
-			
-		return suma/allCrit.size();
-		
-	}
-	
-	private void printPromedios(MatrizTemplate<Double> m, List<CriterioANP> encabezado){
-		
-		for(CriterioANP c:encabezado){
-			System.out.println(c.getNombre()+": "+promedioFila(m, c));
-		}
-		
-	}
-	
-	
-	
-	
-	
 
 }

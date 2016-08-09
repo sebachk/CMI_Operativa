@@ -30,9 +30,12 @@ public class TabResults extends JPanel {
 	private JLabel ciLbl;
 	private JLabel landaLbl;
 
+	public static void reset(){
+		instance= new TabResults();
+	}
 	public static TabResults getinstance() {
 		if (instance == null)
-			instance = new TabResults();
+			reset();
 
 		return instance;
 	}
@@ -52,15 +55,15 @@ public class TabResults extends JPanel {
 		panelDatos.add(panelInfo, BorderLayout.CENTER);
 		panelInfo.setLayout(new GridLayout(0, 1, 0, 0));
 
-		landaLbl = new JLabel("New label");
+		landaLbl = new JLabel(" ");
 		landaLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		panelInfo.add(landaLbl);
 
-		crLbl = new JLabel("New label");
+		crLbl = new JLabel(" ");
 		crLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		panelInfo.add(crLbl);
 
-		ciLbl = new JLabel("New label");
+		ciLbl = new JLabel(" ");
 		ciLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		panelInfo.add(ciLbl);
 
@@ -72,11 +75,11 @@ public class TabResults extends JPanel {
 		lblNewLabel.setForeground(Color.BLUE);
 		panelErrores.add(lblNewLabel);
 
-		errorLabelConsistencia = new JLabel("New label");
+		errorLabelConsistencia = new JLabel(" ");
 		errorLabelConsistencia.setForeground(Color.RED);
 		panelErrores.add(errorLabelConsistencia);
 
-		errorLblMatriz = new JLabel("New label");
+		errorLblMatriz = new JLabel(" ");
 		errorLblMatriz.setForeground(Color.RED);
 		panelErrores.add(errorLblMatriz);
 		this.addCriterio("test1", 0.7);
