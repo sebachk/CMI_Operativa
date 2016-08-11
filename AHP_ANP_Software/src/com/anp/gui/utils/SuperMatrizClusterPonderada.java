@@ -12,6 +12,7 @@ import javax.swing.border.MatteBorder;
 
 import com.ahp.StructureManager;
 import com.anp.CriterioANP;
+import com.anp.MatrizDefinicionANP;
 
 public class SuperMatrizClusterPonderada extends SuperMatrizNivelClusterTableModel {
 
@@ -19,8 +20,20 @@ public class SuperMatrizClusterPonderada extends SuperMatrizNivelClusterTableMod
 
 	public SuperMatrizClusterPonderada(HashMap<String, List<CriterioANP>> rows) {
 		super(rows);
+		
+		
 		clus = new ArrayList<String>();
-		clus.addAll(this.rows.keySet());
+		
+		for(String s:this.rows.keySet()){
+			if(s.equals(MatrizDefinicionANP.CLUSTER_ALTERNATIVAS)){
+				clus.add(0, s);
+			}
+			else{
+				clus.add(s);
+			}
+		}
+		
+		//clus.addAll(this.rows.keySet());
 
 		// TODO Auto-generated constructor stub
 	}

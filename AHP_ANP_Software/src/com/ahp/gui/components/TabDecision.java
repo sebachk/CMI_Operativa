@@ -2,6 +2,7 @@ package com.ahp.gui.components;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -10,6 +11,7 @@ import javax.swing.JTable;
 
 import com.ahp.NodoArbolDecision;
 import com.ahp.StructureManager;
+import com.anp.gui.utils.ANPColors;
 
 public class TabDecision extends JPanel {
 
@@ -83,8 +85,17 @@ public class TabDecision extends JPanel {
 			}
 			this.addCriterio(nodo.getNombre(), v);
 		}
-
+		actualizar();
 		repaint();
+	}
+	
+	public void actualizar(){
+		Collections.sort(alternativas);
+		for(CriterioPonderadoBarra c:alternativas){
+			c.setColor(ANPColors.SEMICOMPLETO.getColor());
+		}
+		alternativas.get(alternativas.size()-1).setColor(ANPColors.COMPLETO.getColor());
+		alternativas.get(0).setColor(ANPColors.INCOMPLETO.getColor());
 	}
 
 }

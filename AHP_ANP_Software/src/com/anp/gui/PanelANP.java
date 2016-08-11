@@ -27,6 +27,14 @@ public class PanelANP extends PanelPrincipal {
 						.getTabbedPane().indexOfComponent(TabSuperMatrizInicial.getInstance())) {
 					TabSuperMatrizInicial.getInstance().actualizar();
 				}
+				if (StructureManager.getInstance().getTabbedPane().getSelectedIndex() == StructureManager.getInstance()
+						.getTabbedPane().indexOfComponent(TabSuperMatrizPonderada.getInstance())) {
+					TabSuperMatrizPonderada.getInstance().actualizar();
+				}
+				if (StructureManager.getInstance().getTabbedPane().getSelectedIndex() == StructureManager.getInstance()
+						.getTabbedPane().indexOfComponent(TabDecision.getInstance())) {
+					TabDecision.getInstance().actualizar();
+				}
 
 			}
 		});

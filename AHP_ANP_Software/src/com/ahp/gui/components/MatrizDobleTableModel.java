@@ -10,6 +10,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import com.ahp.NodoArbolDecision;
+import com.anp.gui.utils.ANPColors;
 
 public class MatrizDobleTableModel extends AbstractTableModel implements TableCellRenderer {
 
@@ -74,7 +75,7 @@ public class MatrizDobleTableModel extends AbstractTableModel implements TableCe
 			JTextField lbl = new JTextField();
 			lbl.setEditable(false);
 			lbl.setText(arg1.toString());
-			lbl.setBackground(Color.GRAY);
+			lbl.setBackground(ANPColors.TABLEHEADER.getColor());
 
 			return lbl;
 		} else {
@@ -82,10 +83,10 @@ public class MatrizDobleTableModel extends AbstractTableModel implements TableCe
 			JLabel field = new JLabel(arg1.toString());
 			field.setOpaque(true);
 			if (isSelected) {
-				field.setBackground(Color.CYAN);
+				field.setBackground(ANPColors.SELECT.getColor());
 			}
 			if (column == row) {
-				field.setBackground(Color.GREEN);
+				field.setBackground(ANPColors.COMPLETO.getColor());
 			}
 
 			return field;

@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import com.ahp.StructureManager;
+import com.anp.gui.utils.ANPColors;
 
 public class TreeLabelAHP extends JPanel {
 
@@ -17,9 +18,9 @@ public class TreeLabelAHP extends JPanel {
 	JLabel text;
 	JPanel panelHijos;
 
-	private static final Color COMPLETO = new Color(50, 255, 50);
-	private static final Color INCOMPLETO = new Color(255, 50, 50);
-	private static final Color SEMICOMPLETO = new Color(255, 255, 50);
+	private static final Color COMPLETO = ANPColors.COMPLETO.getColor();
+	private static final Color INCOMPLETO = ANPColors.INCOMPLETO.getColor();
+	private static final Color SEMICOMPLETO = ANPColors.SEMICOMPLETO.getColor();
 
 	public TreeLabelAHP() {
 		setBorder(new LineBorder(Color.WHITE, 2));

@@ -3,6 +3,8 @@ package com.ahp.gui.components;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +22,7 @@ import javax.swing.tree.DefaultTreeModel;
 
 import com.ahp.NodoArbolDecision;
 import com.ahp.StructureManager;
+import com.anp.gui.utils.SuperMatrizNivelCriterioTableModel;
 
 public class TabMatrices extends JPanel {
 
@@ -110,14 +113,18 @@ public class TabMatrices extends JPanel {
 
 		tabla.setCellSelectionEnabled(true);
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+		tabla.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				sliderPanel.setVisible(true);
+			public void mouseClicked(MouseEvent e) {
+				
+				if(!sliderPanel.isVisible())
+					sliderPanel.setVisible(true);
 				int row = tabla.getSelectedRow();
 				int col = tabla.getSelectedColumn();
-
+				
+				
 				if (row != col && (row > 0 && col > 0)) {
 					criterioA.setText(
 							TabDefiniciones.getInstance().getNodoArbolDecisionActual().getMatriz().getElement(row - 1));
@@ -130,16 +137,18 @@ public class TabMatrices extends JPanel {
 						v = 1.0 / v;
 						v *= -1;
 					}
-
+					e.consume();
 					slider.setValue(v.intValue());
-
+	
 					StructureManager.getInstance().arbolCompleto();
-
+					sliderPanel.updateUI();
+					super.mouseClicked(e);
+					
 				}
-
+				
 			}
 		});
-
+		
 		tabla.setModel(matrizModel);
 
 	}

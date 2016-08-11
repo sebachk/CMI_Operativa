@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.ahp.NodoArbolDecision;
+import com.anp.gui.utils.ANPColors;
 
 
 public class NodeList extends JPanel{
@@ -45,11 +46,11 @@ public class NodeList extends JPanel{
 	}
 
 	public void seleccionar(){
-		this.setBackground(Color.cyan);
+		this.setBackground(ANPColors.SELECT.getColor());
 	}
 	
 	public void deseleccionar(){
-		this.setBackground(Color.LIGHT_GRAY);
+		this.setBackground(ANPColors.NO_CRIT_CELL.getColor());
 	}
 	
 }

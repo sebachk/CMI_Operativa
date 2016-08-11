@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -169,8 +170,17 @@ public class TabSuperMatrizPonderada extends JPanel {
 	}
 	
 	private void printPromedios(){
+		Double suma= 0.00;
+		List<CriterioANP> alternativas = StructureManager.getInstance().getMatrizANP().getAlternativas();
+		HashMap<String,Double> promedios = new HashMap<String,Double>();
+		for(CriterioANP c:alternativas){
+			Double p = promedioFila(matrizConvergida, c);
+			suma += p;
+			promedios.put(c.getNombre(), p);
+		}
+		
 		for(CriterioANP c:StructureManager.getInstance().getMatrizANP().getAlternativas()){
-			TabDecision.getInstance().addCriterio(c.getNombre(), promedioFila(matrizConvergida, c));
+			TabDecision.getInstance().addCriterio(c.getNombre(), (promedios.get(c.getNombre()))/suma);
 		}		
 	}
 

@@ -75,6 +75,12 @@ public class MatrizDefinicionANP {
 		clusters.get(CLUSTER_ALTERNATIVAS).add(toAdd);
 		toAdd.setCluster(CLUSTER_ALTERNATIVAS);
 		alternativas.add(toAdd);
+		try {
+			generarMatriz();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void addCriterio(CriterioANP toAdd) {
@@ -110,6 +116,10 @@ public class MatrizDefinicionANP {
 
 		for (CriterioANP c1 : aux) {
 			for (CriterioANP c2 : aux) {
+				if(c1.getCluster()==null || c2.getCluster()==null){
+					System.out.println("se rope");
+					continue;
+				}
 				MatrizTemplate<Double> mat = matrizValues
 						.getElement(c1.getCluster() + SEPARATOR + c2.getCluster());
 				if (mat == null) {

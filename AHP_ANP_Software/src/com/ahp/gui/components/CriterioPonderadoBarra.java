@@ -9,9 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class CriterioPonderadoBarra extends JPanel {
+public class CriterioPonderadoBarra extends JPanel implements Comparable<CriterioPonderadoBarra> {
 	private JPanel barra;
 	private JLabel criteriolbl;
+	
+	private Color color;
+	
+	public void setColor(Color color) {
+		this.color = color;
+	}
 
 	public void setCriterioNombre(String nombre) {
 		if (criteriolbl == null) {
@@ -72,7 +78,7 @@ public class CriterioPonderadoBarra extends JPanel {
 
 		// this.barra.add(ptjePanel);
 		// this.barra.add(relleno);
-
+		color=null;
 	}
 
 	@Override
@@ -88,8 +94,21 @@ public class CriterioPonderadoBarra extends JPanel {
 		width *= this.getPtje();
 		int height = this.barra.getHeight();
 
-		g.setColor(Color.green);
+		
+		g.setColor(color==null?Color.green:color);
 		g.fillRect(x, y, (int) width, height);
 
+	}
+
+	@Override
+	public int compareTo(CriterioPonderadoBarra o) {
+		if(o.getPtje()>this.ptje){
+			return -1;
+		}
+		if(o.getPtje()<this.ptje){
+			return 1;
+		}
+		return 0;
+		
 	}
 }

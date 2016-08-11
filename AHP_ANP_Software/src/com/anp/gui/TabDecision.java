@@ -1,12 +1,15 @@
 package com.anp.gui;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JPanel;
 
 import com.ahp.gui.components.CriterioPonderadoBarra;
+import com.anp.gui.utils.ANPColors;
 
 public class TabDecision extends JPanel {
 
@@ -74,6 +77,15 @@ public class TabDecision extends JPanel {
 		}*/
 
 		repaint();
+	}
+	
+	public void actualizar(){
+		Collections.sort(alternativas);
+		for(CriterioPonderadoBarra c:alternativas){
+			c.setColor(ANPColors.SEMICOMPLETO.getColor());
+		}
+		alternativas.get(alternativas.size()-1).setColor(ANPColors.COMPLETO.getColor());
+		alternativas.get(0).setColor(ANPColors.INCOMPLETO.getColor());
 	}
 
 }

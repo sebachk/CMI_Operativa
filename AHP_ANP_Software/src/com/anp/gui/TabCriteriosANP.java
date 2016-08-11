@@ -31,6 +31,8 @@ public class TabCriteriosANP extends JPanel {
 	private JLabel labelCrit;
 
 	private List<CriterioLabel> criteriosLabel;
+	private JButton btnEliminarCrit;
+	private JPanel panel;
 
 	public TabCriteriosANP() {
 		criteriosLabel = new ArrayList<CriterioLabel>();
@@ -39,41 +41,49 @@ public class TabCriteriosANP extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaption);
 		this.add(panel_1, BorderLayout.SOUTH);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		panel = new JPanel();
+		panel.setBackground(SystemColor.inactiveCaption);
+		panel_1.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+						
+								btnAgregarCriterio = new JButton("Agregar Criterio");
+								panel.add(btnAgregarCriterio);
+								
+										textFieldCriterios = new JTextField();
+										panel.add(textFieldCriterios);
+										textFieldCriterios.setHorizontalAlignment(SwingConstants.CENTER);
+										textFieldCriterios.setColumns(20);
+										textFieldCriterios.addKeyListener(new KeyAdapter() {
+											@Override
+											public void keyPressed(KeyEvent arg0) {
+												if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+													btnAgregarCriterio.doClick();
 
-		btnAgregarCriterio = new JButton("Agregar Criterio");
-		btnAgregarCriterio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// Crear el crit (visual)
-				String nombreCriterio = textFieldCriterios.getText();
-				if (nombreCriterio == null || nombreCriterio.isEmpty()) {
-					JOptionPane.showMessageDialog(textFieldCriterios, "Debe ingresar un Criterio");
-				} else {
-					CriterioLabel nuevo = new CriterioLabel(nombreCriterio);
-					StructureManager.getInstance().getMatrizANP().addCriterio(nuevo.getCriterioANP());
-					panelListaCrit.add(nuevo);
-					textFieldCriterios.setText("");
-					panelListaCrit.updateUI();
-					panelListaCrit.repaint();
-					criteriosLabel.add(nuevo);
-				}
-			}
-		});
-		panel_1.add(btnAgregarCriterio);
-
-		textFieldCriterios = new JTextField();
-		textFieldCriterios.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldCriterios.setColumns(20);
-		textFieldCriterios.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-					btnAgregarCriterio.doClick();
-
-				}
-			}
-		});
-		panel_1.add(textFieldCriterios);
+												}
+											}
+										});
+								btnAgregarCriterio.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent arg0) {
+										// Crear el crit (visual)
+										String nombreCriterio = textFieldCriterios.getText();
+										if (nombreCriterio == null || nombreCriterio.isEmpty()) {
+											JOptionPane.showMessageDialog(textFieldCriterios, "Debe ingresar un Criterio");
+										} else {
+											CriterioLabel nuevo = new CriterioLabel(nombreCriterio);
+											StructureManager.getInstance().getMatrizANP().addCriterio(nuevo.getCriterioANP());
+											panelListaCrit.add(nuevo);
+											textFieldCriterios.setText("");
+											panelListaCrit.updateUI();
+											panelListaCrit.repaint();
+											criteriosLabel.add(nuevo);
+										}
+									}
+								});
+		
+		btnEliminarCrit = new JButton("Eliminar");
+		panel_1.add(btnEliminarCrit, BorderLayout.EAST);
 
 		labelCrit = new JLabel("Criterios");
 		labelCrit.setHorizontalAlignment(SwingConstants.CENTER);

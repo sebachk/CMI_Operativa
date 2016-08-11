@@ -100,8 +100,8 @@ public class Principal {
 		JMenuItem mntmAnp = new JMenuItem("ANP");
 		mntmAnp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				StructureManager.reset();
-				
+				StructureManager.reset();	
+				StructureManager.getInstance().setMatrizANP(new MatrizDefinicionANP());
 				panelANP = new PanelANP();
 				frame.setContentPane(panelANP);
 				panelANP.updateUI();
