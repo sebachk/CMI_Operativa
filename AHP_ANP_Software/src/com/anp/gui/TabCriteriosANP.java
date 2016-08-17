@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 
 import com.ahp.StructureManager;
 import com.anp.CriterioANP;
+import com.anp.MatrizDefinicionANP;
 
 public class TabCriteriosANP extends JPanel {
 
@@ -83,6 +84,20 @@ public class TabCriteriosANP extends JPanel {
 								});
 		
 		btnEliminarCrit = new JButton("Eliminar");
+		btnEliminarCrit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<CriterioLabel> crits=getSeleccionados();
+				StructureManager.getInstance().getMatrizANP().eliminarCriterios(crits);
+				for(CriterioLabel c:crits){
+					panelListaCrit.remove(c);
+				}
+				criteriosLabel.removeAll(crits);
+				TabSuperMatrizInicial.getInstance().actualizar();
+				TabSuperMatrizPonderada.getInstance().actualizar();
+				updateUI();
+				
+			}
+		});
 		panel_1.add(btnEliminarCrit, BorderLayout.EAST);
 
 		labelCrit = new JLabel("Criterios");
@@ -127,4 +142,13 @@ public class TabCriteriosANP extends JPanel {
 		criteriosLabel.add(nuevo);
 	}
 
+	public void clusterEliminado(String cl){
+		for (CriterioLabel crit : criteriosLabel) {
+			if (cl.equals(crit.getcLabel().getName())) {
+				crit.addToCluster(null);
+			}
+		}
+		updateUI();
+	}
+	
 }

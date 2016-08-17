@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import com.anp.gui.CriterioLabel;
+
 public class MatrizDefinicionANP {
 
 	private List<CriterioANP> alternativas;
@@ -342,5 +344,38 @@ public class MatrizDefinicionANP {
 		}
 		return resultado;
 	}
+	
+	
+	public void eliminarCriterios(List<CriterioLabel> crits){
+		
+		for(CriterioLabel c:crits){
+			String cl= c.getCriterioANP().getCluster();
+			if(clusters.get(cl)!=null){
+				clusters.get(cl).remove(c.getCriterioANP());
+			}
+			this.criterios.remove(c.getCriterioANP());
+		}
+	}
+	
+	public void eliminarAlternativa(String alter){
+		for(CriterioANP al:alternativas){
+			if(al.getNombre().equals(alter)){
+				clusters.get(CLUSTER_ALTERNATIVAS).remove(al);
+				this.alternativas.remove(al);
+				break;
+			}
+		}
+	}
+	
+	public void eliminarCluster(String cl){
+		for(CriterioANP c: clusters.get(cl)){
+			c.setCluster("");
+			
+		}
+		clusters.remove(cl);
+		
+	}
+	
+	
 
 }

@@ -257,4 +257,13 @@ public class StructureManager {
 			}
 		}
 	}
+	
+	public void eliminarCluster(String cl){
+		
+		
+		this.getMatrizANP().eliminarCluster(cl);
+		tabCriteriosANP.clusterEliminado(cl);
+	}
+	
+	
 }

@@ -66,9 +66,13 @@ public class CriterioLabel extends ColoredLabel {
 
 	public void addToCluster(ClusterLabel cl) {
 		this.cLabel = cl;
-		this.setColor(cl.getColor());
-
-		this.criterioANP.setCluster(cl.getName());
+		if(cl!=null){
+			this.setColor(cl.getColor());
+			this.criterioANP.setCluster(cl.getName());
+		}
+		else{
+			this.color.setVisible(false);
+		}
 	}
 
 	public ClusterLabel getcLabel() {

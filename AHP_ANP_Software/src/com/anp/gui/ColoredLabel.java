@@ -12,9 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import com.anp.gui.utils.ANPColors;
+
 public class ColoredLabel extends JPanel {
 	protected JPanel color;
-	private JLabel lblLabel;
+	protected JLabel lblLabel;
+	
 
 	public ColoredLabel() {
 		setBackground(SystemColor.controlHighlight);
@@ -54,4 +57,19 @@ public class ColoredLabel extends JPanel {
 		return color.getBackground();
 	}
 
+	public void seleccionar(){
+		this.lblLabel.setOpaque(true);
+		this.lblLabel.setBackground(ANPColors.SELECT.getColor());
+		
+	}
+	
+	public void deseleccionar(){
+		this.lblLabel.setOpaque(false);
+		
+	}
+	
+	public boolean seleccionado(){
+		return lblLabel.isOpaque();
+	}
+	
 }

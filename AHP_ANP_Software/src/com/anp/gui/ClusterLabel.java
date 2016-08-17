@@ -8,16 +8,25 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import com.ahp.StructureManager;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ClusterLabel extends ColoredLabel implements ActionListener {
 
 	public ClusterLabel() {
+		lblLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				select();
+			}
+		});
 
 		JButton buttonAddCriterios = new JButton("+");
 		buttonAddCriterios.addActionListener(this);
 		buttonAddCriterios.setBackground(Color.WHITE);
 		add(buttonAddCriterios, BorderLayout.EAST);
 
+		
 	}
 
 	@Override
@@ -33,5 +42,10 @@ public class ClusterLabel extends ColoredLabel implements ActionListener {
 		StructureManager.getInstance().clusterChanged(this);
 
 	}
+	
+	protected void select(){
+		((PanelAlterClusANP)this.getParent().getParent().getParent()).SeleccionarCluster(this);
+	}
+
 
 }

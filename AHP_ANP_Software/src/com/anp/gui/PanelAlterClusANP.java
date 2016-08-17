@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,6 +24,7 @@ import javax.swing.border.BevelBorder;
 
 import com.ahp.StructureManager;
 import com.anp.CriterioANP;
+import com.anp.gui.utils.ANPColors;
 
 public class PanelAlterClusANP extends JPanel implements ActionListener {
 	
@@ -73,6 +76,20 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 								fieldAlternativa.setColumns(20);
 								
 								btnEliminarAlter = new JButton("Eliminar");
+								btnEliminarAlter.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent arg0) {
+										for(Component c:panelListaAlternativas.getComponents()){
+											if(c instanceof JLabel){
+												if(c.isOpaque()){
+													StructureManager.getInstance().getMatrizANP().eliminarAlternativa(((JLabel) c).getText());
+													c.getParent().remove(c);
+													updateUI();
+												}
+											}
+										}
+												
+									}
+								});
 								panel.add(btnEliminarAlter, BorderLayout.EAST);
 								fieldAlternativa.addKeyListener(new KeyAdapter() {
 									@Override
@@ -96,6 +113,7 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 		lblAlternativas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblAlternativas.setBackground(SystemColor.activeCaption);
 		panelAlternativas.add(lblAlternativas, BorderLayout.NORTH);
+		
 
 		panelClusters = new JPanel();
 		panelClusters.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -132,6 +150,21 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 		newClustertextField.setColumns(20);
 		
 		btnEliminarClus = new JButton("Eliminar");
+		btnEliminarClus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				for(Component c:panelListaCluster.getComponents()){
+					if(c instanceof ClusterLabel){
+						if(((ClusterLabel) c).seleccionado()){
+							StructureManager.getInstance().eliminarCluster(c.getName());
+							c.getParent().remove(c);
+							updateUI();
+						}
+						
+					}
+				}
+						
+			}
+		});
 		panel_1.add(btnEliminarClus, BorderLayout.EAST);
 
 		JLabel lblCriterion = new JLabel("Grupos");
@@ -179,6 +212,12 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 				panelListaAlternativas.add(nuevo);
 				panelListaAlternativas.updateUI();
 				fieldAlternativa.setText("");
+				nuevo.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						seleccionarAlternativa(nuevo);
+					}
+				});
 				CriterioANP alt = new CriterioANP();
 				alt.setNombre(alter);
 				StructureManager.getInstance().getMatrizANP().addAlternativa(alt);
@@ -212,10 +251,41 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 			panelListaAlternativas.add(nuevo);
 			panelListaAlternativas.updateUI();
 			fieldAlternativa.setText("");
+			nuevo.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					seleccionarAlternativa(nuevo);
+				}
+			});
 //			CriterioANP alt = new CriterioANP();
 //			alt.setNombre(alter);
 //			StructureManager.getInstance().getMatrizANP().addAlternativa(alt);
 		}
+	}
+	
+	public void SeleccionarCluster(ClusterLabel sel){
+		for (Component c :panelListaCluster.getComponents() ){
+			if(c instanceof ClusterLabel){
+				((ClusterLabel)c).deseleccionar();
+			}
+		}
+
+		sel.seleccionar();
+
+		updateUI();
+	}
+	
+	public void seleccionarAlternativa (JLabel alter){
+		for(Component child:panelListaAlternativas.getComponents()){
+			if(child instanceof JLabel){
+				((JLabel) child).setOpaque(false);
+				
+			}
+			alter.setOpaque(true);
+			alter.setBackground(ANPColors.SELECT.getColor());
+		}
+		updateUI();
+		
 	}
 
 }
