@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_40" class="java.beans.XMLDecoder">
+ <object class="com.anp.MatrizDefinicionANP" id="MatrizDefinicionANP0">
+  <void property="alternativas">
+   <void method="add">
+    <object class="com.anp.CriterioANP" id="CriterioANP0">
+     <void property="cluster">
+      <string>Alternativas</string>
+     </void>
+     <void property="nombre">
+      <string>Trenque Lauquen</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.anp.CriterioANP" id="CriterioANP1">
+     <void property="cluster">
+      <string>Alternativas</string>
+     </void>
+     <void property="nombre">
+      <string>Pehuajó</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.anp.CriterioANP" id="CriterioANP2">
+     <void property="cluster">
+      <string>Alternativas</string>
+     </void>
+     <void property="nombre">
+      <string>Gral. Villegas</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void id="MatrizTemplate0" property="clusterValues">
+   <void property="nucleo">
+    <void method="put">
+     <string>Servicios disponibles//Logística</string>
+     <double>0.3</double>
+    </void>
+    <void method="put">
+     <string>Logística//Rendimiento</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Logística//Alternativas</string>
+     <double>0.4</double>
+    </void>
+    <void method="put">
+     <string>Rendimiento//Alternativas</string>
+     <double>0.4</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Servicios disponibles</string>
+     <double>0.7</double>
+    </void>
+    <void method="put">
+     <string>Logística//Logística</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Servicios disponibles//Rendimiento</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Rendimiento//Logística</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Logística</string>
+     <double>0.7</double>
+    </void>
+    <void method="put">
+     <string>Rendimiento//Servicios disponibles</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Servicios disponibles//Alternativas</string>
+     <double>0.2</double>
+    </void>
+    <void method="put">
+     <string>Servicios disponibles//Servicios disponibles</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Logística//Servicios disponibles</string>
+     <double>0.3</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Rendimiento</string>
+     <double>1.0</double>
+    </void>
+    <void method="put">
+     <string>Rendimiento//Rendimiento</string>
+     <double>0.0</double>
+    </void>
+    <void method="put">
+     <string>Alternativas//Alternativas</string>
+     <double>0.0</double>
+    </void>
+   </void>
+  </void>
+  <void id="HashMap0" property="clusters">
+   <void method="get">
+    <string>Alternativas</string>
+    <void method="add">
+     <object idref="CriterioANP0"/>
+    </void>
+    <void method="add">
+     <object idref="CriterioANP1"/>
+    </void>
+    <void method="add">
+     <object idref="CriterioANP2"/>
+    </void>
+   </void>
+   <void method="put">
+    <string>Logística</string>
+    <object class="java.util.ArrayList">
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP3">
+       <void property="cluster">
+        <string>Logística</string>
+       </void>
+       <void property="nombre">
+        <string>Distancia al cultivo</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP4">
+       <void property="cluster">
+        <string>Logística</string>
+       </void>
+       <void property="nombre">
+        <string>Distancia al puerto</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>Rendimiento</string>
+    <object class="java.util.ArrayList">
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP5">
+       <void property="cluster">
+        <string>Rendimiento</string>
+       </void>
+       <void property="nombre">
+        <string>Precipitaciones</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP6">
+       <void property="cluster">
+        <string>Rendimiento</string>
+       </void>
+       <void property="nombre">
+        <string>Has cultivables</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>Servicios disponibles</string>
+    <object class="java.util.ArrayList">
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP7">
+       <void property="cluster">
+        <string>Servicios disponibles</string>
+       </void>
+       <void property="nombre">
+        <string>Disp. Mov. Técnica</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP8">
+       <void property="cluster">
+        <string>Servicios disponibles</string>
+       </void>
+       <void property="nombre">
+        <string>Energía Eléctrica Estable</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="com.anp.CriterioANP" id="CriterioANP9">
+       <void property="cluster">
+        <string>Servicios disponibles</string>
+       </void>
+       <void property="nombre">
+        <string>Conexión a GN</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="criterios">
+   <void method="add">
+    <object idref="CriterioANP5"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP6"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP3"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP4"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP7"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP8"/>
+   </void>
+   <void method="add">
+    <object idref="CriterioANP9"/>
+   </void>
+  </void>
+  <void id="MatrizTemplate1" property="matrizValues">
+   <void property="nucleo">
+    <void method="put">
+     <string>Servicios disponibles//Logística</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate2">
+      <void property="nucleo">
+       <void method="put">
+        <string>Disp. Mov. Técnica//Distancia al cultivo</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Distancia al puerto</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Distancia al cultivo</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Distancia al cultivo</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Disp. Mov. Técnica//Distancia al puerto</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Distancia al puerto</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Logística//Rendimiento</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate3">
+      <void property="nucleo">
+       <void method="put">
+        <string>Distancia al puerto//Has cultivables</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al cultivo//Has cultivables</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Precipitaciones</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al cultivo//Precipitaciones</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Logística//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate4">
+      <void property="nucleo">
+       <void method="put">
+        <string>Distancia al cultivo//Gral. Villegas</string>
+        <double>0.4</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Gral. Villegas</string>
+        <double>0.6</double>
+       </void>
+       <void method="put">
+        <string>Distancia al cultivo//Trenque Lauquen</string>
+        <double>0.6</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Pehuajó</string>
+        <double>0.5</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Trenque Lauquen</string>
+        <double>0.4</double>
+       </void>
+       <void method="put">
+        <string>Distancia al cultivo//Pehuajó</string>
+        <double>0.5</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Rendimiento//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate5">
+      <void property="nucleo">
+       <void method="put">
+        <string>Has cultivables//Pehuajó</string>
+        <double>0.4</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Trenque Lauquen</string>
+        <double>0.5</double>
+       </void>
+       <void method="put">
+        <string>Has cultivables//Trenque Lauquen</string>
+        <double>0.5</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Pehuajó</string>
+        <double>0.6</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Gral. Villegas</string>
+        <double>0.3</double>
+       </void>
+       <void method="put">
+        <string>Has cultivables//Gral. Villegas</string>
+        <double>0.7</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Servicios disponibles</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate6">
+      <void property="nucleo">
+       <void method="put">
+        <string>Pehuajó//Disp. Mov. Técnica</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Disp. Mov. Técnica</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Trenque Lauquen//Disp. Mov. Técnica</string>
+        <double>0.5</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Energía Eléctrica Estable</string>
+        <double>0.2</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Conexión a GN</string>
+        <double>0.3322751323</double>
+       </void>
+       <void method="put">
+        <string>Trenque Lauquen//Conexión a GN</string>
+        <double>0.2978835979</double>
+       </void>
+       <void method="put">
+        <string>Trenque Lauquen//Energía Eléctrica Estable</string>
+        <double>0.6</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Energía Eléctrica Estable</string>
+        <double>0.2</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Conexión a GN</string>
+        <double>0.3698412698</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Logística//Logística</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate7">
+      <void property="nucleo">
+       <void method="put">
+        <string>Distancia al cultivo//Distancia al puerto</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Distancia al cultivo</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Distancia al puerto</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al cultivo//Distancia al cultivo</string>
+        <double>1.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Servicios disponibles//Rendimiento</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate8">
+      <void property="nucleo">
+       <void method="put">
+        <string>Conexión a GN//Has cultivables</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Disp. Mov. Técnica//Precipitaciones</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Precipitaciones</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Precipitaciones</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Disp. Mov. Técnica//Has cultivables</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Has cultivables</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Rendimiento//Logística</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate9">
+      <void property="nucleo">
+       <void method="put">
+        <string>Has cultivables//Distancia al cultivo</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Distancia al cultivo</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Distancia al puerto</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Has cultivables//Distancia al puerto</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Logística</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate10">
+      <void property="nucleo">
+       <void method="put">
+        <string>Gral. Villegas//Distancia al cultivo</string>
+        <double>0.315124489</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Distancia al cultivo</string>
+        <double>0.6024712003</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Distancia al puerto</string>
+        <double>0.5888888889</double>
+       </void>
+       <void method="put">
+        <string>Trenque Lauquen//Distancia al cultivo</string>
+        <double>0.08240431067</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Distancia al puerto</string>
+        <double>0.1592592593</double>
+       </void>
+       <void method="put">
+        <string>Trenque Lauquen//Distancia al puerto</string>
+        <double>0.2518518519</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Rendimiento//Servicios disponibles</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate11">
+      <void property="nucleo">
+       <void method="put">
+        <string>Has cultivables//Conexión a GN</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Energía Eléctrica Estable</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Has cultivables//Disp. Mov. Técnica</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Conexión a GN</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Disp. Mov. Técnica</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Has cultivables//Energía Eléctrica Estable</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Servicios disponibles//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate12">
+      <void property="nucleo">
+       <void method="put">
+        <string>Disp. Mov. Técnica//Gral. Villegas</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Pehuajó</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Trenque Lauquen</string>
+        <double>0.4</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Trenque Lauquen</string>
+        <double>0.3</double>
+       </void>
+       <void method="put">
+        <string>Disp. Mov. Técnica//Trenque Lauquen</string>
+        <double>0.3</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Gral. Villegas</string>
+        <double>0.5</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Gral. Villegas</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Disp. Mov. Técnica//Pehuajó</string>
+        <double>0.25</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Pehuajó</string>
+        <double>0.5</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Servicios disponibles//Servicios disponibles</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate13">
+      <void property="nucleo">
+       <void method="put">
+        <string>Energía Eléctrica Estable//Disp. Mov. Técnica</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Conexión a GN</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Disp. Mov. Técnica</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Disp. Mov. Técnica//Conexión a GN</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Disp. Mov. Técnica//Disp. Mov. Técnica</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Disp. Mov. Técnica//Energía Eléctrica Estable</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Conexión a GN</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Conexión a GN//Energía Eléctrica Estable</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Energía Eléctrica Estable//Energía Eléctrica Estable</string>
+        <double>1.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Logística//Servicios disponibles</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate14">
+      <void property="nucleo">
+       <void method="put">
+        <string>Distancia al cultivo//Conexión a GN</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Conexión a GN</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Disp. Mov. Técnica</string>
+        <double>0.5</double>
+       </void>
+       <void method="put">
+        <string>Distancia al cultivo//Energía Eléctrica Estable</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Distancia al cultivo//Disp. Mov. Técnica</string>
+        <double>0.5</double>
+       </void>
+       <void method="put">
+        <string>Distancia al puerto//Energía Eléctrica Estable</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Rendimiento</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate15">
+      <void property="nucleo">
+       <void method="put">
+        <string>Trenque Lauquen//Precipitaciones</string>
+        <double>0.2972582973</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Has cultivables</string>
+        <double>0.6650702427</double>
+       </void>
+       <void method="put">
+        <string>Trenque Lauquen//Has cultivables</string>
+        <double>0.2310823755</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Precipitaciones</string>
+        <double>0.1637806638</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Has cultivables</string>
+        <double>0.1038473819</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Precipitaciones</string>
+        <double>0.538961039</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Rendimiento//Rendimiento</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate16">
+      <void property="nucleo">
+       <void method="put">
+        <string>Precipitaciones//Precipitaciones</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Has cultivables//Has cultivables</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Precipitaciones//Has cultivables</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Has cultivables//Precipitaciones</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+    <void method="put">
+     <string>Alternativas//Alternativas</string>
+     <object class="com.anp.MatrizTemplate" id="MatrizTemplate17">
+      <void property="nucleo">
+       <void method="put">
+        <string>Trenque Lauquen//Gral. Villegas</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Gral. Villegas</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Pehuajó</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Trenque Lauquen//Trenque Lauquen</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Pehuajó</string>
+        <double>1.0</double>
+       </void>
+       <void method="put">
+        <string>Gral. Villegas//Trenque Lauquen</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Trenque Lauquen//Pehuajó</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Trenque Lauquen</string>
+        <double>0.0</double>
+       </void>
+       <void method="put">
+        <string>Pehuajó//Gral. Villegas</string>
+        <double>0.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+   </void>
+  </void>
+ </object>
+</java>
