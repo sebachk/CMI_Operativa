@@ -14,6 +14,10 @@ import com.ahp.StructureManager;
 import com.anp.MatrizDefinicionANP;
 import com.anp.gui.utils.SuperMatrizNivelClusterTableModel;
 import com.anp.gui.utils.SuperMatrizNivelCriterioTableModel;
+import javax.swing.BoxLayout;
+import javax.swing.border.BevelBorder;
+import java.awt.Color;
+import javax.swing.border.EtchedBorder;
 
 public class TabSuperMatrizInicial extends JPanel {
 
@@ -48,16 +52,27 @@ public class TabSuperMatrizInicial extends JPanel {
 
 		JPanel panelSur = new JPanel();
 		add(panelSur);
-		panelSur.setLayout(new GridLayout(0, 2, 0, 0));
-
-		JPanel panelOeste = new JPanel();
-		panelSur.add(panelOeste);
-		tablaIncidencia = new JTable();
-		panelOeste.add(tablaIncidencia);
-		tablaIncidencia.setCellSelectionEnabled(true);
-		JPanel panelEste = new JPanel();
+				panelSur.setLayout(new BorderLayout(0, 0));
 		
-		panelSur.add(panelEste);
+				JPanel panelOeste = new JPanel();
+				panelSur.add(panelOeste);
+				panelOeste.setLayout(new BorderLayout(0, 0));
+				
+				JPanel panel = new JPanel();
+				panelOeste.add(panel, BorderLayout.NORTH);
+				
+				JPanel panel_1 = new JPanel();
+				panelOeste.add(panel_1, BorderLayout.SOUTH);
+				
+				JPanel panel_2 = new JPanel();
+				panelOeste.add(panel_2, BorderLayout.WEST);
+				
+				JPanel panel_3 = new JPanel();
+				panelOeste.add(panel_3, BorderLayout.EAST);
+				tablaIncidencia = new JTable();
+				tablaIncidencia.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+				panelOeste.add(tablaIncidencia);
+				tablaIncidencia.setCellSelectionEnabled(true);
 
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabla.addMouseListener(new MouseAdapter() {
@@ -97,6 +112,22 @@ public class TabSuperMatrizInicial extends JPanel {
 					matriz.getClusters());
 			tabla.setModel(crits);
 			tabla.setDefaultRenderer(Object.class, crits);
+			
+			int row = tabla.getSelectedRow();
+			row=row==-1?0:row;
+			
+			int col = tabla.getSelectedColumn();
+			col=col==-1?0:col;
+			
+			String clusterFila = (String) tabla.getModel().getValueAt(row, 0);
+			String clusterCol = (String) tabla.getModel().getValueAt(0, col);
+			SuperMatrizNivelCriterioTableModel modelo = new SuperMatrizNivelCriterioTableModel(
+					StructureManager.getInstance().getMatrizANP().getFromCluster(clusterCol),
+					StructureManager.getInstance().getMatrizANP().getFromCluster(clusterFila));
+			tablaIncidencia.setModel(modelo);
+			tablaIncidencia.setDefaultRenderer(Object.class, modelo);
+			
+			
 		}
 	}
 

@@ -21,6 +21,8 @@ import com.anp.MatrizDefinicionANP;
 import com.anp.MatrizTemplate;
 import com.anp.gui.utils.SuperMatrizClusterPonderada;
 import com.anp.gui.utils.SuperMatrizCriterioPonderado;
+import javax.swing.border.EtchedBorder;
+import java.awt.SystemColor;
 
 public class TabSuperMatrizPonderada extends JPanel {
 
@@ -58,18 +60,47 @@ public class TabSuperMatrizPonderada extends JPanel {
 
 		JPanel panelSur = new JPanel();
 		add(panelSur);
-		panelSur.setLayout(new GridLayout(0, 2, 0, 0));
+		panelSur.setLayout(new BorderLayout(0, 0));
 
 		JPanel panelOeste = new JPanel();
 		panelSur.add(panelOeste);
+		panelOeste.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		panelOeste.add(panel, BorderLayout.NORTH);
 		tablaIncidencia = new JTable();
+		tablaIncidencia.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		panelOeste.add(tablaIncidencia);
 		tablaIncidencia.setCellSelectionEnabled(true);
 		
-		JPanel panelEste = new JPanel();
-		panelSur.add(panelEste);
+		JPanel panel_1 = new JPanel();
+		panelOeste.add(panel_1, BorderLayout.WEST);
 		
-		JButton btn_converger = new JButton("Converger");
+		JPanel panel_3 = new JPanel();
+		panelOeste.add(panel_3, BorderLayout.EAST);
+		
+		JPanel panel_2 = new JPanel();
+		panelOeste.add(panel_2, BorderLayout.SOUTH);
+		panel_2.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(SystemColor.activeCaption);
+		panel_2.add(panel_5, BorderLayout.NORTH);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.activeCaption);
+		panel_2.add(panel_4, BorderLayout.WEST);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(SystemColor.activeCaption);
+		panel_2.add(panel_6, BorderLayout.SOUTH);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(SystemColor.activeCaption);
+		panel_2.add(panel_7, BorderLayout.EAST);
+		
+		JButton btn_converger = new JButton("Decidir");
+		panel_2.add(btn_converger);
 		btn_converger.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -77,9 +108,11 @@ public class TabSuperMatrizPonderada extends JPanel {
 				printPromedios();
 				StructureManager.getInstance().getTabbedPane().setEnabledAt(
 						StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), true);
+				StructureManager.getInstance().getTabbedPane().setSelectedIndex(StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()));
+
+				StructureManager.getInstance().getTabbedPane().updateUI();
 			}
 		});
-		panelEste.add(btn_converger);
 
 		tabla.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabla.addMouseListener(new MouseAdapter() {
@@ -171,6 +204,7 @@ public class TabSuperMatrizPonderada extends JPanel {
 	
 	private void printPromedios(){
 		Double suma= 0.00;
+		TabDecision.getInstance().generarDecision();
 		List<CriterioANP> alternativas = StructureManager.getInstance().getMatrizANP().getAlternativas();
 		HashMap<String,Double> promedios = new HashMap<String,Double>();
 		for(CriterioANP c:alternativas){
