@@ -45,6 +45,8 @@ public class TabSuperMatrizPonderada extends JPanel {
 	
 	private MatrizTemplate<Double> matrizConvergida;
 
+	private JButton btn_converger;
+
 	public TabSuperMatrizPonderada() {
 
 		MatrizDefinicionANP matriz = StructureManager.getInstance().getMatrizANP();
@@ -99,18 +101,20 @@ public class TabSuperMatrizPonderada extends JPanel {
 		panel_7.setBackground(SystemColor.activeCaption);
 		panel_2.add(panel_7, BorderLayout.EAST);
 		
-		JButton btn_converger = new JButton("Decidir");
+		btn_converger = new JButton("Decidir");
 		panel_2.add(btn_converger);
 		btn_converger.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				matrizConvergida = StructureManager.getInstance().getMatrizANP().converger();
-				printPromedios();
-				StructureManager.getInstance().getTabbedPane().setEnabledAt(
-						StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), true);
-				StructureManager.getInstance().getTabbedPane().setSelectedIndex(StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()));
-
-				StructureManager.getInstance().getTabbedPane().updateUI();
+				if(btn_converger.isEnabled()){
+					matrizConvergida = StructureManager.getInstance().getMatrizANP().converger();
+					printPromedios();
+					StructureManager.getInstance().getTabbedPane().setEnabledAt(
+							StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), true);
+					StructureManager.getInstance().getTabbedPane().setSelectedIndex(StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()));
+	
+					StructureManager.getInstance().getTabbedPane().updateUI();
+				}
 			}
 		});
 
@@ -176,11 +180,13 @@ public class TabSuperMatrizPonderada extends JPanel {
 			tabla.setModel(crits);
 			tabla.setDefaultRenderer(Object.class, crits);
 		}
+		enableDecision();
 	}
 
 	public void changedTables() {
 		((DefaultTableModel) tabla.getModel()).fireTableDataChanged();
 		((DefaultTableModel) tablaIncidencia.getModel()).fireTableDataChanged();
+		enableDecision();
 	}
 	
 	private Double promedioFila(MatrizTemplate<Double> m,CriterioANP fila){		
@@ -217,5 +223,20 @@ public class TabSuperMatrizPonderada extends JPanel {
 			TabDecision.getInstance().addCriterio(c.getNombre(), (promedios.get(c.getNombre()))/suma);
 		}		
 	}
+	
+	public void enableDecision(){
+		boolean enable = StructureManager.getInstance().getMatrizANP().matrizCompleta();
+		btn_converger.setEnabled(enable);
+		if(!enable){
+			StructureManager.getInstance().getTabbedPane().setEnabledAt(
+				StructureManager.getInstance().getTabbedPane().indexOfComponent(TabDecision.getInstance()), enable);
+		}
+		updateUI();
+	}
+	
+	public void componenteEliminado(){
+		tablaIncidencia.setVisible(false);
+	}
+	
 
 }

@@ -169,6 +169,21 @@ public class MatrizDefinicionANP {
 		return null;
 	}
 
+	public boolean matrizCompleta(){
+		for(String s: clusters.keySet()){
+			int i = getRelacionCluster(s, new ArrayList<String>(clusters.keySet()));
+			
+			if(i < 0) return false;
+			for(String c:clusters.keySet()){
+				i = getRelacion(c, s);
+				if(i < 0) return false;
+			}
+			
+		}
+		return true;
+	}
+	
+	
 	public int getRelacionCluster(String clusterColumna, List<String> clustersRow) {
 		double suma = 0.0;
 		for (String cluster : clustersRow) {

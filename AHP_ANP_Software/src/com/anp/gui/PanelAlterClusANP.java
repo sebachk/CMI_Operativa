@@ -82,6 +82,7 @@ public class PanelAlterClusANP extends JPanel implements ActionListener {
 											if(c instanceof JLabel){
 												if(c.isOpaque()){
 													StructureManager.getInstance().getMatrizANP().eliminarAlternativa(((JLabel) c).getText());
+													TabSuperMatrizPonderada.getInstance().componenteEliminado();
 													c.getParent().remove(c);
 													updateUI();
 												}
